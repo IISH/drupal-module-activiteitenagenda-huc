@@ -1,0 +1,13 @@
+diff --git a/date_views/includes/date_views_plugin_pager.inc b/date_views/includes/date_views_plugin_pager.inc
+index 5caca4e..1addd20 100644
+--- a/date_views/includes/date_views_plugin_pager.inc
++++ b/date_views/includes/date_views_plugin_pager.inc
+@@ -281,7 +281,7 @@ class date_views_plugin_pager extends views_plugin_pager {
+         else {
+           $this->view->date_info->prev_date = clone($argument->min_date);
+           date_modify($this->view->date_info->prev_date, '-1 ' . $argument->date_handler->granularity);
+-          $this->view->date_info->next_date = clone($argument->max_date);
++          $this->view->date_info->next_date = clone($argument->min_date);
+           date_modify($this->view->date_info->next_date, '+1 ' . $argument->date_handler->granularity);
+         }
+         // Write the date_info properties that depend on the current value.

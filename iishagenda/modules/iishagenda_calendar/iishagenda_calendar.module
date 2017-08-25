@@ -1,0 +1,62 @@
+<?php
+/**
+ * @file
+ * Code for the iishagenda_calendar feature.
+ */
+
+include_once 'iishagenda_calendar.features.inc';
+
+
+
+
+
+/**
+ * Implements hook_date_formats().
+ */
+function iishagenda_calendar_date_formats() {
+  return array(
+    // Creates a new format for a new, custom format type.
+    array(
+      'type' => 'Week',
+      'format' => 'W - Y',
+      'locales' => array(),
+    ),
+    // Defines a format and makes it available to core's short format type.
+    array(
+      'type' => 'event_date',
+      'format' => 'd-m-Y H:i',
+      'locales' => array(),
+    ),
+    // Defines a format and makes it available to core's short format type.
+    array(
+      'type' => 'Time',
+      'format' => 'H:i',
+      'locales' => array(),
+    ),
+    // Defines a format and makes it available to core's short format type.
+    array(
+      'type' => 'Month',
+      'format' => 'F Y',
+      'locales' => array(),
+    ),
+    // Defines a format and makes it available to core's short format type.
+    array(
+      'type' => 'Date',
+      'format' => 'd-m-Y',
+      'locales' => array(),
+    ),
+  );
+
+}
+
+
+function iishagenda_calendar_date_format_types() {
+  return array(
+    'Week' => t('IISH agenda week'),
+    'event_date' => t('IISH agenda date and time'),
+    'Time' => t('IISH agenda time'),
+    'Month' => t('IISH agenda full month'),
+    'Date' => t('IISH agenda date'),
+  );
+}
+

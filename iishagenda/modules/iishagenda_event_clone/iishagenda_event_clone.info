@@ -1,0 +1,10 @@
+name = IISH Agenda Event Clone
+description = Provides event clones page (form + clonelist)
+core = 7.x
+package = IISH
+
+version = "7.x-1.0"
+core = "7.x"
+
+dependencies[] = iishagenda_event
+dependencies[] = replicate

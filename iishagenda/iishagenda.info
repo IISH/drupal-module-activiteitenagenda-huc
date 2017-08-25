@@ -1,0 +1,29 @@
+name = IISH Agenda
+description = Provides additional functionality to the event registration form and calendar
+core = 7.x
+package = IISH
+
+version = "7.x-2.0"
+core = "7.x"
+
+dependencies[] = iishagenda_event
+dependencies[] = iishagenda_room
+dependencies[] = iishagenda_calendar
+
+dependencies[] = calendar
+dependencies[] = ctools
+dependencies[] = date_datepicker_inline
+dependencies[] = entity
+dependencies[] = entityreference
+dependencies[] = field_collection_table
+dependencies[] = field_permissions
+dependencies[] = inline_entity_form
+dependencies[] = jquery_colorpicker
+dependencies[] = jquery_update
+dependencies[] = libraries
+dependencies[] = references
+dependencies[] = views_bulk_operations
+dependencies[] = strongarm
+
+dependencies[] = i18n
+dependencies[] = i18n_taxonomy

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the iishagenda_room feature.
+ */
+
+include_once 'iishagenda_room.features.inc';

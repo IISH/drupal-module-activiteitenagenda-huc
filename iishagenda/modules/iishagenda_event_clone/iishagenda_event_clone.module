@@ -1,0 +1,187 @@
+<?php
+
+/**
+ * Implementation of hook_init().
+ */
+function iishagenda_event_clone_init(){
+
+    switch(arg(0)){
+        case "clone":
+            drupal_add_js(drupal_get_path('module', 'iishagenda') .'/vendor/jquery_timepicker/jquery.timepicker.js');
+            drupal_add_css(drupal_get_path('module', 'iishagenda') .'/vendor/jquery_timepicker/jquery.timepicker.css',array('weight' => 998));
+            drupal_add_js(drupal_get_path('module', 'iishagenda_event_clone') .'/js/iishagenda_cloneform.js');
+            break;
+    }
+}
+
+
+/**
+ * Implementation of hook_menu().
+ */
+function iishagenda_event_clone_menu() {
+
+    $items['clone/%'] = array(
+        'title' => t('Clone'),
+        'description' => '',
+        'page callback' => 'clone_overview',
+
+        'access callback' => '_iishagenda_user_has_role',
+        'access arguments' => array(array('administrator','event administrator')),
+    );
+
+    return $items;
+}
+
+/**
+*
+ */
+function clone_overview() {
+
+    $node_id = arg(1);
+
+    if( isset($node_id) && is_numeric($node_id)){
+
+        $entity = entity_load('node', array($node_id));
+        $entity = array_shift($entity);
+
+        $time = strtotime($entity->field_event_date[LANGUAGE_NONE][0]['value']);
+        $intro = l("terug","node/".$node_id);
+        $intro .= t("<br><br><h3>maak clone(s) van evenement: <i>".$entity->title."</i></h3>");
+        $intro .= t("<b>Datum: ".format_date($time,"event_date")."</b>");
+        $intro .= t("<br><br>Kies data voor klones:<br><br>");
+
+        $clones = "<br><hr><h3>Clones van dit evenement </h3>";
+        $clones .= views_embed_view('clones', 'block', $node_id);
+        $form = drupal_get_form('iishagenda_event_clone_form');
+        return $intro.render($form).$clones;
+    }else{
+        return t("Invalid argument");
+    }
+
+}
+
+function iishagenda_event_clone_form($form, &$form_state) {
+
+    $field =  array(
+        '#type' => 'date_popup',
+        '#title' => "Datum",
+        '#date_format' => 'Y-m-d'
+    );
+
+    $form['clonedate1'] = $field;
+    $form['clonedate2'] = $field;
+    $form['clonedate3'] = $field;
+    $form['clonedate4'] = $field;
+    $form['clonedate5'] = $field;
+
+    $form['submit_button'] = array(
+        '#type' => 'submit',
+        '#value' => t('Clone'),
+    );
+
+    return $form;
+}
+
+
+function iishagenda_event_clone_form_submit($form, &$form_state) {
+
+    // Load a created node as an entity.
+    $node_id = intval(arg(1));
+    $entity = entity_load('node', array($node_id));
+    $entity = array_shift($entity);
+
+    $origin_starttime = _gettimeofdate($entity->field_event_date[LANGUAGE_NONE][0]['value']);
+    $origin_endtime = _gettimeofdate($entity->field_event_date[LANGUAGE_NONE][0]['value2']);
+
+    $clone_dates = array("clonedate1","clonedate2","clonedate3","clonedate4","clonedate5");
+
+    foreach($clone_dates as $clone_date){
+
+        $newdate = $form[$clone_date]["#value"]["date"];
+        if(strlen($newdate) == 10){
+
+            $startdate = $newdate.$origin_starttime;
+            $enddate = $newdate.$origin_endtime;
+            $clone = $entity;
+            $clone->field_event_date[LANGUAGE_NONE][0]['value'] =  $startdate;
+            $clone->field_event_date[LANGUAGE_NONE][0]['value2'] =  $enddate;
+            $clone->field_clone_of[LANGUAGE_NONE][0]['target_id'] = $node_id;
+
+            if(!isset($clone->field_event_room[LANGUAGE_NONE]) || is_available($startdate,$enddate, $clone->field_event_room[LANGUAGE_NONE])){
+                if(replicate_entity('node', $clone)){
+                    drupal_set_message('Kloon aangemaakt op: '.$newdate );
+                }
+            }else{
+                drupal_set_message('Let op! Kloon niet aangemaakt op '.$newdate.', ruimte niet beschikbaar.','error');
+            }
+        }
+    }
+
+}
+
+function is_available($startdate, $enddate, $rooms){
+
+    $booked_rooms = get_booked_rooms($startdate,$enddate);
+
+    foreach($rooms as $room){
+        if(in_array($room["nid"],$booked_rooms)) return false;
+    }
+
+    return true;
+}
+
+function get_booked_rooms($startdate, $enddate){
+
+    // check which events times intersects with startdate
+    $query = new EntityFieldQuery;
+    $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'event')
+        ->fieldCondition('field_event_date', 'value', $startdate, '>=')
+        ->fieldCondition('field_event_date', 'value', $enddate, '<=')
+        ->fieldCondition('field_event_status', 'value', 'cancelled', '!=');
+    $results = $query->execute();
+
+    // check which events times intersects with enddate
+    $query = new EntityFieldQuery;
+    $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'event')
+        ->fieldCondition('field_event_date', 'value2', $startdate, '>=')
+        ->fieldCondition('field_event_date', 'value2', $enddate, '<=')
+        ->fieldCondition('field_event_status', 'value', 'cancelled', '!=');
+    $results2 = $query->execute();
+
+    // check which events times covers in time total
+    $query = new EntityFieldQuery;
+    $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'event')
+        ->fieldCondition('field_event_date', 'value', $startdate, '<=')
+        ->fieldCondition('field_event_date', 'value2', $enddate, '>=')
+        ->fieldCondition('field_event_status', 'value', 'cancelled', '!=');
+    $results3 = $query->execute();
+
+    //merging data
+    $events1 = count($results)>0 ? $results['node'] : array();
+    $events2 = count($results2)>0 ? $results2['node'] : array();
+    $events3 = count($results3)>0 ? $results3['node'] : array();
+    $events = $events1+$events2+$events3; //  merge and removes duplicates
+
+    $events = node_load_multiple(array_keys($events));
+
+    $booked_rooms = array();
+
+    // loop through events to get booked rooms
+    foreach ($events as $event) {
+        $rooms = field_get_items('node', $event, 'field_event_room');
+        if(is_array($rooms)){
+            foreach ($rooms as $room) {
+                $booked_rooms[] = $room["nid"];
+            }
+        }
+    }
+
+    return $booked_rooms;
+}
+
+function _gettimeofdate($date){
+    return substr($date,strpos($date,"T"));
+}

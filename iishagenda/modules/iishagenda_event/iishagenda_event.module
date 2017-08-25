@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the iishagenda_event feature.
+ */
+
+include_once 'iishagenda_event.features.inc';

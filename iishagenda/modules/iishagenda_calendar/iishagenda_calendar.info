@@ -1,0 +1,17 @@
+name = IISH Agenda Calendar
+description = Provides calendar for IISH Agenda
+core = 7.x
+package = Features
+version = 7.x-2.5
+project = iishagenda_calendar
+dependencies[] = calendar
+dependencies[] = date_views
+dependencies[] = iishagenda_event
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = calendar
+features[views_view][] = calendar_flex
+features_exclude[dependencies][ctools] = ctools
+features_exclude[dependencies][features] = features
+features_exclude[dependencies][menu] = menu

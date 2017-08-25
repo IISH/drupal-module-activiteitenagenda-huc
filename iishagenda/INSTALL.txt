@@ -1,0 +1,91 @@
+IISH Agenda modules
+Version 7.x-1.1
+
+
+INSTALLATION
+================================================================================
+clone repository content into sites/all/modules/custom/ folder
+
+1) Get Color Picker Library
+- 'drush make sites/all/modules/custom/iishagenda/iishagenda.make.example --no-core'
+or install manually http://www.eyecon.ro/colorpicker/colorpicker.zip in libraries folder
+
+2) Enable modules
+- 'drush en iishagenda'
+- 'y' (on downloading and enabling dependencies)
+- 'drush cc all' (clearing cache)
+
+3)
+- Use latest version of IISH Itranet theme:
+https://github.com/IISH/drupal-module-activiteitenagenda
+
+4)
+- 'drush cc all' clearing the cache
+
+
+NOTE
+================================================================================
+- set jquery update to 1.7 for IISG AND Seven theme (current jQuery 1.10 throws errors)
+
+
+
+SETUP
+================================================================================
+
+
+- add link (path: calendar) to Main Menu
+    /admin/structure/menu/manage/main-menu/add  choose "Agenda" as Menu link title
+- disable 'comments' and 'promoted to frontpage' for Room and Event node types
+    /admin/structure/types/manage/event
+    /admin/structure/types/manage/room
+- Define event types as terms: admin/structure/taxonomy/event_type
+    Conference
+    Meeting
+    Tour
+    Workshop
+    Other
+- Set field permissions for the next fields:
+    /admin/structure/types/manage/event/fields/field_approved : authenticated users can only view own and all values, administrators and event administrators have all rights
+    /admin/structure/types/manage/event/fields/field_canceled : authenticated users can only view own and all values, administrators and event administrators have all rights
+    /admin/structure/types/manage/event/fields/field_existing_user : administrators and event administrators have all rights, others have none
+    /admin/structure/types/manage/event/fields/field_contact_person : administrators and event administrators have all rights, others have none
+    /admin/structure/types/manage/event/fields/field_phone : administrators and event administrators have all rights, others have none
+    /admin/structure/types/manage/event/fields/field_email : administrators and event administrators have all rights, others have none
+
+- set permissions so users can add events and administrators can do all
+    /admin/people/permissions
+    Node
+        'Event: Create new content' for all authenticated users
+         enable all actions for administrator and event administrator role
+
+- Add Rooms/locations: /node/add/room
+- Add event: /node/add/event
+
+
+New in version 1.1
+----------------------------
+(you might need to upgrade php memory limit to 256 or 512MB)
+
+- configure today's events block for homepage only (enter <front> as page) in first sidebar, in IISG theme only:
+    /admin/structure/block/manage/views/today_events-block_1/configure
+- be sure SEVEN theme uses jquery 1.7    /admin/config/development/jquery_update
+- Set field permissions for status and clone field:
+    /admin/structure/types/manage/event/fields/field_event_status : authenticated users can only view own and all values, administrators and event administrators have all rights
+    /admin/structure/types/manage/event/fields/field_clone_of : administrators and event administrators have all rights, others have none
+- download and enable contrib replicate module
+- enable iishagenda_event_clone
+
+
+/* OLD
+Change date format of Drupals 'Short' date to a new format, to get rid of AM/PM
+- add the format  d M Y - H:i  at /admin/config/regional/date-time/formats
+- change Short date format to the just newly created format, at /admin/config/regional/date-time
+
+
+New changes for version 1.2
+----------------------------
+- apply patch to fix calendar month pager: https://www.drupal.org/files/issues/calendar_pager_broken-2375235-35.patch
+*/
+
+
+Make sure the IISH theme have the same configuration as the theme installed at intranet.iisg.nl (Toggle styles tab particularly)
