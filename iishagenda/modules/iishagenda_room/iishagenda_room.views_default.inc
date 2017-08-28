@@ -152,7 +152,7 @@ function iishagenda_room_views_default_views() {
   $handler->display->display_options['path'] = 'rooms';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Zalen';
-  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['weight'] = '50';
   $handler->display->display_options['menu']['name'] = 'menu-agenda';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;

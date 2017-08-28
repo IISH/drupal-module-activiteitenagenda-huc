@@ -16,7 +16,7 @@ or install manually http://www.eyecon.ro/colorpicker/colorpicker.zip in librarie
 - 'drush cc all' (clearing cache)
 
 3)
-- Useversion of IISH Itranet theme:
+- Use version of IISH Itranet theme:
 - the omega theme has to be installed as well
 - set theme settings as desired (see dev server)
 
