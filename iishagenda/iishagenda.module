@@ -10,10 +10,6 @@ function iishagenda_init()
 {
   global $user;
 
-  if (in_array('administrator', $user->roles) && !variable_get('iishagenda_admin')) {
-    drupal_set_message(t('Please define an <a href="/admin/config/iishagenda">event administrator</a>.'), 'error', false);
-  }
-
   switch (arg(0)) {
     case "catering":
       drupal_add_js(drupal_get_path('module', 'iishagenda') . '/js/iishagenda.js');
