@@ -11,6 +11,109 @@ function iishagenda_room_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'locations';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'taxonomy_term_data';
+  $view->human_name = 'Locations';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Locations';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    2 => '2',
+  );
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name']['element_wrapper_type'] = 'h2';
+  $handler->display->display_options['fields']['name']['element_default_classes'] = FALSE;
+  /* Field: Taxonomy term: Term edit link */
+  $handler->display->display_options['fields']['edit_term']['id'] = 'edit_term';
+  $handler->display->display_options['fields']['edit_term']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['edit_term']['field'] = 'edit_term';
+  $handler->display->display_options['fields']['edit_term']['label'] = '';
+  $handler->display->display_options['fields']['edit_term']['element_label_colon'] = FALSE;
+  /* Field: Taxonomy term: Booking Control */
+  $handler->display->display_options['fields']['field_booking_control']['id'] = 'field_booking_control';
+  $handler->display->display_options['fields']['field_booking_control']['table'] = 'field_data_field_booking_control';
+  $handler->display->display_options['fields']['field_booking_control']['field'] = 'field_booking_control';
+  $handler->display->display_options['fields']['field_booking_control']['element_wrapper_class'] = 'inline';
+  $handler->display->display_options['fields']['field_booking_control']['hide_empty'] = TRUE;
+  /* Field: Taxonomy term: Administrator */
+  $handler->display->display_options['fields']['field_admin_email']['id'] = 'field_admin_email';
+  $handler->display->display_options['fields']['field_admin_email']['table'] = 'field_data_field_admin_email';
+  $handler->display->display_options['fields']['field_admin_email']['field'] = 'field_admin_email';
+  $handler->display->display_options['fields']['field_admin_email']['hide_empty'] = TRUE;
+  /* Field: Taxonomy term: Adres */
+  $handler->display->display_options['fields']['field_address']['id'] = 'field_address';
+  $handler->display->display_options['fields']['field_address']['table'] = 'field_data_field_address';
+  $handler->display->display_options['fields']['field_address']['field'] = 'field_address';
+  $handler->display->display_options['fields']['field_address']['click_sort_column'] = 'country';
+  $handler->display->display_options['fields']['field_address']['settings'] = array(
+    'use_widget_handlers' => 1,
+    'format_handlers' => array(
+      'address' => 'address',
+    ),
+  );
+  /* Filter criterion: Taxonomy vocabulary: Machine name */
+  $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+  $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['value'] = array(
+    'room_location' => 'room_location',
+  );
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'locations';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Locaties';
+  $handler->display->display_options['menu']['weight'] = '50';
+  $handler->display->display_options['menu']['name'] = 'menu-agenda';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['locations'] = array(
+    t('Master'),
+    t('Locations'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Booking Control'),
+    t('Administrator'),
+    t('Adres'),
+    t('Page'),
+  );
+  $export['locations'] = $view;
+
+  $view = new view();
   $view->name = 'rooms';
   $view->description = '';
   $view->tag = 'default';
