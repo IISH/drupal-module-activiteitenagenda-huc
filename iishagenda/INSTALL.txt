@@ -17,7 +17,8 @@ or install manually http://www.eyecon.ro/colorpicker/colorpicker.zip in librarie
 
 3)
 - Useversion of IISH Itranet theme:
-
+- the omega theme has to be installed as well
+- set theme settings as desired (see dev server)
 
 4)
 - 'drush cc all' clearing the cache
@@ -32,6 +33,8 @@ NOTE
 SETUP
 ================================================================================
 
+- set default frontpage to calendar
+    /?q=admin/config/system/site-information
 
 - add link (path: calendar) to Main Menu
     /admin/structure/menu/manage/main-menu/add  choose "Agenda" as Menu link title
