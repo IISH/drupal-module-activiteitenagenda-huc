@@ -2,6 +2,7 @@
 
 function admin_settings(){
     $form = array();
+
     $form['iishagenda_admin'] = array(
         '#type' => 'textfield',
         '#title' => t('Event administrator e-mail'),

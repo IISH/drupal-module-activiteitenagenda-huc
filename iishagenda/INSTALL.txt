@@ -7,7 +7,7 @@ INSTALLATION
 clone repository content into sites/all/modules/custom/ folder
 
 1) Get Color Picker Library
-- 'drush make sites/all/modules/custom/iishagenda/iishagenda.make.example --no-core'
+- 'drush make sites/all/modules/custom/iishagenda/iishagenda.make --no-core'
 or install manually http://www.eyecon.ro/colorpicker/colorpicker.zip in libraries folder
 
 2) Enable modules
@@ -16,8 +16,8 @@ or install manually http://www.eyecon.ro/colorpicker/colorpicker.zip in librarie
 - 'drush cc all' (clearing cache)
 
 3)
-- Use latest version of IISH Itranet theme:
-https://github.com/IISH/drupal-module-activiteitenagenda
+- Useversion of IISH Itranet theme:
+
 
 4)
 - 'drush cc all' clearing the cache

@@ -103,16 +103,66 @@ function iishagenda_menu()
     'type' => MENU_NORMAL_ITEM,
     'file' => 'iishagenda.admin.inc',
   );
-
-  $items['ics/%'] = array(
-    'title' => t('ICS'),
+/*
+  $items['admin/config/iishagenda'] = array(
+    'title' => t('IISH Agenda'),
     'description' => '',
-    'page callback' => '_generate_ics',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('admin_settings'),
     'access callback' => '_iishagenda_user_has_role',
-    'access arguments' => array(array('authenticated user')),
+    'access arguments' => array(array('administrator', 'event administrator')),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'iishagenda.admin.inc',
+  );
+*/
+
+  $items['admin/config/iishagenda/stat'] = array(
+    'title' => t('Statistics'),
+    'description' => '',
+    'page callback' => '_iish_agenda_statspage',
+    'access callback' => '_iishagenda_user_has_role',
+    'access arguments' => array(array('administrator', 'event administrator')),
   );
 
   return $items;
+}
+
+
+function _iish_agenda_statspage(){
+
+
+  $output = '';
+
+  $query = db_select('node','n');
+  $query->condition('n.type', 'event')
+    ->fields('n', array('nid', 'title'));
+ $result = $query->execute();
+
+
+    //dpm($result->fetchAllAssoc());
+  //$output
+
+/*
+
+  // start with the base table
+  $query = db_select('node', 'n');
+  $query->join('users', 'u', 'n.uid = u.uid');
+  $query->join('field_data_field_event_option', 'o', 'o.entity_id = n.nid');
+  $query->join('field_data_field_event_date', 'd', 'd.entity_id = n.nid');
+  $result = $query
+    ->fields('n', array('nid', 'title'))
+    ->fields('u', array('uid', 'name', 'mail'))
+    ->fields('o', array('field_event_option_value'))
+    ->fields('d', array('field_event_date_value'))
+    ->condition('n.type', 'event')
+    ->condition('o.field_event_option_value', '1')
+    ->condition('d.field_event_date_value', $datelimit,"<=")
+    ->condition('d.field_event_date_value', date('Y-m-dTH:i:s'),">")
+    ->condition('n.status', 1)
+    ->execute();
+
+*/
+  return $output;
 }
 
 
@@ -528,8 +578,9 @@ function iishagenda_mail($key, &$message, $params)
 
 /**
  * checks if admin is defined and exists
+ *  (deprecated every location has its own admin now)
  */
-function _check_admin()
+function ___check_admin()
 {
   if (variable_get('iishagenda_admin')) {
     return true;
@@ -539,6 +590,7 @@ function _check_admin()
     return false;
   }
 }
+
 
 /**
  * checks users is admin
@@ -621,6 +673,7 @@ function _iishagenda_change_if_private_title(&$result){
   }
 }
 
+
 function _iishagenda_change_node_title_if_private($nid,$title){
 
   if(_iishagenda_is_event_private($nid)){
@@ -634,5 +687,3 @@ function _iishagenda_change_node_title_if_private($nid,$title){
   }
   return $title;
 }
-
-
