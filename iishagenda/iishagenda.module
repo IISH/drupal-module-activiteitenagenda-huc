@@ -470,7 +470,7 @@ function _notify_event_owner($node)
 function iishagenda_menu_local_tasks_alter(&$data, $router_item, $root_path) {
   // For content type, remove the 'edit' & 'view' tab when viewing the node.
   foreach ($router_item['page_arguments'] as $key => $argument) {
-    if (is_object($argument) && $router_item['page_arguments'][$key]->type == 'event') {
+    if (is_object($argument) && isset($router_item['page_arguments'][$key]->type) && $router_item['page_arguments'][$key]->type == 'event') {
       if(_iishagenda_is_event_controlled($router_item['page_arguments'][$key]) && !is_user_admin()){
         foreach ($data['tabs'][0]['output'] as $key => $value) {
           if ($value['#link']['path'] == 'node/%/edit'||'node/%/view') {
