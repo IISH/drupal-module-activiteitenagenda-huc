@@ -27,7 +27,7 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
     $form['#validate'][] = '_iishagenda_check_admincontrol';
   }
 
-  $debug = true;
+  $debug = false;
 
   if ($form_id == 'event_node_form') {
 

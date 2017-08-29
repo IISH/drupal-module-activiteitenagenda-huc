@@ -798,7 +798,7 @@ function _iishagenda_determine_location(){
     $terms = taxonomy_get_tree($location_voc->vid,0,null,true);
     //set first location as default
     $_SESSION['location_id'] = $terms[0]->tid;
-    drupal_set_message("De locatie is  ingesteld op: ".$terms->name);
+    drupal_set_message("De locatie is  ingesteld op: ".$terms[0]->name);
   }
 
   return $_SESSION['location_id'];
