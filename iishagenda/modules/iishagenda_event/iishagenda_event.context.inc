@@ -20,17 +20,14 @@ function iishagenda_event_context_default_contexts() {
     'menu' => array(
       'values' => array(
         'administer-events' => 'administer-events',
-        'administer-flex' => 'administer-flex',
         'approval-list' => 'approval-list',
         'calendar' => 'calendar',
-        'calendar-flex' => 'calendar-flex',
         'catering' => 'catering',
         'locations' => 'locations',
         'my-events' => 'my-events',
         'node/add/event' => 'node/add/event',
         'rooms' => 'rooms',
         'upcoming-events' => 'upcoming-events',
-        'upcoming-flex' => 'upcoming-flex',
       ),
     ),
     'node' => array(
@@ -64,23 +61,29 @@ function iishagenda_event_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'iishagenda-user_hello' => array(
+          'module' => 'iishagenda',
+          'delta' => 'user_hello',
+          'region' => 'sidebar_first',
+          'weight' => '-10',
+        ),
         'iishagenda-location_menu' => array(
           'module' => 'iishagenda',
           'delta' => 'location_menu',
           'region' => 'sidebar_first',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
         'menu-menu-agenda' => array(
           'module' => 'menu',
           'delta' => 'menu-agenda',
           'region' => 'sidebar_first',
-          'weight' => '-9',
+          'weight' => '-8',
         ),
         'menu-menu-agenda-admin' => array(
           'module' => 'menu',
           'delta' => 'menu-agenda-admin',
           'region' => 'sidebar_first',
-          'weight' => '-8',
+          'weight' => '-7',
         ),
       ),
     ),

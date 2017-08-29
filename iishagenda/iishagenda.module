@@ -36,38 +36,62 @@ function iishagenda_init()
 
   _iishagenda_determine_location();
 
-
-
   drupal_add_css(drupal_get_path('module', 'iishagenda') . '/css/agenda.css', array('weight' => 998));
 }
 
 
+/**
+ * Implements hook_block_info().
+ */
 function iishagenda_block_info(){
 
   $blocks['location_menu'] = array(
     'info' => t('Location Menu'),
   );
 
+  $blocks['user_hello'] = array(
+    'info' => t('User Hello'),
+  );
+
   return $blocks;
-
-
 }
 
 
+/**
+ * Implements hook_block_view().
+ */
 function iishagenda_block_view($delta){
   $block = array();
-
-  switch($delta){
-    case 'location_menu':
-      $block['subject'] = t('Locaties');
-      $block['content'] = _iishagenda_build_location_menu();
-      break;
+  //authenticated
+  if (user_has_role(2)) {
+    switch ($delta) {
+      case 'location_menu':
+        $block['subject'] = t('Locaties');
+        $block['content'] = _iishagenda_build_location_menu();
+        break;
+      case 'user_hello':
+        $block['subject'] = t('Zaalreserveringssysteem');
+        $block['content'] = _iishagenda_user_welcome();
+        break;
+    }
   }
 
   return $block;
 
 }
 
+/**
+ * Creates welcome message and links output for block
+ */
+function _iishagenda_user_welcome()
+{
+  global $user;
+  $user = user_load($user->uid);
+  $output = t('Welkom :username',array(":username"=>$user->name));
+  $output .= "<br>".l("Uitloggen","/user/logout");
+
+  return array('#markup' => $output);
+}
 
 /**
  * Creates an menu for locations and returns output for block
@@ -199,7 +223,7 @@ function _iish_agenda_statspage(){
 
 
     // Depending on the context there may be a better choice than this
-    $output .=  theme('table', array('header' => $header, 'rows' => $rows));
+  $output .=  theme('table', array('header' => $header, 'rows' => $rows));
 
 
 
@@ -789,17 +813,25 @@ function iishagenda_views_pre_render(&$view) {
  */
 function _iishagenda_determine_location(){
 
-  if(isset($_GET['location_id'])){
-    $_SESSION['location_id'] = intval($_GET['location_id']);
+  // TODO: save and load preference to user profile.
+  global $user;
+  $user = user_load($user->uid);
+
+  //only set location if user is authenticated
+  if(key_exists(2, $user->roles)){
+    if(isset($_GET['location_id'])){
+      $_SESSION['location_id'] = intval($_GET['location_id']);
+    }
+
+    if(!isset($_SESSION['location_id'])){
+      $location_voc = taxonomy_vocabulary_machine_name_load('room_location');
+      $terms = taxonomy_get_tree($location_voc->vid,0,null,true);
+      //set first location as default
+      $_SESSION['location_id'] = $terms[0]->tid;
+      drupal_set_message("De locatie is  ingesteld op: ".$terms[0]->name);
+    }
+
+    return $_SESSION['location_id'];
   }
 
-  if(!isset($_SESSION['location_id'])){
-    $location_voc = taxonomy_vocabulary_machine_name_load('room_location');
-    $terms = taxonomy_get_tree($location_voc->vid,0,null,true);
-    //set first location as default
-    $_SESSION['location_id'] = $terms[0]->tid;
-    drupal_set_message("De locatie is  ingesteld op: ".$terms[0]->name);
-  }
-
-  return $_SESSION['location_id'];
 }

@@ -41,6 +41,11 @@ body.agenda .grid-2.region-sidebar-first{
 
 
 
+body.agenda .block-user-hello h2, h2.block-title{
+    color: #000;
+    
+}
+
 /* CUSTOM */
 
 .event-type{
