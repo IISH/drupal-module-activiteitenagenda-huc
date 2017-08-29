@@ -37,6 +37,7 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
     $node = $form_state['node'];
 
     $form['field_clone_of']['#access'] = false;
+    $form['field_show_frontpage']['#access'] = false;
 
     if (!isset($node->nid) || isset($node->is_new)) {
 

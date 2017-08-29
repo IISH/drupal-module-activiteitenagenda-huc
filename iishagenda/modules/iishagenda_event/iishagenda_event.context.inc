@@ -64,11 +64,17 @@ function iishagenda_event_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'iishagenda-location_menu' => array(
+          'module' => 'iishagenda',
+          'delta' => 'location_menu',
+          'region' => 'sidebar_first',
+          'weight' => '-10',
+        ),
         'menu-menu-agenda' => array(
           'module' => 'menu',
           'delta' => 'menu-agenda',
           'region' => 'sidebar_first',
-          'weight' => '-10',
+          'weight' => '-9',
         ),
         'menu-menu-agenda-admin' => array(
           'module' => 'menu',

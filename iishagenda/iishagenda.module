@@ -8,7 +8,7 @@ module_load_include('inc', 'iishagenda', 'iishagenda.ics');
  */
 function iishagenda_init()
 {
-  global $user;
+
 
   switch (arg(0)) {
     case "catering":
@@ -34,8 +34,66 @@ function iishagenda_init()
       break;
   }
 
+  _iishagenda_determine_location();
+
+
+
   drupal_add_css(drupal_get_path('module', 'iishagenda') . '/css/agenda.css', array('weight' => 998));
 }
+
+
+function iishagenda_block_info(){
+
+  $blocks['location_menu'] = array(
+    'info' => t('Location Menu'),
+  );
+
+  return $blocks;
+
+
+}
+
+
+function iishagenda_block_view($delta){
+  $block = array();
+
+  switch($delta){
+    case 'location_menu':
+      $block['subject'] = t('Locaties');
+      $block['content'] = _iishagenda_build_location_menu();
+      break;
+  }
+
+  return $block;
+
+}
+
+
+/**
+ * Creates an menu for locations and returns output for block
+ */
+function _iishagenda_build_location_menu(){
+
+  $path = drupal_get_path_alias();
+  $location_voc = taxonomy_vocabulary_machine_name_load('room_location');
+  $terms = taxonomy_get_tree($location_voc->vid,0,null,true);
+
+  $items = array();
+  if(is_array($terms)){
+    foreach($terms as $term) {
+      if ($term->tid == $_SESSION['location_id']) {
+        $items[] = t('&rarr; :location_name',array(':location_name'=>$term->name));
+      } else {
+        $items[] = l($term->name, $path ,array('query'=>array('location_id'=>$term->tid)));
+      }
+    }
+  }
+  $output = t('Kies een locatie waarvan je de reserveringen wilt zien.');
+  $output .= theme_item_list(array("title"=>'',"items"=>$items,'type'=>'ul','attributes'=>array()));
+
+  return array('#markup' => $output);
+}
+
 
 
 /**
@@ -128,11 +186,22 @@ function _iish_agenda_statspage(){
 
 
   $output = '';
+  $header = array('item', 'aantal');
+  $rows = array();
 
-  $query = db_select('node','n');
-  $query->condition('n.type', 'event')
-    ->fields('n', array('nid', 'title'));
- $result = $query->execute();
+  // total events
+  $result = db_select('node', 'n')
+    ->condition('n.type', 'event')
+    ->fields('n', array('nid', 'title'))
+    ->execute();
+  $num_of_results = $result->rowCount();
+  $rows[] = array('Aantal reserveringen',$num_of_results);
+
+
+    // Depending on the context there may be a better choice than this
+    $output .=  theme('table', array('header' => $header, 'rows' => $rows));
+
+
 
 
     //dpm($result->fetchAllAssoc());
@@ -394,11 +463,10 @@ function _isshagenda_compose_send_mail($to, $subject, $body, $succes_msg = false
 
 
 /**
- *
+ * Sendsadmin notification mail
+ * (deprecated)
  */
-function _iishagenda_notify_admin($event, $to)
-{
-
+function ___iishagenda_notify_admin($event, $to){
   global $base_url;
   global $user;
 
@@ -426,13 +494,10 @@ function _iishagenda_notify_admin($event, $to)
 }
 
 
-
-
 /**
  * Notifies event creator
  */
-function _notify_event_owner($node)
-{
+function _notify_event_owner($node){
 
   global $base_url;
 
@@ -482,7 +547,10 @@ function iishagenda_menu_local_tasks_alter(&$data, $router_item, $root_path) {
   }
 }
 
-
+/**
+ * Check if the event is private
+ * @return bool
+ */
 function _iishagenda_is_event_private($nid){
   $event = node_load($nid);
   $eventw = entity_metadata_wrapper('node',$event);
@@ -492,9 +560,9 @@ function _iishagenda_is_event_private($nid){
   }else{
     return FALSE;
   }
-
-
 }
+
+
 /**
  * Denies access to events on a controlled location
  * Implements hook_node_access
@@ -524,7 +592,6 @@ function iishagenda_node_access($node, $op, $account) {
       if($node->uid !== $user->uid &&
         !is_user_admin() &&
         $node->field_private[LANGUAGE_NONE][0]['value'] == '1'){
-
       }
     }
 */
@@ -636,7 +703,6 @@ function iishagenda_cron()
   $nids_ok = array();
   $nids_error = array();
   foreach($result as $node){
-   // dpm($node);
     $subject = t("Je reservering " . $node->title. " is een optie, bevestig of annuleer svp.");
     $body = array();
     $body[] = t("Je reservering '" . $node->title . "' is als optie aangemaakt.");
@@ -682,4 +748,58 @@ function _iishagenda_change_node_title_if_private($nid,$title){
     }
   }
   return $title;
+}
+
+
+/**
+ * Implements hook_views_pre_view
+ *
+ * Overrides the default location with the one stored in session.
+ */
+function iishagenda_views_pre_view(&$view) {
+  if ($view->name === 'calendar' || ($view->name === 'upcoming_events' && $view->current_display == 'page')) {
+    $view_filters = $view->display_handler->get_option('filters');
+    $location_id = _iishagenda_determine_location();
+    $view_filters['tid']['value'][0] = $location_id;
+    $overrides = array();
+    $overrides['filters'] = $view_filters;
+    foreach ($overrides as $option => $definition) {
+      $view->display_handler->override_option($option, $definition);
+    }
+  }
+}
+
+
+/**
+ * Implements hook_views_pre_render
+ *
+ * Add location name to page title (if filtered)
+ */
+function iishagenda_views_pre_render(&$view) {
+  if ($view->name === 'calendar' || ($view->name === 'upcoming_events' && $view->current_display == 'page')) {
+    $location_id = _iishagenda_determine_location();
+    $location = taxonomy_term_load($location_id);
+    $view->build_info['title'] .= " - ".$location->name."";
+  }
+}
+
+
+/**
+ * Returns the current location, sets the first location if none defined
+ */
+function _iishagenda_determine_location(){
+
+  if(isset($_GET['location_id'])){
+    $_SESSION['location_id'] = intval($_GET['location_id']);
+  }
+
+  if(!isset($_SESSION['location_id'])){
+    $location_voc = taxonomy_vocabulary_machine_name_load('room_location');
+    $terms = taxonomy_get_tree($location_voc->vid,0,null,true);
+    //set first location as default
+    $_SESSION['location_id'] = $terms[0]->tid;
+    drupal_set_message("De locatie is  ingesteld op: ".$terms->name);
+  }
+
+  return $_SESSION['location_id'];
 }

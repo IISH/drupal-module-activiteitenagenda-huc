@@ -352,6 +352,27 @@ html.js input.form-autocomplete.input-disabled{
     margin-left:0px;
 }
 
+
+
+.block-location-menu{
+    background-color: #F0E8E8;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-top: 1px solid #B48C8C;
+    border-bottom: 1px solid #B48C8C;
+}
+
+.block-location-menu .item-list{
+    margin-top:10px;
+   font-weight: bold;
+}
+
+
+
+
+
+
+
 /* LOCATION LIST */
 
 .view-locations .views-row{

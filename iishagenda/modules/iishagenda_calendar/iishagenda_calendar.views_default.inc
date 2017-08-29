@@ -122,6 +122,26 @@ function iishagenda_calendar_views_default_views() {
   $handler->display->display_options['filters']['field_room_type_value']['value'] = array(
     1 => '1',
   );
+  /* Filter criterion: Content: Has taxonomy term */
+  $handler->display->display_options['filters']['tid']['id'] = 'tid';
+  $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['filters']['tid']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid']['relationship'] = 'field_event_room_nid';
+  $handler->display->display_options['filters']['tid']['value'] = array(
+    0 => '6',
+  );
+  $handler->display->display_options['filters']['tid']['expose']['operator_id'] = 'tid_op';
+  $handler->display->display_options['filters']['tid']['expose']['label'] = 'Has taxonomy term';
+  $handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
+  $handler->display->display_options['filters']['tid']['expose']['identifier'] = 'tid';
+  $handler->display->display_options['filters']['tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+  );
+  $handler->display->display_options['filters']['tid']['vocabulary'] = 'room_location';
 
   /* Display: Month */
   $handler = $view->new_display('page', 'Month', 'page_1');
@@ -180,6 +200,7 @@ function iishagenda_calendar_views_default_views() {
   $handler->display->display_options['fields']['field_event_room']['table'] = 'field_data_field_event_room';
   $handler->display->display_options['fields']['field_event_room']['field'] = 'field_event_room';
   $handler->display->display_options['fields']['field_event_room']['label'] = '';
+  $handler->display->display_options['fields']['field_event_room']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_event_room']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_event_room']['type'] = 'node_reference_plain';
   $handler->display->display_options['fields']['field_event_room']['settings'] = array(
@@ -187,6 +208,16 @@ function iishagenda_calendar_views_default_views() {
     'absolute' => 0,
   );
   $handler->display->display_options['fields']['field_event_room']['delta_offset'] = '0';
+  /* Field: Content: Location */
+  $handler->display->display_options['fields']['field_room_location']['id'] = 'field_room_location';
+  $handler->display->display_options['fields']['field_room_location']['table'] = 'field_data_field_room_location';
+  $handler->display->display_options['fields']['field_room_location']['field'] = 'field_room_location';
+  $handler->display->display_options['fields']['field_room_location']['relationship'] = 'field_event_room_nid';
+  $handler->display->display_options['fields']['field_room_location']['label'] = '';
+  $handler->display->display_options['fields']['field_room_location']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_room_location']['alter']['text'] = ' [field_event_room] <i>[field_room_location]</i>';
+  $handler->display->display_options['fields']['field_room_location']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_room_location']['type'] = 'i18n_taxonomy_term_reference_plain';
   /* Field: Content: Status */
   $handler->display->display_options['fields']['field_event_status']['id'] = 'field_event_status';
   $handler->display->display_options['fields']['field_event_status']['table'] = 'field_data_field_event_status';
@@ -494,8 +525,10 @@ function iishagenda_calendar_views_default_views() {
     t('Aflopend'),
     t('term'),
     t('field_event_room'),
+    t('Has taxonomy term'),
     t('Month'),
     t('more'),
+    t(' [field_event_room] <i>[field_room_location]</i>'),
     t('Alle'),
     t('Week'),
     t('Day'),
@@ -692,10 +725,10 @@ function iishagenda_calendar_views_default_views() {
     'field_data_field_event_date.field_event_date_value' => 'field_data_field_event_date.field_event_date_value',
   );
   $handler->display->display_options['path'] = 'calendar-flex/month';
-  $handler->display->display_options['menu']['type'] = 'default tab';
   $handler->display->display_options['menu']['title'] = 'Month';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $handler->display->display_options['tab_options']['type'] = 'normal';
   $handler->display->display_options['tab_options']['title'] = 'Calendar flexworking';
   $handler->display->display_options['tab_options']['weight'] = '0';

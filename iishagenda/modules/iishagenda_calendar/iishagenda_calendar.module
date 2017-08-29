@@ -7,9 +7,6 @@
 include_once 'iishagenda_calendar.features.inc';
 
 
-
-
-
 /**
  * Implements hook_date_formats().
  */
