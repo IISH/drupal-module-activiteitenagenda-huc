@@ -1624,6 +1624,15 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['format'] = 'filtered_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Taxonomy term: Color */
+  $handler->display->display_options['fields']['field_color']['id'] = 'field_color';
+  $handler->display->display_options['fields']['field_color']['table'] = 'field_data_field_color';
+  $handler->display->display_options['fields']['field_color']['field'] = 'field_color';
+  $handler->display->display_options['fields']['field_color']['relationship'] = 'term_node_tid';
+  $handler->display->display_options['fields']['field_color']['label'] = '';
+  $handler->display->display_options['fields']['field_color']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_color']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_color']['type'] = 'jquery_colorpicker_raw_hex_display';
   /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
@@ -1702,14 +1711,6 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Taxonomy term: Color */
-  $handler->display->display_options['fields']['field_color']['id'] = 'field_color';
-  $handler->display->display_options['fields']['field_color']['table'] = 'field_data_field_color';
-  $handler->display->display_options['fields']['field_color']['field'] = 'field_color';
-  $handler->display->display_options['fields']['field_color']['relationship'] = 'term_node_tid';
-  $handler->display->display_options['fields']['field_color']['label'] = '';
-  $handler->display->display_options['fields']['field_color']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_color']['type'] = 'jquery_colorpicker_raw_hex_display';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Author uid */
   $handler->display->display_options['arguments']['uid']['id'] = 'uid';
