@@ -8,8 +8,6 @@ module_load_include('inc', 'iishagenda', 'iishagenda.ics');
  */
 function iishagenda_init()
 {
-
-
   switch (arg(0)) {
     case "catering":
       drupal_add_js(drupal_get_path('module', 'iishagenda') . '/js/iishagenda.js');
@@ -441,6 +439,8 @@ function _iishagenda_is_event_controlled($event){
   $event = entity_metadata_wrapper('node', $event);
   $rooms = $event->field_event_room->value();
 
+  dpm($event);
+  dpm($rooms);
   if(isset($rooms[0])) {
     $room_wrapper = entity_metadata_wrapper('node', $rooms[0]);
     $location = $room_wrapper->field_room_location->value();
