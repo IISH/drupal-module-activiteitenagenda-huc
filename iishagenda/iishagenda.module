@@ -16,6 +16,7 @@ function iishagenda_init()
       drupal_add_js(drupal_get_path('module', 'iishagenda') . '/vendor/jquery_timepicker/jquery.timepicker.js');
       drupal_add_js(drupal_get_path('module', 'iishagenda') . '/js/iishagenda_eventform.js');
       drupal_add_css(drupal_get_path('module', 'iishagenda') . '/vendor/jquery_timepicker/jquery.timepicker.css', array('weight' => 998));
+      drupal_add_js(array('most_used_duration' => variable_get('most_used_duration',60)), 'setting');
       break;
 
     case "calendar":
@@ -219,39 +220,57 @@ function _iish_agenda_statspage(){
   $num_of_results = $result->rowCount();
   $rows[] = array('Aantal reserveringen',$num_of_results);
 
+  $most_used = _iishagenda_define_most_used_duration();
+  $rows[] = array('Meest gebruikte duur',$most_used. ' minuten');
 
-    // Depending on the context there may be a better choice than this
   $output .=  theme('table', array('header' => $header, 'rows' => $rows));
 
-
-
-
-    //dpm($result->fetchAllAssoc());
-  //$output
-
-/*
-
-  // start with the base table
-  $query = db_select('node', 'n');
-  $query->join('users', 'u', 'n.uid = u.uid');
-  $query->join('field_data_field_event_option', 'o', 'o.entity_id = n.nid');
-  $query->join('field_data_field_event_date', 'd', 'd.entity_id = n.nid');
-  $result = $query
-    ->fields('n', array('nid', 'title'))
-    ->fields('u', array('uid', 'name', 'mail'))
-    ->fields('o', array('field_event_option_value'))
-    ->fields('d', array('field_event_date_value'))
-    ->condition('n.type', 'event')
-    ->condition('o.field_event_option_value', '1')
-    ->condition('d.field_event_date_value', $datelimit,"<=")
-    ->condition('d.field_event_date_value', date('Y-m-dTH:i:s'),">")
-    ->condition('n.status', 1)
-    ->execute();
-
-*/
   return $output;
 }
 
+function _iishagenda_define_most_used_duration(){
+  // Most used duration
+  $query = db_select('node', 'n')
+    ->condition('n.type', 'event');
+  $query->join('field_data_field_event_date', 'd', 'd.entity_id = n.nid');
+  $query->fields('d', array('field_event_date_value', 'field_event_date_value2'));
+
+  $result = $query->execute();
+  $durations = array();
+
+  while($record = $result->fetchAssoc()) {
+    $start = $record['field_event_date_value'];
+    $end =  $record['field_event_date_value2'];
+    $date_start = new DateTime($start);
+    $date_end = new DateTime($end);
+
+    $interval = $date_start->diff($date_end);
+    $minutes = ($interval->i + $interval->h*60);
+
+    if(isset($durations["".$minutes])){
+      $durations["".$minutes] += 1;
+    }else{
+      $durations["".$minutes] = 1;
+    }
+  }
+
+  uasort($durations, 'cmp');
+  $keys = array_keys($durations);
+  $most_used = $keys[0];
+
+
+  $duration_int = intval($most_used);
+  variable_set('most_used_duration',$duration_int);
+
+  return $duration_int;
+}
+
+function cmp($a, $b) {
+  if ($a == $b) {
+    return 0;
+  }
+  return ($a > $b) ? -1 : 1;
+}
 
 /**
 * Implements hook_node_view().
@@ -702,6 +721,8 @@ function is_user_admin()
  */
 function iishagenda_cron()
 {
+
+ _iishagenda_define_most_used_duration();
 
   // set 3 days
   $time_to_event = 60*60*24*23;

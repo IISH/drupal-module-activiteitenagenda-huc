@@ -89,6 +89,14 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
     $form['#group_children']['check'] = 'group_accomodation';
     $form['#group_children']['facilities'] = 'group_accomodation';
 
+
+/*    if($form_state['rebuild']){
+      $options = _iishagenda_get_available_rooms($form, $form_state);
+    }else{
+      $options = array();
+    }
+*/
+
     $options = _iishagenda_get_available_rooms($form, $form_state);
 
     if (!array_key_exists('values', $form_state)) {
@@ -118,7 +126,6 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
     $form['field_event_room'][LANGUAGE_NONE]['#options'] = $options;
     $form['field_event_room'][LANGUAGE_NONE]['#description'] = $currentrooms . $form['field_event_room'][LANGUAGE_NONE]['#description'];
 
-
     if($form['field_event_option'][LANGUAGE_NONE]['#default_value'] == '1' && $form['field_event_status'][LANGUAGE_NONE]['#default_value'] !== 'cancelled'){
 
       $form['submit_cancel'] = array(
@@ -137,7 +144,7 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
         '#attributes' => array(
           'class' => array('btn')
         ),
-        '#submit' => array('_iishagenda_confirm','node_form_submit'),
+        '#submit' => array('_iishagenda_option_confirm','node_form_submit'),
         '#weight'=>50
       );
    }
@@ -175,7 +182,7 @@ function _iishagenda_option_cancel($form, &$form_state){
  *  uncheck option field
  */
 function _iishagenda_option_confirm($form, &$form_state){
-  $form_state['values']['field_event_option'][LANGUAGE_NONE][0]['value'] = '1';
+  $form_state['values']['field_event_option'][LANGUAGE_NONE][0]['value'] = '0';
 }
 
 
@@ -195,34 +202,50 @@ function _iishagenda_rebuild_rooms($form, $form_state)
 function _iishagenda_get_available_rooms($form, $form_state)
 {
 
+  // TODO: if node is being edited, use values of the node instead of form state (because its empty when edit form loads initially)
   // defining variables
   $nid = issetor($form['nid']['#value'], null);
 
-  $facilities_ids = array();
-  if (isset($form_state['values']['field_needed_facilities'])) {
-    $facilities = $form_state['values']['field_needed_facilities'][LANGUAGE_NONE];
-    foreach ($facilities as $facility) {
-      if ($facility["tid"] !== null) $facilities_ids[] = intval($facility["tid"]);
-    }
-  }
-
-  // gather selected location ids
   $location_ids = array();
-  if (isset($form_state['values']['field_locations'])) {
-    $locations = $form_state['values']['field_locations'][LANGUAGE_NONE];
+  $facilities_ids = array();
+  $startdate = '2000-01-01T00:00:00';
+  $enddate = '3001-01-01T00:00:00';
+  $people = 0;
 
-    foreach ($locations as $location) {
-      if ($location["tid"] !== null) $location_ids[] = intval($location["tid"]);
+  if($form_state['rebuild']){
+
+    // when rebuild use
+    if (isset($form_state['values']['field_needed_facilities'])) {
+      $facilities = $form_state['values']['field_needed_facilities'][LANGUAGE_NONE];
+      foreach ($facilities as $facility) {
+        if ($facility["tid"] !== null) $facilities_ids[] = intval($facility["tid"]);
+      }
     }
-  }
 
-  if ($form['nid']['#value'] == null) {
+    // gather selected location ids
+    if (isset($form_state['values']['field_locations'])) {
+      $locations = $form_state['values']['field_locations'][LANGUAGE_NONE];
+      foreach ($locations as $location) {
+        if ($location["tid"] !== null) $location_ids[] = intval($location["tid"]);
+      }
+    }
+
+    $people = $form_state['values']['field_people'][LANGUAGE_NONE][0]['value'];
     $startdate = issetor($form_state['values']['field_event_date'][LANGUAGE_NONE][0]['value'], '2000-01-01T00:00:00');
     $enddate = issetor($form_state['values']['field_event_date'][LANGUAGE_NONE][0]['value2'], '3001-01-01T00:00:00');
-  } else {
-    $startdate = issetor($form_state['values']['field_event_date'][LANGUAGE_NONE][0]['value'], $form['#node']->field_event_date[LANGUAGE_NONE][0]['value']);
-    $enddate = issetor($form_state['values']['field_event_date'][LANGUAGE_NONE][0]['value2'], $form['#node']->field_event_date[LANGUAGE_NONE][0]['value2']);
+
+  }else if($form['nid']['#value'] !== null){
+    // use node values as defaults
+    $location_ids = $form['field_locations'][LANGUAGE_NONE]['#default_value'];
+    $facilities_ids = $form['field_needed_facilities'][LANGUAGE_NONE]['#default_value'];
+    $people = $form['field_people'][LANGUAGE_NONE][0]['value']['#default_value'];
+    $startdate =  $form['#node']->field_event_date[LANGUAGE_NONE][0]['value'];
+    $enddate =  $form['#node']->field_event_date[LANGUAGE_NONE][0]['value2'];
   }
+
+
+
+
 
   // check which events times intersects with startdate
   $query = new EntityFieldQuery;
@@ -295,12 +318,9 @@ function _iishagenda_get_available_rooms($form, $form_state)
   }
 
   // Add people condition
-  if(isset($form_state['values']['field_people'][LANGUAGE_NONE][0]['value'])){
-    $people = $form_state['values']['field_people'][LANGUAGE_NONE][0]['value'];
-    $query->fieldCondition('field_capacity', 'value',$people,'>=');
-  }
-
+  $query->fieldCondition('field_capacity', 'value',$people,'>=');
   $results = $query->execute();
+
   $options = array();
 
   // remove booked rooms form all rooms
@@ -332,7 +352,7 @@ function _iishagenda_get_available_rooms($form, $form_state)
   }
 
   if(count($options) == 0){
-    drupal_set_message('Er zijn helaas geen beschikbare zalen gevonden. Kies aub een andere dag / tijd.');
+    drupal_set_message('Er zijn helaas geen beschikbare zalen gevonden. Kies aub een andere dag / tijd of locatie.');
   }
 
   return $options;

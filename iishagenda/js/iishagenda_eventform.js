@@ -5,9 +5,6 @@
     var showed_changedate_msg = false;
     var current_rooms = new Array();
 
-
-
-
     Drupal.behaviors.iishagenda = {
         attach : function(context, settings) {
 
@@ -39,7 +36,7 @@
         $("#edit-field-clone-of-und-0-target-id").prop('disabled', true);
         $("#edit-field-clone-of-und-0-target-id").addClass("input-disabled");
 
-        $(".currentrooms").css("display","none");
+//        $(".currentrooms").css("display","none");
 
         // clear rooms when none is checked (mainly for new events)
         if($('.field-name-field-event-room .form-checkbox:checked').length == 0){
@@ -72,11 +69,17 @@
 
     function addListeners(){
 
-        $('#edit-field-event-date-und-0-value-timeEntry-popup-1').change(function(){
+        $('#edit-field-event-date-u' +
+            'nd-0-value-timeEntry-popup-1').change(function(){
             var endtimefield = $('#edit-field-event-date-und-0-value2-timeEntry-popup-1');
 
             if(endtimefield.val() == "" || duration==0){
-                endtimefield.val($(this).val());
+
+                var most_used_duration = Drupal.settings.most_used_duration *60; // minutes to seconds
+                var nEndtime = convertToTime($(this).val())+most_used_duration;
+                var dEnddate = new Date(nEndtime*1000);
+                endtimefield.val(pad(dEnddate.getHours())+":"+pad(dEnddate.getMinutes()));
+
             }else{
                 var nEndtime = convertToTime($(this).val())+duration;
                 var dEnddate = new Date(nEndtime*1000);
