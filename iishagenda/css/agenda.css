@@ -223,7 +223,8 @@ label{
 
 /* NODE FORM CATERING */
 
-.page-node-add-event .group-catering{
+.page-node-add-event .group-catering,
+.page-node-edit .group-catering{
     display:none;
 }
 

@@ -23,6 +23,8 @@ or install manually http://www.eyecon.ro/colorpicker/colorpicker.zip in librarie
 4)
 - 'drush cc all' clearing the cache
 
+5) create a private files folder and define it at /admin/config/media/file-system
+
 
 NOTE
 ================================================================================

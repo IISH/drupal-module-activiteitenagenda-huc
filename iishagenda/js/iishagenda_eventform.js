@@ -121,17 +121,15 @@
         /**
          *
          */
-
+        determineCatering();
         $('input#edit-field-people-und-0-value').change(function(e){
             determineCatering();
         });
 
-
-
     }
 
     function determineCatering(){
-        console.debug("determine catering");
+
         var $checkboxes = $('.form-item-field-event-room-und input[type="checkbox"]');
         var $issg = false;
         var $people = parseInt($('input#edit-field-people-und-0-value').val());
@@ -160,7 +158,6 @@
             $('.group-catering').hide();
         }
     }
-
 
     /**
      *  Set catering time pickers

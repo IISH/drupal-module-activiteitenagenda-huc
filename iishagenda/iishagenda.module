@@ -180,18 +180,13 @@ function iishagenda_menu()
     'type' => MENU_NORMAL_ITEM,
     'file' => 'iishagenda.admin.inc',
   );
-/*
-  $items['admin/config/iishagenda'] = array(
-    'title' => t('IISH Agenda'),
+  $items['ics/%'] = array(
+    'title' => t('ICS'),
     'description' => '',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('admin_settings'),
+    'page callback' => '_generate_ics',
     'access callback' => '_iishagenda_user_has_role',
-    'access arguments' => array(array('administrator', 'event administrator')),
-    'type' => MENU_NORMAL_ITEM,
-    'file' => 'iishagenda.admin.inc',
+    'access arguments' => array(array('authenticated user')),
   );
-*/
 
   $items['admin/config/iishagenda/stat'] = array(
     'title' => t('Statistics'),
@@ -276,9 +271,11 @@ function cmp($a, $b) {
 * Implements hook_node_view().
 */
 function iishagenda_node_view($node, $view_mode, $langcode) {
-  if($node->type == "event" && _iishagenda_is_event_controlled($node) &&  !is_user_admin()){
+  global $user;
 
-    $message = t('Je kan dit evenement niet wijzigen omdat het plaatsvind op :location  (gecontroleerd beheer), voor wijzigingen neem aub contact op met: ',
+  if($node->type == "event" && _iishagenda_is_event_controlled($node) &&  !is_user_admin() && $node->uid == $user->uid){
+
+    $message = t('Je kan dit evenement niet wijzigen omdat het plaatsvind op :location (gecontroleerd beheer), voor wijzigingen neem aub contact op met: ',
                 array(":location"=>_iishagenda_get_location_name_by_event($node)));
     $message .= _iishagenda_get_location_admin_by_event($node);
     drupal_set_message($message,'warning');
@@ -458,8 +455,6 @@ function _iishagenda_is_event_controlled($event){
   $event = entity_metadata_wrapper('node', $event);
   $rooms = $event->field_event_room->value();
 
- // dpm($event);
-  //dpm($rooms);
   if(isset($rooms[0])) {
     $room_wrapper = entity_metadata_wrapper('node', $rooms[0]);
     $location = $room_wrapper->field_room_location->value();
@@ -576,9 +571,6 @@ function _notify_event_owner($node){
  * Implements hook_menu_local_tasks_alter().
  */
 function iishagenda_menu_local_tasks_alter(&$data, $router_item, $root_path) {
-  //dpm($data);
-  //dpm($router_item);
-  //dpm($root_path);
   // For content type, remove the 'edit' & 'view' tab when viewing the node.
   foreach ($router_item['page_arguments'] as $key => $argument) {
     if (is_object($argument) && isset($router_item['page_arguments'][$key]->type) && $router_item['page_arguments'][$key]->type == 'event') {
@@ -626,21 +618,8 @@ function iishagenda_node_access($node, $op, $account) {
       if (_iishagenda_is_event_controlled($node) &&  !is_user_admin()) {
         return NODE_ACCESS_DENY;
       }
-      else {
-       // dpm("allow");
-       // return NODE_ACCESS_ALLOW;
-      }
+
     }
-/*
-    if($node->type == 'event' && $op == 'view'){
-      global $user;
-      dpm( $node->field_private);
-      if($node->uid !== $user->uid &&
-        !is_user_admin() &&
-        $node->field_private[LANGUAGE_NONE][0]['value'] == '1'){
-      }
-    }
-*/
   }
 
   return NODE_ACCESS_IGNORE;
