@@ -23,6 +23,12 @@ function _custom_validation($form, &$form_state) {
     $form_errors = form_get_errors();
     $drupal_errors = drupal_get_messages('error');
     if(count($form_errors)>0){
+
+      foreach($drupal_errors['error'] as $key => $error) {
+        if (in_array($error, $form_errors)) {
+          unset($drupal_errors['error'][$key]);
+        }
+      }
       form_clear_error();
       foreach($form_errors as $key => $message) {
         switch($key){
@@ -40,6 +46,7 @@ function _custom_validation($form, &$form_state) {
             break;
         }
         form_set_error($key,$m);
+      //  drupal_set_message($m, 'error');
       }
     }
   }
@@ -53,13 +60,11 @@ function _custom_validation($form, &$form_state) {
 function iishagenda_form_alter(&$form, $form_state, $form_id)
 {
 
+  $debug = false;
+
   if($form_id == "taxonomy_form_term" && $form["#vocabulary"]->machine_name == "room_location"){
     $form['#validate'][] = '_iishagenda_check_admincontrol';
   }
-
-
-
-  $debug = false;
 
   if ($form_id == 'event_node_form') {
 
