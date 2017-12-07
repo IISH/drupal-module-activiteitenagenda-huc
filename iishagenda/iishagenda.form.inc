@@ -68,7 +68,7 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
 
   if ($form_id == 'event_node_form') {
 
-    $form['#validate'][] = '_custom_validation';
+   // $form['#validate'][] = '_custom_validation';
 
     unset($form['actions']['preview']);
 
