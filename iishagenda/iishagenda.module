@@ -64,10 +64,6 @@ function iishagenda_block_view($delta){
   //authenticated
   if (user_has_role(2)) {
     switch ($delta) {
-      case 'location_menu':
-        $block['subject'] = t('Locaties');
-        $block['content'] = _iishagenda_build_location_menu();
-        break;
       case 'user_hello':
         $block['subject'] = t('Zaalreserveringssysteem');
         $block['content'] = _iishagenda_user_welcome();
@@ -75,8 +71,16 @@ function iishagenda_block_view($delta){
     }
   }
 
-  return $block;
+  $view = views_get_page_view();
+  if($delta == 'location_menu' &&
+      isset($view) &&
+      ($view->name == 'calendar' || ($view->name == 'upcoming_events' && $view->current_display=='page'))
+    ){
+    $block['subject'] = t('Locaties');
+    $block['content'] = _iishagenda_build_location_menu();
+  }
 
+  return $block;
 }
 
 /**
@@ -201,8 +205,6 @@ function iishagenda_menu()
 
 
 function _iish_agenda_statspage(){
-
-
   $output = '';
   $header = array('item', 'aantal');
   $rows = array();
@@ -252,13 +254,12 @@ function _iishagenda_define_most_used_duration(){
   uasort($durations, 'cmp');
   $keys = array_keys($durations);
   $most_used = $keys[0];
-
-
   $duration_int = intval($most_used);
   variable_set('most_used_duration',$duration_int);
 
   return $duration_int;
 }
+
 
 function cmp($a, $b) {
   if ($a == $b) {
@@ -273,7 +274,10 @@ function cmp($a, $b) {
 function iishagenda_node_view($node, $view_mode, $langcode) {
   global $user;
 
-  if($node->type == "event" && _iishagenda_is_event_controlled($node) &&  !is_user_admin() && $node->uid == $user->uid){
+  if($node->type == "event" &&
+    $view_mode =="full" &&
+    _iishagenda_is_event_controlled($node) &&
+    !is_user_admin() && $node->uid == $user->uid){
 
     $message = t('Je kan dit evenement niet wijzigen omdat het plaatsvind op :location (gecontroleerd beheer), voor wijzigingen neem aub contact op met: ',
                 array(":location"=>_iishagenda_get_location_name_by_event($node)));

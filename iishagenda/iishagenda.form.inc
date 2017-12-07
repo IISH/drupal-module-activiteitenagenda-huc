@@ -17,6 +17,36 @@ function _iishagenda_check_admincontrol($form, &$form_state) {
 }
 
 
+function _custom_validation($form, &$form_state) {
+
+  if ($form['#form_id'] == 'event_node_form' ) {
+    $form_errors = form_get_errors();
+    $drupal_errors = drupal_get_messages('error');
+    if(count($form_errors)>0){
+      form_clear_error();
+      foreach($form_errors as $key => $message) {
+        switch($key){
+          case 'title':
+            $m = t('Geef een titel op aub.');
+            break;
+          case 'field_event_date][und][0][value':
+            $m = t('Geef een startdatum en -tijd op aub.');
+            break;
+          case 'field_event_date][und][0][value2':
+            $m = t('Geef een eindtijd op aub.');
+            break;
+          case 'field_people][und][0][value':
+            $m = t('Geef het aantal personen op aub.');
+            break;
+        }
+        form_set_error($key,$m);
+      }
+    }
+  }
+}
+
+
+
 /**
  * Implementation of hook_form_alter().
  */
@@ -27,9 +57,13 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
     $form['#validate'][] = '_iishagenda_check_admincontrol';
   }
 
+
+
   $debug = false;
 
   if ($form_id == 'event_node_form') {
+
+    $form['#validate'][] = '_custom_validation';
 
     unset($form['actions']['preview']);
 
@@ -52,7 +86,6 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
         $form["field_people"][LANGUAGE_NONE][0]["#default_value"] = '5';
         $form["field_people"][LANGUAGE_NONE][0]["value"]["#default_value"] = '5';
       }
-
 
       // set status to aproved when user is admin
       if(is_user_admin()){
@@ -89,13 +122,6 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
     $form['#group_children']['check'] = 'group_accomodation';
     $form['#group_children']['facilities'] = 'group_accomodation';
 
-
-/*    if($form_state['rebuild']){
-      $options = _iishagenda_get_available_rooms($form, $form_state);
-    }else{
-      $options = array();
-    }
-*/
 
     $options = _iishagenda_get_available_rooms($form, $form_state);
 
@@ -171,9 +197,6 @@ function _iishagenda_option_cancel($form, &$form_state){
     $body[] = t("Zie " . $base_url . "/node/".$event->nid);
     _isshagenda_compose_send_mail($user->mail,$subject,$body,false);
   }
-
-
-
   $form_state['values']['field_event_status'][LANGUAGE_NONE][0]['value'] = 'cancelled';
 }
 
@@ -242,9 +265,6 @@ function _iishagenda_get_available_rooms($form, $form_state)
     $startdate =  $form['#node']->field_event_date[LANGUAGE_NONE][0]['value'];
     $enddate =  $form['#node']->field_event_date[LANGUAGE_NONE][0]['value2'];
   }
-
-
-
 
 
   // check which events times intersects with startdate
@@ -351,7 +371,7 @@ function _iishagenda_get_available_rooms($form, $form_state)
     }
   }
 
-  if(count($options) == 0){
+  if(count($options) == 0 && $form_state['rebuild']){
     drupal_set_message('Er zijn helaas geen beschikbare zalen gevonden. Kies aub een andere dag / tijd of locatie.');
   }
 

@@ -275,7 +275,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
     'settings' => array(
       'description_field' => 1,
       'file_directory' => 'event_attachment',
-      'file_extensions' => 'pdf doc docx zip',
+      'file_extensions' => 'pdf doc docx zip jpg xls xlsx jpeg gif png',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
@@ -283,20 +283,6 @@ in de kantine, <b>na afloop terug brengen</b>.',
       'active' => 1,
       'module' => 'file',
       'settings' => array(
-        'filefield_sources' => array(
-          'filefield_sources' => array(),
-          'source_attach' => array(
-            'absolute' => 0,
-            'attach_mode' => 'move',
-            'path' => 'file_attach',
-          ),
-          'source_imce' => array(
-            'imce_mode' => 0,
-          ),
-          'source_reference' => array(
-            'autocomplete' => 0,
-          ),
-        ),
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
