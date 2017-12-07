@@ -114,6 +114,13 @@ function iishagenda_event_views_default_views() {
   $handler->display->display_options['footer']['area']['field'] = 'area';
   $handler->display->display_options['footer']['area']['content'] = '<h2>Catering Binnenkort<.h2>';
   $handler->display->display_options['footer']['area']['format'] = 'filtered_html';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Er zijn geen <b>goedgekeurde</b> reserveringen met catering.';
+  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   /* Field: Content: Status */
   $handler->display->display_options['fields']['field_event_status']['id'] = 'field_event_status';
   $handler->display->display_options['fields']['field_event_status']['table'] = 'field_data_field_event_status';
@@ -361,6 +368,7 @@ function iishagenda_event_views_default_views() {
 Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nodig hebben, ingedeeld per week.';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
   $handler->display->display_options['defaults']['footer'] = FALSE;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Status */
   $handler->display->display_options['fields']['field_event_status']['id'] = 'field_event_status';
@@ -567,6 +575,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['footer'] = FALSE;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
   $translatables['catering'] = array(
     t('Master'),
     t('Catering'),
@@ -577,6 +586,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     t('Oplopend'),
     t('Aflopend'),
     t('<h2>Catering Binnenkort<.h2>'),
+    t('Er zijn geen <b>goedgekeurde</b> reserveringen met catering.'),
     t('<div class="messagepop pop">
   <form method="post" id="new_message" action="/messages">
     <p><label for="email">Your email or name</label><input type="text" size="30" name="email" id="email" /></p>

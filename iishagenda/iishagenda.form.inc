@@ -45,7 +45,9 @@ function _custom_validation($form, &$form_state) {
             $m = t('Geef het aantal personen op aub.');
             break;
         }
-        form_set_error($key,$m);
+        if(isset($m)){
+          form_set_error($key,$m);
+        }
       //  drupal_set_message($m, 'error');
       }
     }
@@ -258,7 +260,7 @@ function _iishagenda_get_available_rooms($form, $form_state)
       }
     }
 
-    $people = $form_state['values']['field_people'][LANGUAGE_NONE][0]['value'];
+    $people =  issetor($form_state['values']['field_people'][LANGUAGE_NONE][0]['value'],'0');
     $startdate = issetor($form_state['values']['field_event_date'][LANGUAGE_NONE][0]['value'], '2000-01-01T00:00:00');
     $enddate = issetor($form_state['values']['field_event_date'][LANGUAGE_NONE][0]['value2'], '3001-01-01T00:00:00');
 
@@ -376,7 +378,7 @@ function _iishagenda_get_available_rooms($form, $form_state)
     }
   }
 
-  if(count($options) == 0 && $form_state['rebuild']){
+  if(count($options) == 0 && $form_state['rebuild'] && $form_state['triggering_element']['#name'] !== "field_attachment_und_0_upload_button" ){
     drupal_set_message('Er zijn helaas geen beschikbare zalen gevonden. Kies aub een andere dag / tijd of locatie.');
   }
 

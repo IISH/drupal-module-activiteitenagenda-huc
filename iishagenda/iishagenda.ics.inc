@@ -11,6 +11,8 @@ function _generate_ics()
 
   if (isset($node_id) && is_numeric($node_id)) {
 
+    $address = "";
+
     $entity = entity_load('node', array($node_id));
     $entity = array_shift($entity);
 
@@ -29,18 +31,20 @@ function _generate_ics()
         $r = array_shift($r);
         $output_rooms[] = $r->title;
       }
-    }
 
-    if (count($output_rooms) > 0) {
-      $display_room = "Zaal: " . implode(",", $output_rooms) . "; ";
-    } else {
-      $display_room = "";
+      if (count($output_rooms) > 0) {
+        $display_room = "Zaal: " . implode(", ", $output_rooms) . "; ";
+      }else{
+        $display_room = "";
+      }
+      $room = node_load($room["nid"]);
+      $room_wrapper = entity_metadata_wrapper('node',$room);
+      $location = $room_wrapper->field_room_location->value();
+      $location_name = $location->name;
+      $loc = $location->field_address[LANGUAGE_NONE][0];
+      $address = '\n'.$loc['thoroughfare'].' '.$loc['postal_code']. ' '.$loc['locality'];
+      $address = $display_room . $location_name . $address;
     }
-    $room = node_load($room["nid"]);
-    $room_wrapper = entity_metadata_wrapper('node',$room);
-    $location = $room_wrapper->field_room_location->value();
-    $loc = $location->field_address[LANGUAGE_NONE][0];
-    $address = '\n'.$loc['thoroughfare'].' '.$loc['postal_code']. ' '.$loc['locality'];
 
     $warning = "*** Check voor dit evenement de agenda voor eventuele wijzigingen *** ";
     $summary = _iishagenda_change_node_title_if_private($entity->nid, $entity->title);
@@ -49,7 +53,7 @@ function _generate_ics()
     $description = $warning . issetor($entity->body[LANGUAGE_NONE][0]['value'], '');
     $uri = $base_url . "/node/" . $entity->vid;
 
-    $address = $display_room . $location->name . $address;
+
 
     $output = "BEGIN:VCALENDAR
 VERSION:2.0

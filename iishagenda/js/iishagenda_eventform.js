@@ -9,12 +9,10 @@
         attach : function(context, settings) {
 
             var first = context[0];
-            //if(first) console.debug(context[0].id.substring(0,4));
-            if(first && context[0].id.substring(0,4) =="edit"){
 
+            if(first && context[0].id.substring(0,4) =="edit"){
                 $('#'+context[0].id).change(function(){
                     determineCatering();
-
                 });
             }
 
@@ -121,10 +119,12 @@
         /**
          *
          */
-        determineCatering();
-        $('input#edit-field-people-und-0-value').change(function(e){
+        if($('#node-event-form').length > 0 ){
             determineCatering();
-        });
+            $('input#edit-field-people-und-0-value').change(function(e){
+                determineCatering();
+            });
+        }
 
     }
 
@@ -155,7 +155,7 @@
 
     function hideCatering(){
         if($('.group-catering').is(':visible')){
-            $('.group-catering').hide();
+           // $('.group-catering').hide();
         }
     }
 
