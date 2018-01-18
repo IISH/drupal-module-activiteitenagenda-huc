@@ -1197,7 +1197,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
       ),
     ),
     'deleted' => 0,
-    'description' => 'Vink deze aan als de titel van het evenement niet weergegeven a worden.',
+    'description' => 'Vink dit vakje aan als de titel van het evenement niet weergegeven mag worden.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1786,7 +1786,7 @@ in de kantine, <b>na afloop terug brengen</b>.');
   t('Telefoon (extern)');
   t('Tijd');
   t('Toon op voorpagina');
-  t('Vink deze aan als de titel van het evenement niet weergegeven a worden.');
+  t('Vink dit vakje aan als de titel van het evenement niet weergegeven mag worden.');
   t('Vink dit vakje aan als dit evenement moet verschijnen op de voorpagina van het intranet, op de datum van het evenement. ');
   t('Vink dit vakje aan als je alvast een reservering wilt maken, maar nog niet helemaal zeker is of het evenement doorgaat.');
   t('Zaal');

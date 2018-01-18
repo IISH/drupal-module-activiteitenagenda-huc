@@ -10,6 +10,16 @@
 function iishagenda_event_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'create field_attachment'.
+  $permissions['create field_attachment'] = array(
+    'name' => 'create field_attachment',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'create field_clone_of'.
   $permissions['create field_clone_of'] = array(
     'name' => 'create field_clone_of',
@@ -66,6 +76,16 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'edit field_attachment'.
+  $permissions['edit field_attachment'] = array(
+    'name' => 'edit field_attachment',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );
@@ -130,6 +150,16 @@ function iishagenda_event_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'edit own field_attachment'.
+  $permissions['edit own field_attachment'] = array(
+    'name' => 'edit own field_attachment',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'edit own field_clone_of'.
   $permissions['edit own field_clone_of'] = array(
     'name' => 'edit own field_clone_of',
@@ -190,6 +220,16 @@ function iishagenda_event_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'view field_attachment'.
+  $permissions['view field_attachment'] = array(
+    'name' => 'view field_attachment',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'view field_clone_of'.
   $permissions['view field_clone_of'] = array(
     'name' => 'view field_clone_of',
@@ -245,6 +285,16 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'view own field_attachment'.
+  $permissions['view own field_attachment'] = array(
+    'name' => 'view own field_attachment',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
   );

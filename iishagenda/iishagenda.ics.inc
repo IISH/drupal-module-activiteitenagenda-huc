@@ -58,7 +58,6 @@ function _generate_ics()
     $output = "BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:HuC
-X-WR-CALNAME:HuC
 CALSCALE:GREGORIAN
 BEGIN:VTIMEZONE
 TZID:Europe/Amsterdam
