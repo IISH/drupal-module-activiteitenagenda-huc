@@ -1,2 +1,2 @@
 # drupal-module-activiteitenagenda
-De activiteiten agenda voor de IISG intranet website
+De activiteiten agenda voor de Humanities Cluster (HuC) intranet website
