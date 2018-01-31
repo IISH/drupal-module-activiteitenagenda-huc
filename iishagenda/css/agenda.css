@@ -562,8 +562,9 @@ body.agenda  .form-item-field-type-activity-tid .description{
     height:15px;
 }
 
-.page-rooms .views-field-body{
-    margin-top:30px;
+.page-rooms .views-field-body {
+    margin-top: 30px;
+	height: auto !important; /* igor, fix for overlapping room info */
 }
 
 .views-field-field-setup .field-content{
