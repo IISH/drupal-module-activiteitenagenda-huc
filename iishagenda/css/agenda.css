@@ -6,7 +6,7 @@ body.agenda #region-sidebar-second{
 
 @media (max-width: 1200px) {
     body .container-12 .grid-6.region-content {
-        width:700px;
+        xxxwidth:700px;
     }
 }
 @media (min-width: 1200px) {
@@ -17,13 +17,13 @@ body.agenda #region-sidebar-second{
         width: 90%;
     }
     body .container-12 .grid-6.region-content {
-        width: 80%
+        xxxwidth: 80%
     }
     body .container-12 .grid-9.region-content {
-        width: 80%
+        xxxwidth: 80%
     }
     body .container-12 .grid-3 {
-        width: 16%;
+        xxxwidth: 16%;
     }
 }
 
@@ -624,4 +624,15 @@ body.agenda fieldset .fieldset-legend {
 
 .clone-link{
     font-weight: 600;
+}
+
+/* color of search buttons and fields in my events */
+#edit-field-type-activity-tid, #edit-field-type-activity-tid option
+, #edit-field-event-date-value-value-month, #edit-field-event-date-value-value-month option
+, #edit-field-event-date-value-value-year, #edit-field-event-date-value-value-year option
+, #edit-submit-upcoming-events
+, #edit-reset
+,label[for=edit-field-type-activity-tid]
+, label[for=edit-field-event-date-value] {
+	color: black !important;
 }

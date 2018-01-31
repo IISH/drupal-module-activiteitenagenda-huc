@@ -61,15 +61,16 @@ function iishagenda_block_info(){
  */
 function iishagenda_block_view($delta){
   $block = array();
-  //authenticated
-  if (user_has_role(2)) {
-    switch ($delta) {
-      case 'user_hello':
-        $block['subject'] = t('Zaalreserveringssysteem');
-        $block['content'] = _iishagenda_user_welcome();
-        break;
-    }
-  }
+
+//  //authenticated
+//  if (user_has_role(2)) {
+//    switch ($delta) {
+//      case 'user_hello':
+//        $block['subject'] = t('Zaalreserveringssysteem');
+//        $block['content'] = _iishagenda_user_welcome();
+//        break;
+//    }
+//  }
 
   $view = views_get_page_view();
   if($delta == 'location_menu' &&
