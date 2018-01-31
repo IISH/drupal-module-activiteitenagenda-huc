@@ -5,29 +5,27 @@ body.agenda #region-sidebar-second{
 
 
 @media (max-width: 1200px) {
-    body .container-12 .grid-6.region-content {
-        xxxwidth:700px;
+	body.agenda .container-12 .grid-6.region-content {
+        width:700px;
     }
 }
-@media (min-width: 1200px) {
 
+@media (min-width: 1200px) {
     .container-12 {
         margin-left: auto;
         margin-right: auto;
         width: 90%;
     }
-    body .container-12 .grid-6.region-content {
-        xxxwidth: 80%
+    body.agenda .container-12 .grid-6.region-content {
+        width: 80%
     }
-    body .container-12 .grid-9.region-content {
-        xxxwidth: 80%
+    body.agenda .container-12 .grid-9.region-content {
+        width: 80%
     }
-    body .container-12 .grid-3 {
-        xxxwidth: 16%;
+    body.agenda .container-12 .grid-3 {
+        width: 16%;
     }
 }
-
-
 
 
 
@@ -43,7 +41,6 @@ body.agenda .grid-2.region-sidebar-first{
 
 body.agenda .block-user-hello h2, h2.block-title{
     color: #000;
-    
 }
 
 /* CUSTOM */
@@ -73,7 +70,7 @@ img.special{
 
 .view-id-upcoming_events table.views-table td:nth-child(1){
      width:86px;
- }
+}
 
 .view-id-upcoming_events table.views-table td.views-field-field-event-date{
     width:124px;
@@ -142,7 +139,6 @@ td.views-field-field-special{
 }
 
 
-
 .ics-full-link{
     clear: both;
     display: inline-block;
@@ -159,7 +155,6 @@ td.views-field-field-special{
 .ics-full-link span{
     padding-top:4px;
 }
-
 
 
 /* ADD EVENT PAGE */
@@ -283,7 +278,6 @@ form .field-name-field-note{
 }
 
 
-
 .start-date-wrapper.container-inline-date.date-no-float,
 .end-date-wrapper.container-inline-date.date-no-float {
     clear: none;
@@ -376,14 +370,9 @@ html.js input.form-autocomplete.input-disabled{
 
 
 
-
-
-
 /* LOCATION LIST */
 
 .view-locations .views-row{
-
-
     margin-top: 20px;
 }
 
@@ -394,7 +383,6 @@ html.js input.form-autocomplete.input-disabled{
 
 .views-field-field-address .field-content{
     display:inline-block;
-
 }
 
 
@@ -561,7 +549,6 @@ body.agenda  .form-item-field-type-activity-tid .description{
 }
 
 
-
 /* ROOMS */
 .page-rooms .views-label{
     float:left;
@@ -573,7 +560,6 @@ body.agenda  .form-item-field-type-activity-tid .description{
 .page-rooms .views-field{
     clear:both;
     height:15px;
-
 }
 
 .page-rooms .views-field-body{
@@ -591,8 +577,6 @@ body.agenda  .form-item-field-type-activity-tid .description{
 .views-field-field-room-type,
 .views-field-field-facilities{
    /* padding-bottom:15px;*/
-
-
 }
 
 /* changes for seven theme */
@@ -606,7 +590,6 @@ body.agenda fieldset .fieldset-legend {
 
 
 /* pager */
-
 .agenda .item-list .pager li {
     width: auto;
 }
