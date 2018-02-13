@@ -23,7 +23,6 @@
         init();
     });
 
-
     function init(){
         setEventTimePicker();
         setCateringTimePicker();
@@ -39,8 +38,10 @@
         if($('.field-name-field-event-room .form-checkbox:checked').length == 0){
             clear_rooms();
         }
-    }
 
+		//
+	    determineCatering();
+    }
 
 
     /**
@@ -130,17 +131,18 @@
     function determineCatering(){
 
         var $checkboxes = $('.form-item-field-event-room-und input[type="checkbox"]');
-        var $issg = false;
-        var $people = parseInt($('input#edit-field-people-und-0-value').val());
+        var $isIisg = false;
+        //var $people = parseInt($('input#edit-field-people-und-0-value').val());
 
         $.each($checkboxes.filter(':checked'),function(i,v){
             $label = $(v).parent().find("label").text();
             if($label.indexOf('IISG') !== -1){
-                $issg = true;
+	            $isIisg = true;
             }
         });
 
-        if($issg || $people > 50){
+	    //if($isIisg || $people > 50){
+	    if($isIisg){
             showCatering();
         }else{
             hideCatering();
