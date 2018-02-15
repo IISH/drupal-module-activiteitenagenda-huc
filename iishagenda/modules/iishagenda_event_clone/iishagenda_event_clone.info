@@ -7,4 +7,6 @@ version = "7.x-1.0"
 core = "7.x"
 
 dependencies[] = iishagenda_event
-dependencies[] = replicatdrush e
+; is de volgende regel correct of moet het gewoon replicate zijn?
+;dependencies[] = replicatdrush e
+dependencies[] = replicate

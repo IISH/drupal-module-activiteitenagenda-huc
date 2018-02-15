@@ -8,6 +8,8 @@
  * Implements hook_field_default_field_instances().
  */
 function iishagenda_event_field_default_field_instances() {
+  global $base_url;
+
   $field_instances = array();
 
   // Exported field_instance:
@@ -702,7 +704,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Bekijk <a href=\'/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen',
+    'description' => 'Bekijk <a href=\'' . $base_url . '/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -1742,7 +1744,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
   t('Aantal personen');
   t('Administrator');
   t('Adres');
-  t('Bekijk <a href=\'/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen');
+  t('Bekijk <a href=\'' . $base_url . '/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen');
   t('Beschrijving');
   t('Bestaande gebruiker');
   t('Bestellingen tot 15 personen kunnen afgehaald worden<br>

@@ -61,15 +61,16 @@ function iishagenda_block_info(){
  */
 function iishagenda_block_view($delta){
   $block = array();
-  //authenticated
-  if (user_has_role(2)) {
-    switch ($delta) {
-      case 'user_hello':
-        $block['subject'] = t('Zaalreserveringssysteem');
-        $block['content'] = _iishagenda_user_welcome();
-        break;
-    }
-  }
+
+//  //authenticated
+//  if (user_has_role(2)) {
+//    switch ($delta) {
+//      case 'user_hello':
+//        $block['subject'] = t('Zaalreserveringssysteem');
+//        $block['content'] = _iishagenda_user_welcome();
+//        break;
+//    }
+//  }
 
   $view = views_get_page_view();
   if($delta == 'location_menu' &&
@@ -819,7 +820,6 @@ function iishagenda_views_pre_render(&$view) {
  * Returns the current location, sets the first location if none defined
  */
 function _iishagenda_determine_location(){
-
   // TODO: save and load preference to user profile.
   global $user;
   $user = user_load($user->uid);
@@ -835,10 +835,10 @@ function _iishagenda_determine_location(){
       $terms = taxonomy_get_tree($location_voc->vid,0,null,true);
       //set first location as default
       $_SESSION['location_id'] = $terms[0]->tid;
-      drupal_set_message("De locatie is  ingesteld op: ".$terms[0]->name);
+      // disabled message
+      //drupal_set_message("De locatie is ingesteld op: ".$terms[0]->name);
     }
 
     return $_SESSION['location_id'];
   }
-
 }
