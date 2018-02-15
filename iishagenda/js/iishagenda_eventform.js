@@ -126,14 +126,24 @@
             });
         }
 
+		// dirty
+	    $('input#edit-field-locations-und-52').change(function(e){
+		    determineCatering();
+	    });
+	    $('input#edit-field-locations-und-53').change(function(e){
+		    determineCatering();
+	    });
+	    $('input#edit-field-locations-und-54').change(function(e){
+		    determineCatering();
+	    });
     }
 
     function determineCatering(){
+	    var $isIisg = false;
+	    var $isIisg2 = false;
 
         var $checkboxes = $('.form-item-field-event-room-und input[type="checkbox"]');
-        var $isIisg = false;
         //var $people = parseInt($('input#edit-field-people-und-0-value').val());
-
         $.each($checkboxes.filter(':checked'),function(i,v){
             $label = $(v).parent().find("label").text();
             if($label.indexOf('IISG') !== -1){
@@ -141,8 +151,17 @@
             }
         });
 
+		// if location IISG is checked, show catering
+	    var $checkboxes2 = $('.form-item-field-locations-und input[type="checkbox"]');
+	    $.each($checkboxes2.filter(':checked'),function(i,v){
+		    $label = $(v).parent().find("label").text();
+		    if($label.indexOf('IISG') !== -1){
+			    $isIisg2 = true;
+		    }
+	    });
+
 	    //if($isIisg || $people > 50){
-	    if($isIisg){
+	    if($isIisg || $isIisg2){
             showCatering();
         }else{
             hideCatering();
@@ -156,7 +175,8 @@
 
     function hideCatering(){
         if($('.group-catering').is(':visible')){
-           // $('.group-catering').hide();
+             // waarom was de volgende regel uitgecomentarieerd?
+             $('.group-catering').hide();
         }
     }
 
