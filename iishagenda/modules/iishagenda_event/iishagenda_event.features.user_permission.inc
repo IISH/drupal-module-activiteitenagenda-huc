@@ -358,5 +358,17 @@ function iishagenda_event_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+	// Exported permission: 'view field_room_nid'.
+	$permissions['view field_room_nid'] = array(
+		'name' => 'view field_room_nid',
+		'roles' => array(
+			'administrator' => 'administrator',
+			'event administrator' => 'event administrator',
+			'event caterer' => 'event caterer',
+			'room administrator' => 'room administrator',
+		),
+		'module' => 'field_permissions',
+	);
+
   return $permissions;
 }

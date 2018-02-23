@@ -280,13 +280,13 @@ function iishagenda_node_view($node, $view_mode, $langcode) {
     _iishagenda_is_event_controlled($node) &&
     !is_user_admin() && $node->uid == $user->uid){
 
-    $message = t('Je kan dit evenement niet wijzigen omdat het plaatsvind op :location (gecontroleerd beheer), voor wijzigingen neem aub contact op met: ',
-                array(":location"=>_iishagenda_get_location_name_by_event($node)));
+//	  $message = t('Je kan dit evenement niet wijzigen omdat het plaatsvind op :location (gecontroleerd beheer), voor wijzigingen neem aub contact op met: ', array(":location"=>_iishagenda_get_location_name_by_event($node)));
+	  $message = t('Je reservering is ter goedkeuring doorgestuurd naar de facilitaire dienst van :location. Voor wijzigingen neem aub contact op met: ', array(":location"=>_iishagenda_get_location_name_by_event($node)));
     $message .= _iishagenda_get_location_admin_by_event($node);
-    drupal_set_message($message,'warning');
+//	  drupal_set_message($message,'warning');
+	  drupal_set_message($message);
   }
 }
-
 
 
 /**
@@ -705,8 +705,9 @@ function is_user_admin()
  */
 function iishagenda_cron()
 {
+	global $base_url;
 
- _iishagenda_define_most_used_duration();
+	 _iishagenda_define_most_used_duration();
 
   // set 3 days
   $time_to_event = 60*60*24*23;
@@ -729,16 +730,14 @@ function iishagenda_cron()
     ->condition('n.status', 1)
     ->execute();
 
-
-  global $base_url;
-
   $nids_ok = array();
   $nids_error = array();
   foreach($result as $node){
     $subject = t("Je reservering " . $node->title. " is een optie, bevestig of annuleer svp.");
     $body = array();
     $body[] = t("Je reservering '" . $node->title . "' is als optie aangemaakt.");
-    $body[] = t("Zie " . $base_url . "/node/".$node->nid."/edit");
+	//$body[] = t("Zie " . $base_url . "/node/".$node->nid."/edit");
+	$body[] = t("Zie " . $base_url . "/node/".$node->nid."/");
     if(!_isshagenda_compose_send_mail($node->mail,$subject,$body,false)){
       $nids_error[] = $node->nid;
     }else{
