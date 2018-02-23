@@ -709,8 +709,14 @@ function iishagenda_cron()
 
 	 _iishagenda_define_most_used_duration();
 
-  // set 3 days
-  $time_to_event = 60*60*24*23;
+	// send mail only during the workweek
+	if ( date('N') >= 6 ) {
+		watchdog('iish_agenda','HuC Agenda - \'reservering optie\' mail cron runs only during the workweek', WATCHDOG_NOTICE);
+		return;
+	}
+
+  // set 10 days
+  $time_to_event = 60*60*24*10;
   $datelimit = date('Y-m-dTH:i:s', time()+$time_to_event);
 
   // start with the base table
@@ -735,9 +741,10 @@ function iishagenda_cron()
   foreach($result as $node){
     $subject = t("Je reservering " . $node->title. " is een optie, bevestig of annuleer svp.");
     $body = array();
-    $body[] = t("Je reservering '" . $node->title . "' is als optie aangemaakt.");
+	  $body[] = t("Je reservering '" . $node->title . "' is als optie aangemaakt.");
+	  $body[] = t("Om je reservering te wijzigen neem contact op met de facilitaire dienst.");
 	//$body[] = t("Zie " . $base_url . "/node/".$node->nid."/edit");
-	$body[] = t("Zie " . $base_url . "/node/".$node->nid."/");
+	$body[] = t("Zie") . ' ' . $base_url . "/node/".$node->nid."/";
     if(!_isshagenda_compose_send_mail($node->mail,$subject,$body,false)){
       $nids_error[] = $node->nid;
     }else{
