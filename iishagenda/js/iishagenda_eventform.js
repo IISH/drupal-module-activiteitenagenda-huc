@@ -100,8 +100,20 @@
             onchange_date(this);
         });
 
-        $('#edit-field-event-date-und-0-value-timeEntry-popup-1').change(function(e){ onchange_date(this); });
-        $('#edit-field-event-date-und-0-value2-timeEntry-popup-1').change(function(e){ onchange_date(this); });
+        $('#edit-field-event-date-und-0-value-timeEntry-popup-1').change(function(e){
+            onchange_date(this);
+
+	        // todogcux
+            if ($('#edit-field-event-date-und-0-value-timeEntry-popup-1').val() == '') {
+	            $('#edit-field-event-date-und-0-value2-timeEntry-popup-1').val('');
+            }
+
+			disableEnableRoomCheckboxes();
+        });
+        $('#edit-field-event-date-und-0-value2-timeEntry-popup-1').change(function(e){
+            onchange_date(this);
+	        disableEnableRoomCheckboxes();
+        });
 
 
         $('#edit-check').mousedown(function(){
@@ -142,6 +154,7 @@
 	    var $isIisg = false;
 	    var $isIisg2 = false;
 
+		// if room IISG... is checked, show catering
         var $checkboxes = $('.form-item-field-event-room-und input[type="checkbox"]');
         //var $people = parseInt($('input#edit-field-people-und-0-value').val());
         $.each($checkboxes.filter(':checked'),function(i,v){
@@ -217,6 +230,17 @@
             clear_rooms();
         }
     }
+
+	// todogcu
+	function disableEnableRoomCheckboxes() {
+		if ($('#edit-field-event-date-und-0-value-timeEntry-popup-1').val() == '' || $('#edit-field-event-date-und-0-value2-timeEntry-popup-1').val() == '' ) {
+			$('#edit-field-event-room-und--2').hide();
+			$('#edit-field-event-room-und--3').hide();
+		} else {
+			$('#edit-field-event-room-und--2').show();
+			$('#edit-field-event-room-und--3').show();
+		}
+	}
 
     function show_alert(){
         if(!showed_changedate_msg){

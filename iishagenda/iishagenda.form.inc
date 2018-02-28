@@ -130,14 +130,16 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
     $form['#group_children']['facilities'] = 'group_accomodation';
 
 
+	// todogcux
     $options = _iishagenda_get_available_rooms($form, $form_state);
-
+	$msg = '';
     if (!array_key_exists('values', $form_state)) {
-      $msg = t('');
+	    $msg = t('');
+//	    $msg = t('WAT MOET HIER GEBEUREN (1)'); // . implode('; ', $options));
     } else if (count($options) == 0) {
-      $msg = t('Sorry, geen zalen beschikbaar. Pas aub de data aan.');
-    } else {
-      $msg = t('');
+        $msg = t('Sorry, geen zalen beschikbaar. Pas aub de data aan.');
+//    } else {
+//	    $msg = t('');
     }
 
     $currentrooms = "";
@@ -272,6 +274,12 @@ function _iishagenda_get_available_rooms($form, $form_state)
     $enddate =  $form['#node']->field_event_date[LANGUAGE_NONE][0]['value2'];
   }
 
+	// todogcux
+	// return empty room array if reqyured fields are empty
+	// dit werkt/helpt niet !!!
+	if ( $location_ids == '' || $startdate == '' || $enddate == '' || $people == '' || $people == '0') {
+		return array();
+	}
 
   // check which events times intersects with startdate
   $query = new EntityFieldQuery;
@@ -343,8 +351,8 @@ function _iishagenda_get_available_rooms($form, $form_state)
     $query->fieldCondition('field_room_location', 'tid', $location_ids);
   }
 
-  // Add people condition
   // TODOGCU
+  // Add people condition
   // if not admin then check room capacity (if admin don't check room capacity)
 //	if ( !is_user_admin() ) {
   if ( !is_user_event_administrator_all_rooms() ) {

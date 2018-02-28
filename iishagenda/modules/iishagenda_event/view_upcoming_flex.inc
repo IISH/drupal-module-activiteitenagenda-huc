@@ -609,8 +609,6 @@ function view_upcoming_flex() {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// TODOGCUX
-
 	/* Display: My events */
 	$handler = $view->new_display('page', 'My events', 'page_1');
 	$handler->display->display_options['defaults']['title'] = FALSE;
