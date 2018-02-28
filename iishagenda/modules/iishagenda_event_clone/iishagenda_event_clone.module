@@ -54,7 +54,7 @@ function clone_overview() {
         $clones .= views_embed_view('clones', 'block', $node_id);
         $form = drupal_get_form('iishagenda_event_clone_form');
         return $intro.render($form).$clones;
-    }else{
+    } else {
         return t("Invalid argument");
     }
 
@@ -111,16 +111,14 @@ function iishagenda_event_clone_form_submit($form, &$form_state) {
                 if(replicate_entity('node', $clone)){
                     drupal_set_message('Kloon aangemaakt op: '.$newdate );
                 }
-            }else{
+            } else {
                 drupal_set_message('Let op! Kloon niet aangemaakt op '.$newdate.', ruimte niet beschikbaar.','error');
             }
         }
     }
-
 }
 
 function is_available($startdate, $enddate, $rooms){
-
     $booked_rooms = get_booked_rooms($startdate,$enddate);
 
     foreach($rooms as $room){

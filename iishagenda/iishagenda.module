@@ -247,7 +247,7 @@ function _iishagenda_define_most_used_duration(){
 
     if(isset($durations["".$minutes])){
       $durations["".$minutes] += 1;
-    }else{
+    } else {
       $durations["".$minutes] = 1;
     }
   }
@@ -275,16 +275,16 @@ function cmp($a, $b) {
 function iishagenda_node_view($node, $view_mode, $langcode) {
   global $user;
 
-  if($node->type == "event" &&
-    $view_mode =="full" &&
-    _iishagenda_is_event_controlled($node) &&
-    !is_user_admin() && $node->uid == $user->uid){
-
-//	  $message = t('Je kan dit evenement niet wijzigen omdat het plaatsvind op :location (gecontroleerd beheer), voor wijzigingen neem aub contact op met: ', array(":location"=>_iishagenda_get_location_name_by_event($node)));
-	  $message = t('Je reservering is ter goedkeuring doorgestuurd naar de facilitaire dienst van :location. Voor wijzigingen neem aub contact op met: ', array(":location"=>_iishagenda_get_location_name_by_event($node)));
-    $message .= _iishagenda_get_location_admin_by_event($node);
-//	  drupal_set_message($message,'warning');
-	  drupal_set_message($message);
+  if($node->type == "event" && $view_mode =="full" && _iishagenda_is_event_controlled($node) && !is_user_admin() && $node->uid == $user->uid){
+  // OUD
+////	  $message = t('Je kan dit evenement niet wijzigen omdat het plaatsvind op :location (gecontroleerd beheer), voor wijzigingen neem aub contact op met: ', array(":location"=>_iishagenda_get_location_name_by_event($node)));
+////	  $message .= _iishagenda_get_location_admin_by_event($node);
+////	  drupal_set_message($message,'warning');
+//		// TODOGCU
+//		// NIEUW
+//	  $message = t('Je reservering is ter goedkeuring doorgestuurd naar de facilitaire dienst van :location. Voor wijzigingen neem aub contact op met: ', array(":location"=>_iishagenda_get_location_name_by_event($node))) ;
+//      $message .= _iishagenda_get_location_admin_by_event($node);
+//	  drupal_set_message($message);
   }
 }
 
@@ -354,7 +354,6 @@ function iishagenda_node_presave($node)
       if (isset($node->field_catering[LANGUAGE_NONE]) && count($node->field_catering[LANGUAGE_NONE]) > 0) {
         $node->field_catering[LANGUAGE_NONE] = _iishagenda_sort_catering_items($node->field_catering[LANGUAGE_NONE]);
       }
-
   }
 }
 
@@ -383,10 +382,10 @@ function _iishagenda_sort_catering_items($items){
 
 
 function _iishagenda_on_insert_event($node){
+	global $base_url, $user;
 
   $event = entity_metadata_wrapper('node', $node);
   $rooms = $event->field_event_room->value();
-  global $base_url;
 
   if(isset($rooms[0])){
     $room_wrapper = entity_metadata_wrapper('node', $rooms[0]);
@@ -395,39 +394,72 @@ function _iishagenda_on_insert_event($node){
     $booking_control = $location_wrapper->field_booking_control->value();
 
     if($booking_control){
+      // ALS BOOKING CONTROL
       if(!is_user_admin()){
-        // notify admin
-        $subject = t("Nieuw evenement: " . $node->title);
+        // ALS INVOERDER GEEN ADMIN, DAN MAILTJE NAAR BOOKING CONTROL
+        $subject = "Nieuwe registratie / New registration: " . $node->title;
         $body = array();
-        $body[] = t("Het evenement '" . $node->title . "' is geregistreerd en wacht op goedkeuring.");
-        $body[] = t("Zie " . $base_url . "/approval-list");
+        $body[] = "Nieuwe registratie '" . $node->title . "' is geregistreerd en wacht op goedkeuring.";
+        $body[] = "Zie: " . $base_url . "/approval-list";
+        $body[] = '';
+        $body[] = "New registration '" . $node->title . "' is registered and is awaiting approval.";
+        $body[] = "See: " . $base_url . "/approval-list";
+
         $succes_message = t('De locatiebeheerder is op de hoogte gesteld voor goedkeuring.');
         _isshagenda_compose_send_mail($location_wrapper->field_admin_email->value(),$subject,$body,$succes_message);
-      }
-    }
-    else{
 
-      // notify admin if event is bigger than 50
+        // TODOGCU: moet hier niet nog een bericht naar de invoerdder
+
+      }
+    } else{
+
+      $mailCorrectlySent = null;
+
+      // notify booking control if event is bigger than 50
       if($event->field_people->value() > 50){
-        $subject = t("Nieuw evenement: " . $node->title);
+        $subject = "Nieuwe registratie / New registration: " . $node->title;
         $body = array();
-        $body[] = t("Het evenement '" . $node->title . "' is aangemeld met meer dan 50 man");
-        $body[] = t("Zie " . $base_url . "/node/".$node->nid);
-        $succes_message = t('De locatiebeheerder is op de hoogte gesteld van je evenement.');
-        _isshagenda_compose_send_mail($location_wrapper->field_admin_email->value(),$subject,$body,$succes_message);
+        $body[] = "Je registratie '" . $node->title . "' is aangemeld met meer dan 50 man.";
+        $body[] = "Zie: " . $base_url . "/node/".$node->nid;
+        $body[] = '';
+        $body[] = "Your registration '" . $node->title . "' has been registered for more than 50 persons.";
+        $body[] = "See: " . $base_url . "/node/".$node->nid;
+
+        $succes_message = t('De locatiebeheerder is op de hoogte gesteld van je registratie.');
+        // TODOGCU
+        $mailCorrectlySent = _isshagenda_compose_send_mail($location_wrapper->field_admin_email->value(),$subject,$body,$succes_message);
       }
 
+		// TODOGCU MOET DIT MAILTJE NIET VERHUIZEN ONDER DE IF/ELSE
       // send user a confirmation
-      global $user;
-      $subject = t("Je reservering " . $node->title. " is aangemaakt.");
+      $subject = "Je reservering is aangemaakt / Your registration has been created: " . $node->title;
       $body = array();
-      $body[] = t("Je reservering '" . $node->title . "' is aangemeld en staat in het reserveringssysteem.");
-      $body[] = t("Zie " . $base_url . "/node/".$node->nid);
-      _isshagenda_compose_send_mail($user->mail,$subject,$body,false);
+      $body[] = "Je reservering '" . $node->title . "' is aangemeld en staat in de Agenda.";
+      $body[] = "Zie: " . $base_url . "/node/".$node->nid;
+      $body[] = '';
+      $body[] = "Your registration '" . $node->title . "' has been created and can be found in the Agenda.";
+      $body[] = "See: " . $base_url . "/node/".$node->nid;
+	    // TODOGCU
+      _isshagenda_compose_send_mail($user->mail, $subject, $body, false);
 
-      $path = "/taxonomy/term/".($location->tid);
-      drupal_set_message(t('Voor (meer) cateringmogelijkheden kijk op onze locatiepagina voor informatie: ').l($location->name,$path));
+      if ( $mailCorrectlySent === true ) {
+	      // TODOGCU
+	      $message = t('Je reservering is ter goedkeuring doorgestuurd naar de facilitaire dienst van :location. Voor wijzigingen neem aub contact op met: ', array(":location"=>_iishagenda_get_location_name_by_event($node))) ;
+	      $message .= _iishagenda_get_location_admin_by_event($node);
+	      drupal_set_message($message);
+      } elseif ( $mailCorrectlySent === false ) {
+          // TODOGCU
+	      $message = t('Het is NIET gelukt om je reservering ter goedkeuring door te mailen naar de facilitaire dienst van :location. Neem zelf contact op met: ', array(":location"=>_iishagenda_get_location_name_by_event($node))) ;
+	      drupal_set_message($message, 'error');
+      }
+
+      $path = "/taxonomy/term/" . ($location->tid);
+      drupal_set_message( t('Voor (meer) cateringmogelijkheden kijk op onze locatiepagina voor informatie: ') . l($location->name, $path) );
     }
+
+
+
+
   }
 }
 
@@ -467,15 +499,13 @@ function _iishagenda_is_event_controlled($event){
     $booking_control = $location_wrapper->field_booking_control->value();
     return $booking_control;
 
-  }else{
+  } else {
    return false;
   }
 }
 
 
-
-function _isshagenda_compose_send_mail($to, $subject, $body, $succes_msg = false){
-
+function _isshagenda_compose_send_mail($to, $subject, $body, $successMessage = false){
   global $user;
 
   $module = 'iishagenda';
@@ -489,19 +519,22 @@ function _isshagenda_compose_send_mail($to, $subject, $body, $succes_msg = false
 
   $result = drupal_mail($module, 'notice', $to, $language, $params, $from);
 
-  if($succes_msg !== false){
+  if($successMessage !== false){
     if ($result["result"]) {
-      drupal_set_message($succes_msg);
+      drupal_set_message($successMessage);
+      drupal_set_message('E-mail (' . addslashes($subject) . ') verstuurd naar: ' . $to . ' (Code: 854287)');
     } else {
       drupal_set_message(t('Er is een fout opgetreden. Neem aub contact met ons op, excuses voor het ongemak.'), 'error');
-    }
-  }else{
-    if ($result["result"]) {
-      return true;
-    }else{
-      return false;
+      drupal_set_message('ERROR: E-mail (' . addslashes($subject) . ') NIET verstuurd naar: ' . $to . ' (Code: 745128)', 'error');
     }
   }
+//  else{
+    if ($result["result"]) {
+      return true;
+    } else {
+      return false;
+    }
+//  }
 }
 
 
@@ -517,10 +550,13 @@ function ___iishagenda_notify_admin($event, $to){
   $from = variable_get('site_mail', '');
   $language = user_preferred_language($user);
 
-  $subject = t("Nieuw evenement: " . $event->title);
+  $subject = "Nieuwe registratie / New registration: " . $event->title;
   $body = array();
-  $body[] = t("Het evenement '" . $event->title . "' is geregistreerd en wacht op goedkeuring.");
-  $body[] = t("Zie " . $base_url . "/approval-list");
+  $body[] = "Je registratie '" . $event->title . "' is geregistreerd en wacht op goedkeuring.";
+  $body[] = "Zie: " . $base_url . "/approval-list";
+  $body[] = '';
+  $body[] = "Your registration '" . $event->title . "' has been registered and is awaiting approval.";
+  $body[] = "See: " . $base_url . "/approval-list";
 
   $params = array(
     'subject' => $subject,
@@ -531,8 +567,10 @@ function ___iishagenda_notify_admin($event, $to){
 
   if ($result["result"]) {
     drupal_set_message(t('De locatiebeheerder is op de hoogte gesteld voor goedkeuring.'));
+    drupal_set_message('E-mail (' . addslashes($subject) . ') verstuurd naar: ' . $to . ' (Code: 795413)');
   } else {
     drupal_set_message(t('De locatiebeheerder is niet op de hoogte gesteld vanwege een fout, neem aub contact op met de beheerder.'), 'error');
+    drupal_set_message('ERROR: E-mail (' . addslashes($subject) . ') NIET verstuurd naar: ' . $to . ' (Code: 241963)', 'error');
   }
 }
 
@@ -541,33 +579,37 @@ function ___iishagenda_notify_admin($event, $to){
  * Notifies event creator
  */
 function _notify_event_owner($node){
+	global $base_url;
 
-  global $base_url;
+	$user = user_load($node->uid);
+	$email = $user->mail;
+	$module = 'iishagenda';
+	$to = $email;
+	$from = variable_get('site_mail', '');
+	$language = user_preferred_language($user);
 
-  $user = user_load($node->uid);
-  $email = $user->mail;
-  $module = 'iishagenda';
-  $to = $email;
-  $from = variable_get('site_mail', '');
-  $language = user_preferred_language($user);
+	$subject = t("Je reservering is goedgekeurd / Your reservation has been approved: " . $node->title);
+	$body = array();
+	$body[] = "Je reservering '" . $node->title . "' is goedgekeurd.";
+	$body[] = "Zie: " . $base_url . "/node/" . $node->nid;
+	$body[] = '';
+	$body[] = "Your reservation '" . $node->title . "' has been approved.";
+	$body[] = "See: " . $base_url . "/node/" . $node->nid;
 
-  $subject = t("Je evenement is goedgekeurd: " . $node->title);
-  $body = array();
-  $body[] = t("Je evenement '" . $node->title . "' is goedgekeurd.");
-  $body[] = t("Zie " . $base_url . "/node/" . $node->nid);
+	$params = array(
+		'subject' => $subject,
+		'body' => $body,
+	);
 
-  $params = array(
-    'subject' => $subject,
-    'body' => $body,
-  );
+	$result = drupal_mail($module, 'notice', $to, $language, $params, $from);
 
-  $result = drupal_mail($module, 'notice', $to, $language, $params, $from);
-
-  if ($result["result"]) {
-    drupal_set_message(t('Een bevestiging van de goedkeuring is gestuurd naar de aanvrager: ' . $user->name . ''));
-  } else {
-    drupal_set_message(t('De aanvrager is niet op de hoogte gesteld vanwege een fout, neem aub contact op met de beheerder.'), 'error');
-  }
+	if ($result["result"]) {
+		drupal_set_message(t('Een bevestiging van de goedkeuring is gestuurd naar de aanvrager: ' . $user->name . ''));
+		drupal_set_message('E-mail (' . addslashes($subject) . ') verstuurd naar: ' . $to . ' (Code: 526214)');
+	} else {
+		drupal_set_message(t('De aanvrager is niet op de hoogte gesteld vanwege een fout, neem aub contact op met de beheerder.'), 'error');
+		drupal_set_message('ERROR: E-mail (' . addslashes($subject) . ') NIET verstuurd naar: ' . $to . ' (Code: 845132)', 'error');
+	}
 }
 
 
@@ -600,7 +642,7 @@ function _iishagenda_is_event_private($nid){
 
   if($eventw->field_private->value() == "1"){
     return TRUE;
-  }else{
+  } else {
     return FALSE;
   }
 }
@@ -686,28 +728,41 @@ function ___check_admin()
 
 
 /**
- * checks users is admin
+ * checks users is admin or event administrator
  */
-function is_user_admin()
-{
-  global $user;
-  $roles = array('administrator', 'event administrator');
-  if (count(array_intersect($roles, $user->roles)) > 0) {
-    return true;
-  }else {
-    return false;
-  }
+function is_user_admin() {
+	global $user;
+	$roles = array('administrator', 'event administrator');
+	if (count(array_intersect($roles, $user->roles)) > 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+/**
+ * checks users is admin or event administrator all rooms
+ */
+function is_user_event_administrator_all_rooms() {
+	global $user;
+	//$roles = array('administrator', 'event administrator', 'event administrator all rooms');
+	$roles = array('administrator', 'event administrator all rooms');
+	if (count(array_intersect($roles, $user->roles)) > 0) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 
 /**
  * Implementation of hook_cron().
  */
-function iishagenda_cron()
-{
+function iishagenda_cron() {
 	global $base_url;
 
-	 _iishagenda_define_most_used_duration();
+	_iishagenda_define_most_used_duration();
 
 	// send mail only during the workweek
 	if ( date('N') >= 6 ) {
@@ -715,48 +770,52 @@ function iishagenda_cron()
 		return;
 	}
 
-  // set 10 days
-  $time_to_event = 60*60*24*10;
-  $datelimit = date('Y-m-dTH:i:s', time()+$time_to_event);
+	// set 10 days
+	$time_to_event = 60*60*24*10;
+	$datelimit = date('Y-m-dTH:i:s', time()+$time_to_event);
 
-  // start with the base table
-  $query = db_select('node', 'n');
-  $query->join('users', 'u', 'n.uid = u.uid');
-  $query->join('field_data_field_event_option', 'o', 'o.entity_id = n.nid');
-  $query->join('field_data_field_event_date', 'd', 'd.entity_id = n.nid');
-  $result = $query
-    ->fields('n', array('nid', 'title'))
-    ->fields('u', array('uid', 'name', 'mail'))
-    ->fields('o', array('field_event_option_value'))
-    ->fields('d', array('field_event_date_value'))
-    ->condition('n.type', 'event')
-    ->condition('o.field_event_option_value', '1')
-    ->condition('d.field_event_date_value', $datelimit,"<=")
-    ->condition('d.field_event_date_value', date('Y-m-dTH:i:s'),">")
-    ->condition('n.status', 1)
-    ->execute();
+	// start with the base table
+	$query = db_select('node', 'n');
+	$query->join('users', 'u', 'n.uid = u.uid');
+	$query->join('field_data_field_event_option', 'o', 'o.entity_id = n.nid');
+	$query->join('field_data_field_event_date', 'd', 'd.entity_id = n.nid');
+	$result = $query
+		->fields('n', array('nid', 'title'))
+		->fields('u', array('uid', 'name', 'mail'))
+		->fields('o', array('field_event_option_value'))
+		->fields('d', array('field_event_date_value'))
+		->condition('n.type', 'event')
+		->condition('o.field_event_option_value', '1')
+		->condition('d.field_event_date_value', $datelimit,"<=")
+		->condition('d.field_event_date_value', date('Y-m-dTH:i:s'),">")
+		->condition('n.status', 1)
+		->execute();
 
-  $nids_ok = array();
-  $nids_error = array();
-  foreach($result as $node){
-    $subject = t("Je reservering " . $node->title. " is een optie, bevestig of annuleer svp.");
-    $body = array();
-	  $body[] = t("Je reservering '" . $node->title . "' is als optie aangemaakt.");
-	  $body[] = t("Om je reservering te wijzigen neem contact op met de facilitaire dienst.");
-	//$body[] = t("Zie " . $base_url . "/node/".$node->nid."/edit");
-	$body[] = t("Zie") . ' ' . $base_url . "/node/".$node->nid."/";
-    if(!_isshagenda_compose_send_mail($node->mail,$subject,$body,false)){
-      $nids_error[] = $node->nid;
-    }else{
-      $nids_ok[] = $node->nid;
-    }
-  }
+	$nids_ok = array();
+	$nids_error = array();
+	foreach($result as $node){
+		$subject = "Je reservering is een optie, bevestig of annuleer svp. / Your reservation is an option, please accept or cancel: " . $node->title;
+		$body = array();
+		$body[] = "Je reservering '" . $node->title . "' is als optie aangemaakt.";
+		$body[] = "Om je reservering te wijzigen neem contact op met de facilitaire dienst.";
+		$body[] = "Zie: " . $base_url . "/node/".$node->nid."/";
+		$body[] = '';
+		$body[] = "Your reservation '" . $node->title . "' is an option.";
+		$body[] = "To modify/accept/cancel your registration please contact facilities.";
+		$body[] = "See: " . $base_url . "/node/".$node->nid."/";
 
-  watchdog('iish_agenda',':scount reserveringsoptie(s), :scount herinnering(en) verstuurd. ( nodes :nids )',array(':scount'=> count($nids_ok),':nids'=>implode(",",$nids_ok)), WATCHDOG_NOTICE);
+		if(!_isshagenda_compose_send_mail($node->mail,$subject,$body,false)){
+			$nids_error[] = $node->nid;
+		} else {
+			$nids_ok[] = $node->nid;
+		}
+	}
 
-  if(count($nids_error)>0){
-    watchdog('iish_agenda',':fcount herinnering(en) kon(den) niet wordem verstuurd. ( nodes :nids )',array(':fcount'=>count($nids_error),':nids'=>implode(",",$nids_error)),WATCHDOG_ERROR);
-  }
+	watchdog('iish_agenda',':scount reserveringsoptie(s), :scount herinnering(en) verstuurd. ( nodes :nids )',array(':scount'=> count($nids_ok),':nids'=>implode(",",$nids_ok)), WATCHDOG_NOTICE);
+
+	if(count($nids_error)>0){
+		watchdog('iish_agenda',':fcount herinnering(en) kon(den) niet wordem verstuurd. ( nodes :nids )',array(':fcount'=>count($nids_error),':nids'=>implode(",",$nids_error)),WATCHDOG_ERROR);
+	}
 }
 
 
@@ -767,7 +826,7 @@ function _iishagenda_change_if_private_title(&$result){
     $event = node_load($result->nid);
     if(is_user_admin() || $event->uid == $user->uid){
       $result->node_title .=  " (prive)";
-    }else{
+    } else {
       $result->node_title = "vergadering";
     }
   }
@@ -781,7 +840,7 @@ function _iishagenda_change_node_title_if_private($nid,$title){
     $event = node_load($nid);
     if(is_user_admin() || $event->uid == $user->uid){
       $title .=  " (prive)";
-    }else{
+    } else {
       $title = "vergadering";
     }
   }
@@ -841,7 +900,6 @@ function _iishagenda_determine_location(){
       $terms = taxonomy_get_tree($location_voc->vid,0,null,true);
       //set first location as default
       $_SESSION['location_id'] = $terms[0]->tid;
-      // disabled message
       //drupal_set_message("De locatie is ingesteld op: ".$terms[0]->name);
     }
 

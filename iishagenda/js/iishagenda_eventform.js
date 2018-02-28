@@ -78,7 +78,7 @@
                 var dEnddate = new Date(nEndtime*1000);
                 endtimefield.val(pad(dEnddate.getHours())+":"+pad(dEnddate.getMinutes()));
 
-            }else{
+            } else {
                 var nEndtime = convertToTime($(this).val())+duration;
                 var dEnddate = new Date(nEndtime*1000);
                 endtimefield.val(pad(dEnddate.getHours())+":"+pad(dEnddate.getMinutes()));
@@ -110,7 +110,7 @@
             if(showed_changedate_msg){
                 showed_changedate_msg = false;
                 $(".currentrooms").css("display","block");
-            }else{
+            } else {
                 $('.form-item-field-event-date-und-0-value2-date').css("display","none");
             }
         });
@@ -163,7 +163,7 @@
 	    //if($isIisg || $people > 50){
 	    if($isIisg || $isIisg2){
             showCatering();
-        }else{
+        } else {
             hideCatering();
         }
 
@@ -258,7 +258,7 @@
             startTimestamp = convertToTime(starttimefield.val());
             endTimestamp =convertToTime(endtimefield.val());
             duration =  (endTimestamp-startTimestamp);
-        }else{
+        } else {
             duration = 0;
         }
         return duration;
@@ -270,7 +270,7 @@
     function convertToTime(nTime){
         if(nTime == NaN || nTime == undefined){
             return 0;
-        }else{
+        } else {
             var today = new Date();
             var aTime = nTime.split(":");
             var d = new Date(today.getFullYear(),today.getMonth(),today.getDate(),aTime[0],aTime[1],0);

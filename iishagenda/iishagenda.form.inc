@@ -191,20 +191,20 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
  *  set status to cancel and save
  */
 function _iishagenda_option_cancel($form, &$form_state){
+	global $user, $base_url;
 
-  global $user;
-  global $base_url;
-
-  $event = $form['#entity'];
-  if(!is_user_admin() && !_iishagenda_is_event_controlled($event)){
-
-    $subject = t("De reservering " . $event->title. " is geannuleerd.");
-    $body = array();
-    $body[] = t("De reservering '" . $event->title . "' is geannuleerd.");
-    $body[] = t("Zie " . $base_url . "/node/".$event->nid);
-    _isshagenda_compose_send_mail($user->mail,$subject,$body,false);
-  }
-  $form_state['values']['field_event_status'][LANGUAGE_NONE][0]['value'] = 'cancelled';
+	$event = $form['#entity'];
+	if(!is_user_admin() && !_iishagenda_is_event_controlled($event)){
+		$subject = t("De reservering is geannuleerd / The reservation has been cancelled: " . $event->title);
+		$body = array();
+		$body[] = t("De reservering '" . $event->title . "' is geannuleerd.");
+		$body[] = t("Zie") . ': ' . $base_url . "/node/".$event->nid;
+		$body[] = '';
+		$body[] = t("The reservation '" . $event->title . "' has been cancelled.");
+		$body[] = t("See") . ': ' . $base_url . "/node/".$event->nid;
+		_isshagenda_compose_send_mail($user->mail,$subject,$body,false);
+	}
+	$form_state['values']['field_event_status'][LANGUAGE_NONE][0]['value'] = 'cancelled';
 }
 
 
@@ -231,7 +231,6 @@ function _iishagenda_rebuild_rooms($form, $form_state)
  */
 function _iishagenda_get_available_rooms($form, $form_state)
 {
-
   // TODO: if node is being edited, use values of the node instead of form state (because its empty when edit form loads initially)
   // defining variables
   $nid = issetor($form['nid']['#value'], null);
@@ -264,7 +263,7 @@ function _iishagenda_get_available_rooms($form, $form_state)
     $startdate = issetor($form_state['values']['field_event_date'][LANGUAGE_NONE][0]['value'], '2000-01-01T00:00:00');
     $enddate = issetor($form_state['values']['field_event_date'][LANGUAGE_NONE][0]['value2'], '3001-01-01T00:00:00');
 
-  }else if($form['nid']['#value'] !== null){
+  } else if($form['nid']['#value'] !== null){
     // use node values as defaults
     $location_ids = $form['field_locations'][LANGUAGE_NONE]['#default_value'];
     $facilities_ids = $form['field_needed_facilities'][LANGUAGE_NONE]['#default_value'];
@@ -345,7 +344,12 @@ function _iishagenda_get_available_rooms($form, $form_state)
   }
 
   // Add people condition
-  $query->fieldCondition('field_capacity', 'value',$people,'>=');
+  // TODOGCU
+  // if not admin then check room capacity (if admin don't check room capacity)
+//	if ( !is_user_admin() ) {
+  if ( !is_user_event_administrator_all_rooms() ) {
+	$query->fieldCondition('field_capacity', 'value', $people, '>=');
+  }
   $results = $query->execute();
 
   $options = array();

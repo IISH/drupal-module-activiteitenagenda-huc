@@ -35,7 +35,7 @@ function iishagenda_calendar_views_default_views() {
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Toepassen';
-  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Opnieuw instellen';
+//  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Opnieuw instellen';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Sorteren op';
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Oplopend';
   $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'Aflopend';
@@ -566,7 +566,7 @@ function iishagenda_calendar_views_default_views() {
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Toepassen';
-  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Opnieuw instellen';
+//  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Opnieuw instellen';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Sorteren op';
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Oplopend';
   $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'Aflopend';

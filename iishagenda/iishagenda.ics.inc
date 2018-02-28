@@ -34,7 +34,7 @@ function _generate_ics()
 
       if (count($output_rooms) > 0) {
         $display_room = "Zaal: " . implode(", ", $output_rooms) . "; ";
-      }else{
+      } else {
         $display_room = "";
       }
       $room = node_load($room["nid"]);
