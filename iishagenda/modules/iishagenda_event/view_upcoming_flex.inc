@@ -24,7 +24,7 @@ function view_upcoming_flex() {
 	$handler->display->display_options['query']['options']['distinct'] = TRUE;
 	$handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
 	$handler->display->display_options['exposed_form']['options']['submit_button'] = 'Toepassen';
-	$handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
+//	$handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
 //	$handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Opnieuw instellen';
 	$handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Sorteren op';
 	$handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Oplopend';
@@ -612,7 +612,7 @@ function view_upcoming_flex() {
 	/* Display: My events */
 	$handler = $view->new_display('page', 'My events', 'page_1');
 	$handler->display->display_options['defaults']['title'] = FALSE;
-	$handler->display->display_options['title'] = 'Mijn evenementen (3333)';
+	$handler->display->display_options['title'] = 'Mijn evenementen';
 	$handler->display->display_options['defaults']['style_plugin'] = FALSE;
 	$handler->display->display_options['style_plugin'] = 'table';
 	$handler->display->display_options['style_options']['columns'] = array(
