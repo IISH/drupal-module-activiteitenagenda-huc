@@ -803,7 +803,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Gebruik dit veld om namens een bestaande gebruiker een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
+    'description' => 'Gebruik dit veld om namens een collega/bestaande organisator een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -828,7 +828,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
     ),
     'entity_type' => 'node',
     'field_name' => 'field_existing_user',
-    'label' => 'Bestaande gebruiker',
+    'label' => 'Organisator',
     'required' => 0,
     'settings' => array(
       'mediafront' => array(
@@ -1746,7 +1746,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
   t('Adres');
   t('Bekijk <a href=\'' . $base_url . '/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen');
   t('Beschrijving');
-  t('Bestaande gebruiker');
+  t('Organisator');
   t('Bestellingen tot 15 personen kunnen afgehaald worden<br>
 in de kantine, <b>na afloop terug brengen</b>.');
   t('Bijlage');
@@ -1765,7 +1765,7 @@ in de kantine, <b>na afloop terug brengen</b>.');
   t('Eten');
   t('Faciliteiten');
   t('Facilities');
-  t('Gebruik dit veld om namens een bestaande gebruiker een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam');
+  t('Gebruik dit veld om namens een collega/bestaande organisator een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam');
   t('Geef aan van welke locaties je de beschikbare ruimtes wilt zien.');
   t('Geef aan welke faciliteiten je nodig hebt.');
   t('Geef de naam op van de externe contactpersoon.');
