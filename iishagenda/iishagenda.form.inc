@@ -130,16 +130,13 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
     $form['#group_children']['facilities'] = 'group_accomodation';
 
 
-	// todogcux
+	//
     $options = _iishagenda_get_available_rooms($form, $form_state);
 	$msg = '';
     if (!array_key_exists('values', $form_state)) {
-	    $msg = t('');
-//	    $msg = t('WAT MOET HIER GEBEUREN (1)'); // . implode('; ', $options));
+//	    $msg = t('');
     } else if (count($options) == 0) {
         $msg = t('Sorry, geen zalen beschikbaar. Pas aub de data aan.');
-//    } else {
-//	    $msg = t('');
     }
 
     $currentrooms = "";
@@ -332,10 +329,12 @@ function _iishagenda_get_available_rooms($form, $form_state)
     }
   }
 
-  // get all rooms
+  // todogcux
+  // get all rooms (except unpublished)
   $query = new EntityFieldQuery;
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'room')
+    ->propertyCondition('status', NODE_PUBLISHED)
     ->fieldOrderBy('field_room_location', 'tid', 'ASC')
     ->fieldOrderBy('field_capacity', 'value', 'ASC');
 

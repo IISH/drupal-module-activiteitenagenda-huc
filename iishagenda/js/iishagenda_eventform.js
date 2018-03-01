@@ -231,7 +231,7 @@
         }
     }
 
-	// todogcu
+	// todogcu DIRTY
 	function disableEnableRoomCheckboxes() {
 		if ($('#edit-field-event-date-und-0-value-timeEntry-popup-1').val() == '' || $('#edit-field-event-date-und-0-value2-timeEntry-popup-1').val() == '' ) {
 			$('#edit-field-event-room-und--2').hide();
