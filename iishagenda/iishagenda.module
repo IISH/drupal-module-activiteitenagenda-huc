@@ -764,57 +764,60 @@ function iishagenda_cron() {
 
 	_iishagenda_define_most_used_duration();
 
-	// send mail only during the workweek
-	if ( date('N') >= 6 ) {
-		watchdog('iish_agenda','HuC Agenda - \'reservering optie\' mail cron runs only during the workweek', WATCHDOG_NOTICE);
-		return;
-	}
+	// send mail only on workdays
+	if ( date('N') >= 6 || variable_get('huc_agenda_reservering_optie_mail') == date('Y-m-d')) {
+		watchdog('iish_agenda','HuC Agenda optie SKIPPED ' . date('Y-m-d H:i'), WATCHDOG_NOTICE);
+	} else {
+		watchdog('iish_agenda','HuC Agenda optie RUN ' . date('Y-m-d H:i'), WATCHDOG_NOTICE);
 
-	// set 10 days
-	$time_to_event = 60*60*24*10;
-	$datelimit = date('Y-m-dTH:i:s', time()+$time_to_event);
+		variable_set('huc_agenda_reservering_optie_mail', date('Y-m-d'));
 
-	// start with the base table
-	$query = db_select('node', 'n');
-	$query->join('users', 'u', 'n.uid = u.uid');
-	$query->join('field_data_field_event_option', 'o', 'o.entity_id = n.nid');
-	$query->join('field_data_field_event_date', 'd', 'd.entity_id = n.nid');
-	$result = $query
-		->fields('n', array('nid', 'title'))
-		->fields('u', array('uid', 'name', 'mail'))
-		->fields('o', array('field_event_option_value'))
-		->fields('d', array('field_event_date_value'))
-		->condition('n.type', 'event')
-		->condition('o.field_event_option_value', '1')
-		->condition('d.field_event_date_value', $datelimit,"<=")
-		->condition('d.field_event_date_value', date('Y-m-dTH:i:s'),">")
-		->condition('n.status', 1)
-		->execute();
+		// set 10 days
+		$time_to_event = 60 * 60 * 24 * 10;
+		$datelimit = date('Y-m-dTH:i:s', time() + $time_to_event);
 
-	$nids_ok = array();
-	$nids_error = array();
-	foreach($result as $node){
-		$subject = "Je reservering is een optie, bevestig of annuleer svp. / Your reservation is an option, please accept or cancel: " . $node->title;
-		$body = array();
-		$body[] = "Je reservering '" . $node->title . "' is als optie aangemaakt.";
-		$body[] = "Om je reservering te wijzigen neem contact op met de facilitaire dienst.";
-		$body[] = "Zie: " . $base_url . "/node/".$node->nid."/";
-		$body[] = '';
-		$body[] = "Your reservation '" . $node->title . "' is an option.";
-		$body[] = "To modify/accept/cancel your registration please contact facilities.";
-		$body[] = "See: " . $base_url . "/node/".$node->nid."/";
+		// start with the base table
+		$query = db_select('node', 'n');
+		$query->join('users', 'u', 'n.uid = u.uid');
+		$query->join('field_data_field_event_option', 'o', 'o.entity_id = n.nid');
+		$query->join('field_data_field_event_date', 'd', 'd.entity_id = n.nid');
+		$result = $query
+			->fields('n', array('nid', 'title'))
+			->fields('u', array('uid', 'name', 'mail'))
+			->fields('o', array('field_event_option_value'))
+			->fields('d', array('field_event_date_value'))
+			->condition('n.type', 'event')
+			->condition('o.field_event_option_value', '1')
+			->condition('d.field_event_date_value', $datelimit, "<=")
+			->condition('d.field_event_date_value', date('Y-m-dTH:i:s'), ">")
+			->condition('n.status', 1)
+			->execute();
 
-		if(!_isshagenda_compose_send_mail($node->mail,$subject,$body,false)){
-			$nids_error[] = $node->nid;
-		} else {
-			$nids_ok[] = $node->nid;
+		$nids_ok = array();
+		$nids_error = array();
+		foreach ($result as $node) {
+			$subject = "Je reservering is een optie, bevestig of annuleer svp. / Your reservation is an option, please accept or cancel: " . $node->title;
+			$body = array();
+			$body[] = "Je reservering '" . $node->title . "' is als optie aangemaakt.";
+			$body[] = "Om je reservering te wijzigen neem contact op met de facilitaire dienst.";
+			$body[] = "Zie: " . $base_url . "/node/" . $node->nid . "/";
+			$body[] = '';
+			$body[] = "Your reservation '" . $node->title . "' is an option.";
+			$body[] = "To modify/accept/cancel your registration please contact facilities.";
+			$body[] = "See: " . $base_url . "/node/" . $node->nid . "/";
+
+			if (!_isshagenda_compose_send_mail($node->mail, $subject, $body, false)) {
+				$nids_error[] = $node->nid;
+			} else {
+				$nids_ok[] = $node->nid;
+			}
 		}
-	}
 
-	watchdog('iish_agenda',':scount reserveringsoptie(s), :scount herinnering(en) verstuurd. ( nodes :nids )',array(':scount'=> count($nids_ok),':nids'=>implode(",",$nids_ok)), WATCHDOG_NOTICE);
+		watchdog('iish_agenda', ':scount reserveringsoptie(s), :scount herinnering(en) verstuurd. ( nodes :nids )', array(':scount' => count($nids_ok), ':nids' => implode(",", $nids_ok)), WATCHDOG_NOTICE);
 
-	if(count($nids_error)>0){
-		watchdog('iish_agenda',':fcount herinnering(en) kon(den) niet wordem verstuurd. ( nodes :nids )',array(':fcount'=>count($nids_error),':nids'=>implode(",",$nids_error)),WATCHDOG_ERROR);
+		if (count($nids_error) > 0) {
+			watchdog('iish_agenda', ':fcount herinnering(en) kon(den) niet wordem verstuurd. ( nodes :nids )', array(':fcount' => count($nids_error), ':nids' => implode(",", $nids_error)), WATCHDOG_ERROR);
+		}
 	}
 }
 
