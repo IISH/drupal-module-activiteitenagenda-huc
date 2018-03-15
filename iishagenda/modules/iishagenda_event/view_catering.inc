@@ -10,6 +10,10 @@ function view_catering() {
 	$view->api_version = '3.0';
 	$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 	/* Display: Master */
 	$handler = $view->new_display('default', 'Master', 'default');
 	$handler->display->display_options['title'] = 'Catering';
@@ -102,7 +106,7 @@ function view_catering() {
 	$handler->display->display_options['footer']['area']['id'] = 'area';
 	$handler->display->display_options['footer']['area']['table'] = 'views';
 	$handler->display->display_options['footer']['area']['field'] = 'area';
-	$handler->display->display_options['footer']['area']['content'] = '<h2>Catering Binnenkort<.h2>';
+	$handler->display->display_options['footer']['area']['content'] = '<h2>Catering Binnenkort</h2>';
 	$handler->display->display_options['footer']['area']['format'] = 'filtered_html';
 	/* No results behavior: Global: Text area */
 	$handler->display->display_options['empty']['area']['id'] = 'area';
@@ -252,11 +256,9 @@ function view_catering() {
 	$handler->display->display_options['filters']['field_note_value']['operator'] = 'not empty';
 	$handler->display->display_options['filters']['field_note_value']['group'] = 2;
 
-
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 
 	/* Display: Catering vandaag (page) */
 	$handler = $view->new_display('page', 'Catering vandaag (page)', 'page');
@@ -580,6 +582,11 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
 	$handler->display->display_options['defaults']['row_options'] = FALSE;
 	$handler->display->display_options['defaults']['footer'] = FALSE;
 	$handler->display->display_options['defaults']['empty'] = FALSE;
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 	$translatables['catering'] = array(
 		t('Master'),
 		t('Catering'),
@@ -589,7 +596,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
 		t('Sorteren op'),
 		t('Oplopend'),
 		t('Aflopend'),
-		t('<h2>Catering Binnenkort<.h2>'),
+		t('<h2>Catering Binnenkort</h2>'),
 		t('Er zijn geen <b>goedgekeurde</b> reserveringen met catering.'),
 		t('<div class="messagepop pop">
   <form method="post" id="new_message" action="/messages">

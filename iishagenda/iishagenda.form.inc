@@ -228,8 +228,8 @@ function _iishagenda_rebuild_rooms($form, $form_state)
 /**
  * Returns available rooms based on date
  */
-function _iishagenda_get_available_rooms($form, $form_state)
-{
+// todogcux
+function _iishagenda_get_available_rooms($form, $form_state) {
   // TODO: if node is being edited, use values of the node instead of form state (because its empty when edit form loads initially)
   // defining variables
   $nid = issetor($form['nid']['#value'], null);
@@ -269,7 +269,17 @@ function _iishagenda_get_available_rooms($form, $form_state)
     $people = $form['field_people'][LANGUAGE_NONE][0]['value']['#default_value'];
     $startdate =  $form['#node']->field_event_date[LANGUAGE_NONE][0]['value'];
     $enddate =  $form['#node']->field_event_date[LANGUAGE_NONE][0]['value2'];
+
   }
+
+	// todogcux
+//	error_log( 'STARTDATE: ' . $startdate );
+	$startdatePlus = date('Y-m-d\TH:i:s', strtotime('+1 second', strtotime($startdate)));
+//	error_log( 'STARTDATE222: ' . $startdatePlus );
+
+//	error_log( 'ENDDATE: ' . $enddate );
+	$enddateMinus = date('Y-m-d\TH:i:s', strtotime('-1 second', strtotime($enddate)));
+//	error_log( 'ENDDATE222: ' . $enddateMinus );
 
 	// todogcux
 	// return empty room array if reqyured fields are empty
@@ -283,7 +293,7 @@ function _iishagenda_get_available_rooms($form, $form_state)
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'event')
     ->fieldCondition('field_event_date', 'value', $startdate, '>=')
-    ->fieldCondition('field_event_date', 'value', $enddate, '<=')
+    ->fieldCondition('field_event_date', 'value', $enddateMinus, '<=')
     ->fieldCondition('field_event_status', 'value', 'cancelled', '!=');
   $results = $query->execute();
 
@@ -291,7 +301,7 @@ function _iishagenda_get_available_rooms($form, $form_state)
   $query = new EntityFieldQuery;
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'event')
-    ->fieldCondition('field_event_date', 'value2', $startdate, '>=')
+    ->fieldCondition('field_event_date', 'value2', $startdatePlus, '>=')
     ->fieldCondition('field_event_date', 'value2', $enddate, '<=')
     ->fieldCondition('field_event_status', 'value', 'cancelled', '!=');
   $results2 = $query->execute();
