@@ -544,7 +544,7 @@ body.agenda .view th.views-field-field-internal-external{
 }
 
 
-body.agenda  .form-item-field-type-activity-tid .description{
+body.agenda .form-item-field-type-activity-tid .description {
     display: none;
 }
 
@@ -611,12 +611,17 @@ body.agenda fieldset .fieldset-legend {
 }
 
 /* color of search buttons and fields in my events */
-#edit-field-type-activity-tid, #edit-field-type-activity-tid option
+#edit-field-type-activity-tid
+, #edit-field-type-activity-tid option
+, #edit-field-room-location-tid
+, #edit-field-room-location-tid option
 , #edit-field-event-date-value-value-month, #edit-field-event-date-value-value-month option
 , #edit-field-event-date-value-value-year, #edit-field-event-date-value-value-year option
 , #edit-submit-upcoming-events
+, #edit-submit-rooms
 , #edit-reset
 ,label[for=edit-field-type-activity-tid]
+,label[for=edit-field-room-location-tid]
 , label[for=edit-field-event-date-value] {
 	color: black !important;
 }
