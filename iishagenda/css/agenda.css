@@ -615,13 +615,18 @@ body.agenda fieldset .fieldset-legend {
 , #edit-field-type-activity-tid option
 , #edit-field-room-location-tid
 , #edit-field-room-location-tid option
-, #edit-field-event-date-value-value-month, #edit-field-event-date-value-value-month option
-, #edit-field-event-date-value-value-year, #edit-field-event-date-value-value-year option
+, #edit-field-event-date-value-value-month
+, #edit-field-event-date-value-value-month option
+, #edit-field-event-date-value-value-year
+, #edit-field-event-date-value-value-year option
+, #edit-field-event-status-value
+, #edit-field-event-status-value option
 , #edit-submit-upcoming-events
 , #edit-submit-rooms
 , #edit-reset
 ,label[for=edit-field-type-activity-tid]
 ,label[for=edit-field-room-location-tid]
+,label[for=edit-field-event-status-value]
 , label[for=edit-field-event-date-value] {
 	color: black !important;
 }
