@@ -29,6 +29,8 @@ function iishagenda_calendar_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -50,
     'customized' => 1,
+    'language' => 'und',
+    'menu_links_customized' => 1,
   );
 
   // Translatables

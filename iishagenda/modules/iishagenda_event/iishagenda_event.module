@@ -5,9 +5,3 @@
  */
 
 include_once 'iishagenda_event.features.inc';
-include_once 'view_catering.inc';
-//include_once 'view_catering_history.inc';
-include_once 'view_clones.inc';
-include_once 'view_today_events.inc';
-include_once 'view_upcoming_events.inc';
-include_once 'view_upcoming_flex.inc';

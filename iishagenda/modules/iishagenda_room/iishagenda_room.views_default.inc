@@ -130,6 +130,9 @@ function iishagenda_room_views_default_views() {
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
     2 => '2',
+    9 => '9',
+    10 => '10',
+    11 => '11',
   );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -252,6 +255,28 @@ function iishagenda_room_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Items per pagina';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Alle -';
+  $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Startpunt';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« eerste';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ vorige';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'volgende ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'laatste »';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  /* Sort criterion: Content: Location (field_room_location) */
+  $handler->display->display_options['sorts']['field_room_location_tid']['id'] = 'field_room_location_tid';
+  $handler->display->display_options['sorts']['field_room_location_tid']['table'] = 'field_data_field_room_location';
+  $handler->display->display_options['sorts']['field_room_location_tid']['field'] = 'field_room_location_tid';
   $handler->display->display_options['path'] = 'rooms';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Zalen';
@@ -285,6 +310,13 @@ function iishagenda_room_views_default_views() {
     t('Opstelling'),
     t('Location '),
     t('Page'),
+    t('Items per pagina'),
+    t('- Alle -'),
+    t('Startpunt'),
+    t('« eerste'),
+    t('‹ vorige'),
+    t('volgende ›'),
+    t('laatste »'),
   );
   $export['rooms'] = $view;
 

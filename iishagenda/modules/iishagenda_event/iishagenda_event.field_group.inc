@@ -366,7 +366,7 @@ function iishagenda_event_field_group_info() {
         'required_fields' => 1,
         'id' => '',
         'classes' => 'group-organiser field-group-fieldset',
-        'description' => 'Gebruik onderstaande velden om voor een collega/bestaande organisator of voor een extern persoon een reservering te maken.',
+        'description' => 'Gebruik onderstaande velden om voor een bestaande gebruiker of voor een extern persoon een reservering te maken.',
       ),
       'formatter' => 'collapsed',
     ),

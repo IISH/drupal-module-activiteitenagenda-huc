@@ -8,8 +8,6 @@
  * Implements hook_field_default_field_instances().
  */
 function iishagenda_event_field_default_field_instances() {
-  global $base_url;
-
   $field_instances = array();
 
   // Exported field_instance:
@@ -243,6 +241,55 @@ in de kantine, <b>na afloop terug brengen</b>.',
     ),
   );
 
+  // Exported field_instance: 'node-event-field_approved'.
+  $field_instances['node-event-field_approved'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Deze instelling is alleen voor beheerders.',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
+      'ical' => array(
+        'label' => 'inline',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_approved',
+    'label' => 'Goedgekeurd',
+    'required' => 0,
+    'settings' => array(
+      'mediafront' => array(
+        'custom' => '',
+        'field_type' => 0,
+        'media_type' => 'media',
+        'preview' => 0,
+        'thumbnail' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 34,
+    ),
+  );
+
   // Exported field_instance: 'node-event-field_attachment'.
   $field_instances['node-event-field_attachment'] = array(
     'bundle' => 'event',
@@ -285,10 +332,77 @@ in de kantine, <b>na afloop terug brengen</b>.',
       'active' => 1,
       'module' => 'file',
       'settings' => array(
+        'filefield_sources' => array(
+          'filefield_sources' => array(),
+          'source_attach' => array(
+            'absolute' => 0,
+            'attach_mode' => 'move',
+            'path' => 'file_attach',
+          ),
+          'source_imce' => array(
+            'imce_mode' => 0,
+          ),
+          'source_reference' => array(
+            'autocomplete' => 0,
+          ),
+        ),
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
       'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_canceled'.
+  $field_instances['node-event-field_canceled'] = array(
+    'bundle' => 'event',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Markeer dit veld om het evenement te annuleren.',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
+      'ical' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_canceled',
+    'label' => 'Geannuleerd',
+    'required' => 0,
+    'settings' => array(
+      'mediafront' => array(
+        'custom' => '',
+        'field_type' => 0,
+        'media_type' => 'media',
+        'preview' => 0,
+        'thumbnail' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 33,
     ),
   );
 
@@ -704,7 +818,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Bekijk <a href=\'' . $base_url . '/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen',
+    'description' => 'Bekijk <a href=\'/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -803,7 +917,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Gebruik dit veld om namens een collega/bestaande organisator een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
+    'description' => 'Gebruik dit veld om namens een bestaande gebruiker een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -828,7 +942,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
     ),
     'entity_type' => 'node',
     'field_name' => 'field_existing_user',
-    'label' => 'Organisator',
+    'label' => 'Bestaande gebruiker',
     'required' => 0,
     'settings' => array(
       'mediafront' => array(
@@ -1744,9 +1858,9 @@ in de kantine, <b>na afloop terug brengen</b>.',
   t('Aantal personen');
   t('Administrator');
   t('Adres');
-  t('Bekijk <a href=\'' . $base_url . '/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen');
+  t('Bekijk <a href=\'/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen');
   t('Beschrijving');
-  t('Organisator');
+  t('Bestaande gebruiker');
   t('Bestellingen tot 15 personen kunnen afgehaald worden<br>
 in de kantine, <b>na afloop terug brengen</b>.');
   t('Bijlage');
@@ -1758,6 +1872,7 @@ in de kantine, <b>na afloop terug brengen</b>.');
   t('Color');
   t('Contactpersoon (extern)');
   t('Datum');
+  t('Deze instelling is alleen voor beheerders.');
   t('Dit veld wordt automatisch gevuld als het een evenement een kloon is van een ander evenement.');
   t('Drinken');
   t('Email (extern)');
@@ -1765,19 +1880,22 @@ in de kantine, <b>na afloop terug brengen</b>.');
   t('Eten');
   t('Faciliteiten');
   t('Facilities');
-  t('Gebruik dit veld om namens een collega/bestaande organisator een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam');
+  t('Geannuleerd');
+  t('Gebruik dit veld om namens een bestaande gebruiker een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam');
   t('Geef aan van welke locaties je de beschikbare ruimtes wilt zien.');
   t('Geef aan welke faciliteiten je nodig hebt.');
   t('Geef de naam op van de externe contactpersoon.');
   t('Geef het maximaal aantal personen op ');
   t('Geef hier aan of een andere opstelling mogelijk is en hoeveel plaatsen daarbij horen. Bijv: Theateropstelling: 80 plaatsen');
   t('Geef hier aanvullende informatie / wensen met betrekking tot de zaal (bijv extra stoelen) en zaalcombinaties');
+  t('Goedgekeurd');
   t('Intern / Extern');
   t('Kloon van');
   t('Kostenpost');
   t('Locatie');
   t('Locatiefilter');
   t('Location');
+  t('Markeer dit veld om het evenement te annuleren.');
   t('Opmerking');
   t('Optie');
   t('Prive');
