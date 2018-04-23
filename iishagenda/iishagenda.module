@@ -486,6 +486,26 @@ function iishagenda_preprocess_page(&$variables) {
   }
 }
 
+/**
+ * Adds reservation number (node id) and cancelled value to template
+ */
+function iishagenda_preprocess_node(&$variables, $hook) {
+  if ($variables["type"] == "event") {
+    $variables["reservation_number"] = t("Reserveringsnummer: ") . "#" . $variables["nid"];
+    if ($variables['field_event_status'][0]['value'] == 'cancelled') {
+      $variables["cancelled"] = t("Geannuleerd");
+    }
+
+    if (drupal_valid_path('clone/' . $variables['nid'])) {
+      $variables["clone"] = true;
+    } else {
+      $variables["clone"] = false;
+    }
+
+    $variables["create_date"] = format_date($variables["created"], 'event_date');
+  }
+}
+
 
 /**
  * Check if the event is in a room that is on a controlled location (field_booking_control)
