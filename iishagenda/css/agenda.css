@@ -28,16 +28,9 @@ body.agenda #region-sidebar-second{
 }
 
 
-
-body.agenda .container-12 .grid-6.region-content {
-   /* width: 780px;*/
-}
 body.agenda .grid-2.region-sidebar-first{
     margin-top: 0;
 }
-
-
-
 
 body.agenda .block-user-hello h2, h2.block-title{
     color: #000;
@@ -385,7 +378,6 @@ html.js input.form-autocomplete.input-disabled{
     display:inline-block;
 }
 
-
 body.node-type-event .field-name-body{
     padding-top: 8px;
     padding-bottom: 12px;
@@ -416,28 +408,31 @@ body.agenda caption{
     font-weight: 600;
     margin-bottom:10px;
 }
-.view-catering td{
+
+
+.view-catering td,
+.view-catering-archive td{
     font-size: 11px;
 }
 
-.view-catering td{
-    font-size: 11px;
-}
 
 th.field_catering_time{
     width:30px;
 }
 
 
-.view-catering caption{
+.view-catering caption,
+.view-catering-archive caption{
     margin-top:30px;
 }
 
-.view-catering th{
+.view-catering th,
+.view-catering-archive th{
     font-style: italic;
 }
 
-.view-catering h2{
+.view-catering h2,
+.view-catering-archive h2 {
     margin:40px 0 20px 0;
 }
 
@@ -446,16 +441,31 @@ body.agenda .content .view-catering table.field-collection-view-final td{
     border-color: #CCC;
 }
 
-.view-catering .views-field-field-event-date{   width: 200px; }
-.view-catering .views-field-field-event-date{   width: 200px; }
-.view-catering .views-field-field-people{       width: 80px; text-align: center;}
-.view-catering .views-field-field-catering{     width: 400px; }
+.view-catering .views-field-field-event-date,
+.view-catering-archive .views-field-field-event-date{
+    width: 200px;
+}
+.view-catering .views-field-field-event-date,
+.view-catering-archive .views-field-field-event-date{
+    width: 200px;
+}
+.view-catering .views-field-field-people,
+.view-catering-archive .views-field-field-people{
+    width: 80px;
+    text-align: center;
+}
 
+.view-catering .views-field-field-catering,
+.view-catering-archive .views-field-field-catering{
+    width: 400px;
+}
 
-.view-catering th.field_catering_time{
+.view-catering th.field_catering_time,
+.view-catering-archive th.field_catering_time{
     width:45px;
 }
-.view-catering th.field_location{
+.view-catering th.field_location,
+.view-catering-archive th.field_location{
     width:55px;
 }
 .views-field-field-catering th{
@@ -464,6 +474,22 @@ body.agenda .content .view-catering table.field-collection-view-final td{
 
 .field-name-field-drinks .field-item{
     margin-right:10px;
+}
+
+
+.views-field-field-catering .container-inline-date .form-item select{
+    color:#000;
+}
+
+.view-filters select {
+    color: #000;
+}
+
+.view-filters label {
+    color: #000;
+}
+.views-exposed-form .views-exposed-widget .form-submit{
+    color: #000;
 }
 
 /* Catering page popup styles */
@@ -516,6 +542,11 @@ body.agenda .content thead tr {
     padding-bottom: 4px;
 
 }
+
+body.agenda .content .field-collection-table-view thead tr {
+    border-bottom: 1px solid #666;;
+}
+
 body.agenda .content thead th {
     padding-bottom: 4px;
 }

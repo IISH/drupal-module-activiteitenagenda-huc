@@ -2,6 +2,7 @@
 
 module_load_include('inc', 'iishagenda', 'iishagenda.form');
 module_load_include('inc', 'iishagenda', 'iishagenda.ics');
+module_load_include('inc', 'iishagenda', 'iishagenda.view');
 
 /**
  * Implementation of hook_init().
@@ -10,6 +11,9 @@ function iishagenda_init()
 {
   switch (arg(0)) {
     case "catering":
+      drupal_add_js(drupal_get_path('module', 'iishagenda') . '/js/iishagenda.js');
+      break;
+    case "catering-archive":
       drupal_add_js(drupal_get_path('module', 'iishagenda') . '/js/iishagenda.js');
       break;
     case "node":
@@ -35,7 +39,7 @@ function iishagenda_init()
 
   _iishagenda_determine_location();
 
-  drupal_add_css(drupal_get_path('module', 'iishagenda') . '/css/agenda.css', array('weight' => 998));
+  drupal_add_css(drupal_get_path('module', 'iishagenda') . '/css/agenda.css', array('weight' => 999,'group'=>CSS_THEME));
 }
 
 
@@ -866,20 +870,6 @@ function iishagenda_views_pre_view(&$view) {
     foreach ($overrides as $option => $definition) {
       $view->display_handler->override_option($option, $definition);
     }
-  }
-}
-
-
-/**
- * Implements hook_views_pre_render
- *
- * Add location name to page title (if filtered)
- */
-function iishagenda_views_pre_render(&$view) {
-  if ($view->name === 'calendar' || ($view->name === 'upcoming_events' && $view->current_display == 'page')) {
-    $location_id = _iishagenda_determine_location();
-    $location = taxonomy_term_load($location_id);
-    $view->build_info['title'] .= " - ".$location->name."";
   }
 }
 
