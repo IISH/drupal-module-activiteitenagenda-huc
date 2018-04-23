@@ -212,16 +212,6 @@ function iishagenda_calendar_views_default_views() {
     'absolute' => 0,
   );
   $handler->display->display_options['fields']['field_event_room']['delta_offset'] = '0';
-  /* Field: Content: Location */
-  $handler->display->display_options['fields']['field_room_location']['id'] = 'field_room_location';
-  $handler->display->display_options['fields']['field_room_location']['table'] = 'field_data_field_room_location';
-  $handler->display->display_options['fields']['field_room_location']['field'] = 'field_room_location';
-  $handler->display->display_options['fields']['field_room_location']['relationship'] = 'field_event_room_nid';
-  $handler->display->display_options['fields']['field_room_location']['label'] = '';
-  $handler->display->display_options['fields']['field_room_location']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_room_location']['alter']['text'] = ' [field_event_room] <i>[field_room_location]</i>';
-  $handler->display->display_options['fields']['field_room_location']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_room_location']['type'] = 'i18n_taxonomy_term_reference_plain';
   /* Field: Content: Status */
   $handler->display->display_options['fields']['field_event_status']['id'] = 'field_event_status';
   $handler->display->display_options['fields']['field_event_status']['table'] = 'field_data_field_event_status';
@@ -532,7 +522,6 @@ function iishagenda_calendar_views_default_views() {
     t('Has taxonomy term'),
     t('Month'),
     t('more'),
-    t(' [field_event_room] <i>[field_room_location]</i>'),
     t('Alle'),
     t('Week'),
     t('Day'),

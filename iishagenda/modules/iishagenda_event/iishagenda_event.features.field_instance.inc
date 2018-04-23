@@ -818,7 +818,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Bekijk <a href=\'/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen',
+    'description' => 'Bekijk <a href=\'[site:url]/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -846,6 +846,13 @@ in de kantine, <b>na afloop terug brengen</b>.',
     'label' => 'Zaal',
     'required' => 0,
     'settings' => array(
+      'mediafront' => array(
+        'custom' => '',
+        'field_type' => 0,
+        'media_type' => 'media',
+        'preview' => 0,
+        'thumbnail' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -917,7 +924,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Gebruik dit veld om namens een bestaande gebruiker een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
+    'description' => 'Gebruik dit veld om namens een collega/bestaande organisator een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -942,7 +949,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
     ),
     'entity_type' => 'node',
     'field_name' => 'field_existing_user',
-    'label' => 'Bestaande gebruiker',
+    'label' => 'Organisator',
     'required' => 0,
     'settings' => array(
       'mediafront' => array(
@@ -1858,9 +1865,8 @@ in de kantine, <b>na afloop terug brengen</b>.',
   t('Aantal personen');
   t('Administrator');
   t('Adres');
-  t('Bekijk <a href=\'/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen');
+  t('Bekijk <a href=\'[site:url]/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen');
   t('Beschrijving');
-  t('Bestaande gebruiker');
   t('Bestellingen tot 15 personen kunnen afgehaald worden<br>
 in de kantine, <b>na afloop terug brengen</b>.');
   t('Bijlage');
@@ -1881,7 +1887,7 @@ in de kantine, <b>na afloop terug brengen</b>.');
   t('Faciliteiten');
   t('Facilities');
   t('Geannuleerd');
-  t('Gebruik dit veld om namens een bestaande gebruiker een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam');
+  t('Gebruik dit veld om namens een collega/bestaande organisator een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam');
   t('Geef aan van welke locaties je de beschikbare ruimtes wilt zien.');
   t('Geef aan welke faciliteiten je nodig hebt.');
   t('Geef de naam op van de externe contactpersoon.');
@@ -1898,6 +1904,7 @@ in de kantine, <b>na afloop terug brengen</b>.');
   t('Markeer dit veld om het evenement te annuleren.');
   t('Opmerking');
   t('Optie');
+  t('Organisator');
   t('Prive');
   t('Referentienummer');
   t('Soort activiteit');

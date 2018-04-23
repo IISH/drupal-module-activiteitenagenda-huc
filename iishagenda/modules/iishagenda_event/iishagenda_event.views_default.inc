@@ -112,7 +112,7 @@ function iishagenda_event_views_default_views() {
   $handler->display->display_options['footer']['area']['id'] = 'area';
   $handler->display->display_options['footer']['area']['table'] = 'views';
   $handler->display->display_options['footer']['area']['field'] = 'area';
-  $handler->display->display_options['footer']['area']['content'] = '<h2>Catering Binnenkort<.h2>';
+  $handler->display->display_options['footer']['area']['content'] = '<h2>Catering Binnenkort</h2>';
   $handler->display->display_options['footer']['area']['format'] = 'filtered_html';
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -585,7 +585,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     t('Sorteren op'),
     t('Oplopend'),
     t('Aflopend'),
-    t('<h2>Catering Binnenkort<.h2>'),
+    t('<h2>Catering Binnenkort</h2>'),
     t('Er zijn geen <b>goedgekeurde</b> reserveringen met catering.'),
     t('<div class="messagepop pop">
   <form method="post" id="new_message" action="/messages">
@@ -1689,22 +1689,12 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Content: Location */
-  $handler->display->display_options['fields']['field_room_location']['id'] = 'field_room_location';
-  $handler->display->display_options['fields']['field_room_location']['table'] = 'field_data_field_room_location';
-  $handler->display->display_options['fields']['field_room_location']['field'] = 'field_room_location';
-  $handler->display->display_options['fields']['field_room_location']['relationship'] = 'field_event_room_nid';
-  $handler->display->display_options['fields']['field_room_location']['label'] = '';
-  $handler->display->display_options['fields']['field_room_location']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_room_location']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_room_location']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Content: Zaal */
   $handler->display->display_options['fields']['field_event_room']['id'] = 'field_event_room';
   $handler->display->display_options['fields']['field_event_room']['table'] = 'field_data_field_event_room';
   $handler->display->display_options['fields']['field_event_room']['field'] = 'field_event_room';
   $handler->display->display_options['fields']['field_event_room']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_event_room']['alter']['text'] = '[field_event_room]<br>
-[field_room_location]';
+  $handler->display->display_options['fields']['field_event_room']['alter']['text'] = '[field_event_room]';
   $handler->display->display_options['fields']['field_event_room']['delta_offset'] = '0';
   /* Field: Content: Datum */
   $handler->display->display_options['fields']['field_event_date_1']['id'] = 'field_event_date_1';
@@ -3768,8 +3758,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     t('My events'),
     t('Mijn evenementen'),
     t('[title] [field_canceled]'),
-    t('[field_event_room]<br>
-[field_room_location]'),
+    t('[field_event_room]'),
     t('Vanaf (datum)'),
     t('Administer events (future)'),
     t('Beheer aankomende evenementen'),

@@ -461,9 +461,19 @@ function iishagenda_event_field_default_field_bases() {
     'settings' => array(
       'referenceable_types' => array(
         'article' => 0,
+        'book' => 0,
         'event' => 0,
+        'filedepot_folder' => 0,
+        'forum' => 0,
+        'gallery' => 0,
+        'maintenance_failures' => 0,
+        'memory_page' => 0,
+        'minutes_page' => 0,
         'page' => 0,
+        'project' => 0,
         'room' => 'room',
+        'tour' => 0,
+        'webform' => 0,
       ),
       'view' => array(
         'args' => array(),
@@ -527,6 +537,13 @@ function iishagenda_event_field_default_field_bases() {
         3 => 0,
         4 => 0,
         5 => 0,
+        6 => 0,
+        7 => 0,
+        8 => 0,
+        9 => 0,
+        10 => 0,
+        11 => 0,
+        12 => 0,
       ),
       'referenceable_status' => array(
         0 => 0,
