@@ -1,663 +1,481 @@
+body.agenda #region-sidebar-second {
+  display: none; }
 
-body.agenda #region-sidebar-second{
-    display: none;
-}
+body.agenda .grid-2.region-sidebar-first {
+  margin-top: 0; }
 
+body.agenda .block-user-hello h2 {
+  color: #000; }
 
 @media (max-width: 1200px) {
-	body.agenda .container-12 .grid-6.region-content {
-        width:700px;
-    }
-}
+  body.agenda .container-12 .grid-6.region-content {
+    width: 700px; } }
 
 @media (min-width: 1200px) {
-    .container-12 {
-        margin-left: auto;
-        margin-right: auto;
-        width: 90%;
-    }
-    body.agenda .container-12 .grid-6.region-content {
-        width: 80%
-    }
-    body.agenda .container-12 .grid-9.region-content {
-        width: 80%
-    }
-    body.agenda .container-12 .grid-3 {
-        width: 16%;
-    }
-}
+  .container-12 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%; }
+  body.agenda .container-12 .grid-6.region-content, body.agenda .container-12 .grid-9.region-content {
+    width: 80%; }
+  body.agenda .container-12 .grid-3 {
+    width: 16%; } }
 
-
-body.agenda .grid-2.region-sidebar-first{
-    margin-top: 0;
-}
-
-body.agenda .block-user-hello h2, h2.block-title{
-    color: #000;
-}
+h2.block-title {
+  color: #000; }
 
 /* CUSTOM */
+.event-type {
+  padding: 2px 4px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-weight: bold;
+  float: left;
+  font-size: 9px;
+  letter-spacing: 0.01em; }
 
-.event-type{
-    padding: 2px 4px;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    font-weight: bold;
-    float:left;
-    font-size: 9px;
-    letter-spacing: 0.01em;
-}
+.view-id-upcoming_events caption {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 8px 0px; }
 
-.view-id-upcoming_events caption{
-    font-size: 15px;
-    font-weight: 600;
-    margin: 8px 0px;
-}
+img.special {
+  width: 12px;
+  height: 12px;
+  margin-bottom: 3px; }
 
-img.special{
-    width:12px;
-    height:12px;
-    margin-bottom:3px;
-}
+.view-id-upcoming_events table {
+  margin-bottom: 30px; }
+  .view-id-upcoming_events table.views-table td:nth-child(1) {
+    width: 86px; }
+  .view-id-upcoming_events table.views-table td.views-field-field-event-date {
+    width: 124px;
+    max-width: 124px; }
+  .view-id-upcoming_events table.views-table td.views-field-field-event-room {
+    width: 90px; }
 
+.ics-link {
+  float: right;
+  margin-right: 3px; }
+  .ics-link img {
+    width: 30px;
+    height: auto; }
 
-.view-id-upcoming_events table.views-table td:nth-child(1){
-     width:86px;
-}
+td.views-field-field-special {
+  vertical-align: middle;
+  padding: 8px 2px 0 8px;
+  padding: 0;
+  width: 10px; }
 
-.view-id-upcoming_events table.views-table td.views-field-field-event-date{
-    width:124px;
-    max-width: 124px;
-}
-.view-id-upcoming_events table.views-table td.views-field-field-event-room{
-    width: 90px;
-}
+.agenda .pager, .agenda .page-calendar .pager {
+  border: none;
+  background: none;
+  margin-bottom: 10px; }
 
-.view-id-upcoming_events table{
-   margin-bottom:30px;
-}
-
-
-.ics-link{
-    float:right;
-    margin-right:3px;
-}
-.ics-link img{
-   width: 30px;
-    height:auto;
-}
-
-
-td.views-field-field-special{
-    vertical-align: middle;
-    padding:8px 2px 0 8px;
-    padding:0;
-    width:10px;
-}
-
-.agenda .pager,
-.agenda .page-calendar .pager{
-    border:none;
-    background: none;
-    margin-bottom: 10px;
-}
-
-.agenda fieldset{
-    border: 1px solid #CCC;
-    padding: 6px 13px;
-    background-color: #EDF1F5;
-}
-.agenda fieldset#edit-select,
-.agenda fieldset.vbo-fieldset-select-all{
+.agenda fieldset {
+  border: 1px solid #CCC;
+  padding: 6px 13px;
+  background-color: #EDF1F5; }
+  .agenda fieldset#edit-select, .agenda fieldset.vbo-fieldset-select-all {
     border: none;
-    padding:0;
-}
-
+    padding: 0; }
 
 /* EVENT PAGE */
-.field-name-field-event-room .field-item{
-    margin-right:10px;
-}
+.field-name-field-event-room .field-item {
+  margin-right: 10px; }
 
-.node-type-event .user-picture{
-    float: right;
-}
-.node-type-event .user-picture img{
-     height: 50px;
-}
+.node-type-event .user-picture {
+  float: right; }
+  .node-type-event .user-picture img {
+    height: 50px; }
 
-.node-type-event .field-collection-view-links,
-.node-type-event .action-links{
-    display: none;
-}
+.node-type-event .field-collection-view-links, .node-type-event .action-links {
+  display: none; }
 
-
-.ics-full-link{
-    clear: both;
-    display: inline-block;
-    width: 260px;
-    padding:8px;
-    font-size: 12px;
-    border: 1px solid #CCC;
-    margin-top:20px;
-}
-.ics-full-link img{
-   float:left;
-    margin-right:8px;
-}
-.ics-full-link span{
-    padding-top:4px;
-}
-
+.ics-full-link {
+  clear: both;
+  display: inline-block;
+  width: 260px;
+  padding: 8px;
+  font-size: 12px;
+  border: 1px solid #CCC;
+  margin-top: 20px; }
+  .ics-full-link img {
+    float: left;
+    margin-right: 8px; }
+  .ics-full-link span {
+    padding-top: 4px; }
 
 /* ADD EVENT PAGE */
-.page-node-add-event .agenda fieldset{
-    padding: 0px 13px;
-}
+.page-node-add-event .agenda fieldset {
+  padding: 0px 13px; }
 
-.agenda .fieldset-legend{
-    font-size: 15px;
-    font-weight: bold;
-}
+.agenda .fieldset-legend {
+  font-size: 15px;
+  font-weight: bold; }
 
-.agenda.node-type-event .fieldset{
-    padding: 10px 13px;
-}
+.agenda.node-type-event .fieldset {
+  padding: 10px 13px; }
 
-.edit-field-event-date .fieldset-legend{
-    font-size: 13px;
-}
+.edit-field-event-date .fieldset-legend {
+  font-size: 13px; }
 
-#edit-field-reference-number label,
-#edit-field-expense label{
-    float: left;
-    width: 170px;
-}
+#edit-field-reference-number label, #edit-field-expense label {
+  float: left;
+  width: 170px; }
 
-label{
-    font-size: 12px;
-}
-
+label {
+  font-size: 12px; }
 
 /* form */
-.field-type-taxonomy-term-reference.field-name-field-locations,
-.field-type-taxonomy-term-reference.field-name-field-needed-facilities{
-    float: left;
-    width: 48%;
-    clear: none;
-}
+.field-type-taxonomy-term-reference.field-name-field-locations, .field-type-taxonomy-term-reference.field-name-field-needed-facilities {
+  float: left;
+  width: 48%;
+  clear: none; }
 
+.field-name-field-people {
+  clear: both; }
 
-.field-name-field-people{
-    clear: both;
-}
+.agenda.page-node-add-event .vertical-tabs {
+  display: none; }
 
-.agenda.page-node-add-event .vertical-tabs{
-    display: none;
-}
-
-
-.field-name-field-event-room .form-checkboxes{
-    margin:4px 0px;
-}
-
-.field-name-field-event-room .form-checkboxes .form-item{
+.field-name-field-event-room .form-checkboxes {
+  margin: 4px 0px; }
+  .field-name-field-event-room .form-checkboxes .form-item {
     background-color: #ECE4EC;
     padding: 6px 10px;
     margin-top: 1px;
-    margin-bottom: 2px;
-}
-
+    margin-bottom: 2px; }
 
 /* NODE FORM CATERING */
+.page-node-add-event .group-catering, .page-node-edit .group-catering {
+  display: none; }
 
-.page-node-add-event .group-catering,
-.page-node-edit .group-catering{
-    display:none;
-}
+.field-name-field-drinks {
+  clear: both;
+  float: left;
+  width: 48%;
+  margin: 0; }
 
-.field-name-field-drinks,
-.field-name-field-catering-time{
-    clear:both;
-    float:left;
-    width: 48%;
-    margin:0;
-}
+.field-name-field-catering-time {
+  clear: both;
+  float: left;
+  width: 48%;
+  margin: 0; }
+  .field-name-field-catering-time input {
+    float: left;
+    margin-right: 5px; }
+  .field-name-field-catering-time .description {
+    padding-top: 2px; }
 
-.field-name-field-catering-time input{
-    float:left;
-    margin-right:5px;
-}
+form .field-name-field-catering-time, form .field-name-field-location {
+  padding-top: 10px;
+  padding-bottom: 20px; }
 
-.field-name-field-catering-time .description{
-    padding-top:2px;
-}
+.field-name-field-drinks {
+  float: left;
+  min-width: 72px; }
+  .field-name-field-drinks label {
+    float: none; }
 
-form .field-name-field-catering-time,
-form .field-name-field-location{
-    padding-top:10px;
-    padding-bottom: 20px;
-}
-
-.field-name-field-drinks{
-    float:left;
-    min-width: 72px;
-}
-.field-name-field-drinks label{
-    float: none;
-}
-
-form .field-name-field-note{
-    clear:both;
-    margin:10px 0;
-    padding-top:10px;
-}
+form .field-name-field-note {
+  clear: both;
+  margin: 10px 0;
+  padding-top: 10px; }
 
 .field-name-field-note label {
-    float:none;
-}
+  float: none; }
 
-.field-name-field-food{
-    float:left;
-}
+.field-name-field-food {
+  float: left; }
 
-.group-general,
-.group-admin{
-    margin-top:20px;
-}
+.group-general, .group-admin {
+  margin-top: 20px; }
 
-.field-name-field-note{
-    clear:both;
-}
+.field-name-field-note {
+  clear: both; }
 
+.start-date-wrapper.container-inline-date.date-no-float, .end-date-wrapper.container-inline-date.date-no-float {
+  clear: none;
+  float: left;
+  width: auto; }
 
-.start-date-wrapper.container-inline-date.date-no-float,
-.end-date-wrapper.container-inline-date.date-no-float {
-    clear: none;
-    float:left;
-    width: auto;
-}
-.start-date-wrapper .container-inline-date > .form-item{
-    float:left;
-}
+.start-date-wrapper .container-inline-date > .form-item {
+  float: left; }
 
-.container-inline-date .form-item, .container-inline-date .form-item input {
-    width: auto;
-}
+.container-inline-date .form-item {
+  width: auto; }
+  .container-inline-date .form-item input {
+    width: auto; }
 
-label[for=edit-field-event-date-und-0-value2]
-{
-    float:left;
-    padding-top: 11px;
-}
+label[for=edit-field-event-date-und-0-value2] {
+  float: left;
+  padding-top: 11px; }
 
-html.js input.form-autocomplete.input-disabled{
-    background-color: #EEE;
-    color: #CCC;
-}
+html.js input.form-autocomplete.input-disabled {
+  background-color: #EEE;
+  color: #CCC; }
 
-.currentrooms{
-    background-color: #fff4d2;
-    padding:8px 6px;
-}
+.currentrooms {
+  background-color: #fff4d2;
+  padding: 8px 6px; }
 
-#rooms-replace{
-    clear:both;
-}
+#rooms-replace {
+  clear: both; }
+
 /* ROOMS LIST */
+.view-rooms .views-field-field-image img {
+  float: right;
+  padding-bottom: 20px; }
 
-.view-rooms .views-field-field-image img{
-    float:right;
-    padding-bottom: 20px;
-}
+.view-rooms .views-row {
+  clear: both;
+  padding-bottom: 20px;
+  border-top: 1px solid #CCC; }
 
-.view-rooms .views-row{
-    clear:both;
-    padding-bottom: 20px;
-    border-top: 1px solid #CCC;
-}
+.cancelled {
+  display: inline-block;
+  width: auto;
+  background: #EE0000;
+  clear: both;
+  padding: 2px 4px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 8px;
+  margin-left: 4px;
+  letter-spacing: 0.01em; }
 
+.page-node .cancelled {
+  margin-bottom: 10px;
+  margin-left: 0px; }
 
-.cancelled{
-    display: inline-block;
-    width: auto;
-    background: #EE0000;
-    clear: both;
-    padding: 2px 4px;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 8px;
-    margin-left:4px;
-    letter-spacing: 0.01em;
+.view-calendar .cancelled {
+  background: transparent;
+  clear: both;
+  padding: 0;
+  color: #EE0000;
+  float: left;
+  margin-left: 0px; }
 
-}
-.page-node .cancelled{
-    margin-bottom: 10px;
-    margin-left:0px;
-}
-.view-calendar .cancelled{
-    background: transparent;
-    clear: both;
-    padding: 0;
-    color: #EE0000;
-    float:left;
-    margin-left:0px;
-}
+.block-location-menu {
+  background-color: #F0E8E8;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-top: 1px solid #B48C8C;
+  border-bottom: 1px solid #B48C8C; }
+  .block-location-menu .item-list {
+    margin-top: 10px;
+    font-weight: bold; }
 
-
-
-.block-location-menu{
-    background-color: #F0E8E8;
-    margin-bottom: 15px;
-    padding: 10px;
-    border-top: 1px solid #B48C8C;
-    border-bottom: 1px solid #B48C8C;
-}
-
-.block-location-menu .item-list{
-    margin-top:10px;
-   font-weight: bold;
-}
-
-
-
+.block-menu-menu-agenda-admin {
+  margin-top: 15px; }
 
 /* LOCATION LIST */
+.view-locations .views-row {
+  margin-top: 20px; }
 
-.view-locations .views-row{
-    margin-top: 20px;
-}
+.view-locations .views-label {
+  width: 150px;
+  float: left; }
 
-.view-locations .views-label{
-    width: 150px;
-    float:left;
-}
+.views-field-field-address .field-content {
+  display: inline-block; }
 
-.views-field-field-address .field-content{
-    display:inline-block;
-}
+body.node-type-event .field-name-body {
+  padding-top: 8px;
+  padding-bottom: 12px; }
 
-body.node-type-event .field-name-body{
-    padding-top: 8px;
-    padding-bottom: 12px;
-}
+body.agenda #block-system-main {
+  margin-top: 0; }
 
-body.agenda #block-system-main{
-    margin-top:0;
-}
+body.agenda tr:hover td, body.agenda tr.even:hover td.active, body.agenda tr.odd:hover td.active {
+  background: transparent; }
 
-body.agenda tr:hover td,
-body.agenda tr.even:hover td.active,
-body.agenda tr.odd:hover td.active {
-    background:transparent;
-}
+body.agenda tr.even td, body.agenda tr.odd td {
+  background: transparent none repeat scroll 0% 0%; }
 
-body.agenda tr.even td,
-body.agenda tr.odd td{
-    background: transparent none repeat scroll 0% 0%;
-}
-body.agenda tr.even,
-body.agenda tr.odd{
-    background: none;
-}
+body.agenda tr.even, body.agenda tr.odd {
+  background: none; }
 
+body.agenda caption {
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 10px; }
 
-body.agenda caption{
-    text-align: left;
-    font-weight: 600;
-    margin-bottom:10px;
-}
+.view-catering td, .view-catering-archive td {
+  font-size: 11px; }
 
+th.field_catering_time {
+  width: 30px; }
 
-.view-catering td,
-.view-catering-archive td{
-    font-size: 11px;
-}
+.view-catering caption, .view-catering-archive caption {
+  margin-top: 30px; }
 
+.view-catering th, .view-catering-archive th {
+  font-style: italic; }
 
-th.field_catering_time{
-    width:30px;
-}
+.view-catering h2, .view-catering-archive h2 {
+  margin: 40px 0 20px 0; }
 
+body.agenda .content .view-catering table.field-collection-view-final thead tr, body.agenda .content .view-catering table.field-collection-view-final td {
+  border-color: #CCC; }
 
-.view-catering caption,
-.view-catering-archive caption{
-    margin-top:30px;
-}
+.view-catering .views-field-field-event-date, .view-catering-archive .views-field-field-event-date, .view-catering .views-field-field-event-date, .view-catering-archive .views-field-field-event-date {
+  width: 200px; }
 
-.view-catering th,
-.view-catering-archive th{
-    font-style: italic;
-}
+.view-catering .views-field-field-people, .view-catering-archive .views-field-field-people {
+  width: 80px;
+  text-align: center; }
 
-.view-catering h2,
-.view-catering-archive h2 {
-    margin:40px 0 20px 0;
-}
+.view-catering .views-field-field-catering, .view-catering-archive .views-field-field-catering {
+  width: 400px; }
 
-body.agenda .content .view-catering table.field-collection-view-final thead tr,
-body.agenda .content .view-catering table.field-collection-view-final td{
-    border-color: #CCC;
-}
+.view-catering th.field_catering_time, .view-catering-archive th.field_catering_time {
+  width: 45px; }
 
-.view-catering .views-field-field-event-date,
-.view-catering-archive .views-field-field-event-date{
-    width: 200px;
-}
-.view-catering .views-field-field-event-date,
-.view-catering-archive .views-field-field-event-date{
-    width: 200px;
-}
-.view-catering .views-field-field-people,
-.view-catering-archive .views-field-field-people{
-    width: 80px;
-    text-align: center;
-}
+.view-catering th.field_location, .view-catering-archive th.field_location {
+  width: 55px; }
 
-.view-catering .views-field-field-catering,
-.view-catering-archive .views-field-field-catering{
-    width: 400px;
-}
+.views-field-field-catering th {
+  color: #AAA; }
 
-.view-catering th.field_catering_time,
-.view-catering-archive th.field_catering_time{
-    width:45px;
-}
-.view-catering th.field_location,
-.view-catering-archive th.field_location{
-    width:55px;
-}
-.views-field-field-catering th{
-    color:#AAA;
-}
+.field-name-field-drinks .field-item {
+  margin-right: 10px; }
 
-.field-name-field-drinks .field-item{
-    margin-right:10px;
-}
+.views-field-field-catering .container-inline-date .form-item select {
+  color: #000; }
 
+.view-filters select, .view-filters label {
+  color: #000; }
 
-.views-field-field-catering .container-inline-date .form-item select{
-    color:#000;
-}
-
-.view-filters select {
-    color: #000;
-}
-
-.view-filters label {
-    color: #000;
-}
-.views-exposed-form .views-exposed-widget .form-submit{
-    color: #000;
-}
+.views-exposed-form .views-exposed-widget .form-submit {
+  color: #000; }
 
 /* Catering page popup styles */
 a.selected {
-    z-index:100;
-}
+  z-index: 100; }
 
 .messagepop {
-    color:#FFFFFF;
-    font-size: 13px;
-    cursor:default;
-    display:none;
-    position:absolute;
-    text-align:left;
-    width:350px;
-    z-index:50;
-    padding: 20px 10px;
-    padding-top: 20px;
-}
-
-.messagepop p, .messagepop.div {
+  color: #FFFFFF;
+  font-size: 13px;
+  cursor: default;
+  display: none;
+  position: absolute;
+  text-align: left;
+  width: 350px;
+  z-index: 50;
+  padding: 20px 10px;
+  padding-top: 20px; }
+  .messagepop p, .messagepop.div {
     border-bottom: 1px solid #EFEFEF;
     margin: 8px 0;
-    padding-bottom: 8px;
-}
-a.messagepop-link:link,
-a.messagepop-link:visited{
-    color: red;
-}
-a.messagepop-link:hover,
-a.messagepop-link:active{
-    color: #75a1c7;
-}
+    padding-bottom: 8px; }
 
-ul.tabs a.active{
-    text-decoration: none;
-    color:#000000;
-    font-weight: bold;
-}
+a.messagepop-link:link, a.messagepop-link:visited {
+  color: red; }
 
-ul.tabs li{
-    margin-right:10px;
-}
+a.messagepop-link:hover, a.messagepop-link:active {
+  color: #75a1c7; }
+
+ul.tabs a.active {
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold; }
+
+ul.tabs li {
+  margin-right: 10px; }
 
 /* views table */
 body.agenda .content thead tr {
-    border: 0px solid #666;
-    border-bottom: 2px solid #666;;
-    padding: 2px;
-    padding-bottom: 4px;
-
-}
+  border: 0px solid #666;
+  border-bottom: 2px solid #666;
+  padding: 2px;
+  padding-bottom: 4px; }
 
 body.agenda .content .field-collection-table-view thead tr {
-    border-bottom: 1px solid #666;;
-}
+  border-bottom: 1px solid #666; }
 
 body.agenda .content thead th {
-    padding-bottom: 4px;
-}
-body.agenda .content tr {
-    border-left:none;
-    border-right:none;
-}
-body.agenda .content td {
-    border-left:none;
-    border-right:none;
-    padding:6px 2px;
-    vertical-align: middle;
-}
+  padding-bottom: 4px; }
 
+body.agenda .content tr {
+  border-left: none;
+  border-right: none; }
+
+body.agenda .content td {
+  border-left: none;
+  border-right: none;
+  padding: 6px 2px;
+  vertical-align: middle; }
 
 body.agenda .view-id-upcoming_events span.date-display-single {
-    width: 90px;
-    display: inline-block;
-}
-body.agenda .view th.views-field-field-event-room{
-    width: 110px;
-}
+  width: 90px;
+  display: inline-block; }
 
-body.agenda .view th.views-field-field-internal-external{
-    width: 70px;
-}
+body.agenda .view th.views-field-field-event-room {
+  width: 110px; }
 
+body.agenda .view th.views-field-field-internal-external {
+  width: 70px; }
 
 body.agenda .form-item-field-type-activity-tid .description {
-    display: none;
-}
-
+  display: none; }
 
 /* ROOMS */
-.page-rooms .views-label{
-    float:left;
-    margin-right:10px;
-    width:100px;
-    font-style: italic;
-}
+.page-rooms .views-label {
+  float: left;
+  margin-right: 10px;
+  width: 100px;
+  font-style: italic; }
 
-.page-rooms .views-field{
-    clear:both;
-    height:15px;
-}
+.page-rooms .views-field {
+  clear: both;
+  height: 15px; }
 
 .page-rooms .views-field-body {
-    margin-top: 30px;
-	height: auto !important; /* igor, fix for overlapping room info */
-}
+  margin-top: 30px;
+  height: auto !important;
+  /* igor, fix for overlapping room info */ }
 
-.views-field-field-setup .field-content{
-    margin-left:110px;
-}
+.views-field-field-setup .field-content {
+  margin-left: 110px; }
 
-.views-field-field-capacity,
-.views-field-field-capacity-note,
-.views-field-body,
-.views-field-field-room-phone,
-.views-field-field-room-type,
-.views-field-field-facilities{
-   /* padding-bottom:15px;*/
-}
+.views-field-field-capacity, .views-field-field-capacity-note, .views-field-body, .views-field-field-room-phone, .views-field-field-room-type, .views-field-field-facilities {
+  /* padding-bottom:15px;*/ }
 
 /* changes for seven theme */
 /* node form */
 body.agenda fieldset .fieldset-legend {
-    margin-top: 0.5em;
-    padding-left: 15px;
-    position: relative;
-    text-transform: uppercase;
-}
-
+  margin-top: 0.5em;
+  padding-left: 15px;
+  position: relative;
+  text-transform: uppercase; }
 
 /* pager */
 .agenda .item-list .pager li {
-    width: auto;
-}
+  width: auto; }
 
-#iishagenda-event-clone-form label{
-    display: none;
-}
+#iishagenda-event-clone-form label {
+  display: none; }
 
-#iishagenda-event-clone-form .date-padding{
-    padding:0;
-}
-#views-form-clones-block{
-    margin-bottom:100px;
-}
+#iishagenda-event-clone-form .date-padding {
+  padding: 0; }
 
-.clone-link{
-    font-weight: 600;
-}
+#views-form-clones-block {
+  margin-bottom: 100px; }
+
+.clone-link {
+  font-weight: 600; }
 
 /* color of search buttons and fields in my events */
-#edit-field-type-activity-tid
-, #edit-field-type-activity-tid option
-, #edit-field-room-location-tid
-, #edit-field-room-location-tid option
-, #edit-field-event-date-value-value-month
-, #edit-field-event-date-value-value-month option
-, #edit-field-event-date-value-value-year
-, #edit-field-event-date-value-value-year option
-, #edit-field-event-status-value
-, #edit-field-event-status-value option
-, #edit-submit-upcoming-events
-, #edit-submit-rooms
-, #edit-reset
-,label[for=edit-field-type-activity-tid]
-,label[for=edit-field-room-location-tid]
-,label[for=edit-field-event-status-value]
-, label[for=edit-field-event-date-value] {
-	color: black !important;
-}
+#edit-field-type-activity-tid, #edit-field-room-location-tid, #edit-field-event-date-value-value-month, #edit-field-event-date-value-value-year, #edit-field-event-status-value {
+  color: black !important; }
+  #edit-field-type-activity-tid option, #edit-field-room-location-tid option, #edit-field-event-date-value-value-month option, #edit-field-event-date-value-value-year option, #edit-field-event-status-value option {
+    color: black !important; }
+
+#edit-submit-upcoming-events, #edit-submit-rooms, #edit-reset {
+  color: black !important; }
+
+label[for=edit-field-type-activity-tid], label[for=edit-field-room-location-tid], label[for=edit-field-event-status-value], label[for=edit-field-event-date-value] {
+  color: black !important; }

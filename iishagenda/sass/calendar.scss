@@ -1,0 +1,179 @@
+.calendar-calendar {
+  .month-view .full {
+    tr td.single-day.today {
+      border-bottom: 2px solid #c77d6e;
+      background-color: #ffe8e0;
+    }
+    td.date-box.today {
+      background-color: #ffe8e0;
+      border-color: #c77d6e;
+    }
+    tr {
+      td.today, &.odd td.today, &.even td.today {
+        background-color: #ffe8e0;
+        border-left: 2px solid #c77d6e;
+        border-right: 2px solid #c77d6e;
+      }
+    }
+  }
+  td.empty {
+    color: #BBB;
+  }
+}
+
+.calendar {
+  span.cancelled {
+    margin-bottom: 0;
+  }
+  .views-field-field-room {
+    clear: both;
+  }
+  .views-field-field-event-date,
+  .views-field-field-event-room{
+    font-size:11px;
+    color:#666;
+  }
+}
+
+.calendar-calendar {
+  th.days {
+    font-size: 11px;
+  }
+  td {
+    font-size: 11px;
+    a {
+      font-size: 11px;
+    }
+  }
+
+  td{
+    //width: auto;
+  }
+
+  .month-view .full td.single-day div.monthview, .week-view .full div.single-day div.weekview, .day-view .full div.single-day div.dayview {
+    border: none;
+    -webkit-box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.13);
+    -moz-box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.13);
+    box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.13);
+  }
+  .month-view .full td.single-day .item.external div.monthview, .week-view .full div.single-day .item.external div.weekview, .day-view .full div.single-day .item.external div.dayview {
+    border: 1px solid #78c77a;
+    background-color: #e3ffe5;
+  }
+  .month-view .full td.single-day .item.internal div.monthview, .week-view .full div.single-day .item.internal div.weekview, .day-view .full div.single-day .item.internal div.dayview {
+    border: 1px solid #CCC;
+    background-color: #FFFFFF;
+  }
+  .month-view .full td.single-day .item.internal_special div.monthview, .week-view .full div.single-day .item.internal_special div.weekview, .day-view .full div.single-day .item.internal_special div.dayview {
+    background-color: #dff5ff;
+    border: 1px solid #75a1c7;
+  }
+  .month-view .full td.single-day .item.other div.monthview, .week-view .full div.single-day .item.other div.weekview, .day-view .full div.single-day .item.other div.dayview {
+    border: 1px solid #c8ccb3;
+    background-color: #fffeec;
+  }
+  .month-view .full td.single-day div.monthview {
+    border: 1px solid #75a1c7;
+  }
+}
+
+.view .date-nav-wrapper {
+  .date-prev, .date-next {
+    background: none repeat scroll 0 0 #FFF;
+    right: auto;
+    width: auto;
+    left: auto;
+  }
+  .date-prev {
+    left: 0;
+  }
+  .date-next {
+    right: 0;
+  }
+}
+
+body.agenda .calendar-calendar {
+  tr {
+    border: none;
+  }
+  td {
+    border: none;
+    &.single-day {
+      border: 1px solid #CCC;
+      border-top: none;
+    }
+    &.date-box, &.calendar-agenda-items {
+      border-left: 1px solid #CCC;
+      border-right: 1px solid #CCC;
+    }
+  }
+  div.calendar-agenda-items {
+    border-left: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+  }
+}
+
+.calendar-calendar {
+  td {
+    text-align: center;
+  }
+  tr {
+    td.today, &.odd td.today, &.even td.today {
+      background-color: #ffe8e0;
+      border: 2px solid #c77d6e;
+    }
+  }
+}
+
+body.agenda .calendar-calendar tr {
+  &:hover td.today, &.even:hover td.today.active, &.odd:hover td.today.active {
+    background-color: #ffe8e0;
+  }
+}
+
+.calendar-calendar {
+  .year-view {
+    table td {
+      vertical-align: top;
+    }
+    td table td {
+      vertical-align: middle;
+      height: 35px;
+    }
+  }
+  table td.mini a {
+    font-weight: 600;
+  }
+}
+
+/* hide hours in morning */
+
+/* day view */
+
+body {
+  &.page-calendar-day {
+    .calendar-agenda-hour:nth-child(-n+15), .calendar-agenda-items.single-day:nth-child(-n+15), #multi-day-container, div.header-body-divider.header-body-divider-processed {
+      display: none;
+    }
+  }
+  &.page-calendar-week {
+    table.full .calendar-agenda-hour {
+      &:nth-child(-n+15) {
+        display: none;
+      }
+      &:nth-child(1) {
+        display: block;
+      }
+      &.first {
+        display: none;
+      }
+    }
+    .calendar-agenda-items.single-day:nth-child(-n+15), #multi-day-container, div.header-body-divider.header-body-divider-processed {
+      display: none;
+    }
+  }
+}
+
+.calendar-calendar .week-view #header-container td.margin-right {
+  width: 15px;
+}

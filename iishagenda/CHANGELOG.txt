@@ -1,3 +1,9 @@
 Version 1.0
 --------------------------------------------
 
+
+Version 2.1
+--------------------------------------------
+
+Apply group field patch when using php 7 and features return errors:
+https://www.drupal.org/files/issues/field_group-php7-2661484-2.patch

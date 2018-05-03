@@ -122,8 +122,13 @@ function iishagenda_event_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'Er zijn geen vandaag geen <b>goedgekeurde</b> reserveringen die catering en/of faciliteiten nodig hebben';
+  $handler->display->display_options['empty']['area']['content'] = 'Er zijn vandaag geen <b>goedgekeurde</b> reserveringen die catering en/of faciliteiten nodig hebben';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
+  /* Relationship: Content: Zaal (field_event_room) */
+  $handler->display->display_options['relationships']['field_event_room_nid']['id'] = 'field_event_room_nid';
+  $handler->display->display_options['relationships']['field_event_room_nid']['table'] = 'field_data_field_event_room';
+  $handler->display->display_options['relationships']['field_event_room_nid']['field'] = 'field_event_room_nid';
+  $handler->display->display_options['relationships']['field_event_room_nid']['delta'] = '-1';
   /* Field: Content: Status */
   $handler->display->display_options['fields']['field_event_status']['id'] = 'field_event_status';
   $handler->display->display_options['fields']['field_event_status']['table'] = 'field_data_field_event_status';
@@ -264,6 +269,33 @@ function iishagenda_event_views_default_views() {
   $handler->display->display_options['filters']['field_note_value']['field'] = 'field_note_value';
   $handler->display->display_options['filters']['field_note_value']['operator'] = 'not empty';
   $handler->display->display_options['filters']['field_note_value']['group'] = 2;
+  /* Filter criterion: Content: Has taxonomy term */
+  $handler->display->display_options['filters']['tid']['id'] = 'tid';
+  $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['filters']['tid']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid']['relationship'] = 'field_event_room_nid';
+  $handler->display->display_options['filters']['tid']['value'] = array(
+    0 => '52',
+  );
+  $handler->display->display_options['filters']['tid']['expose']['operator_id'] = 'tid_op';
+  $handler->display->display_options['filters']['tid']['expose']['label'] = 'Has taxonomy term';
+  $handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
+  $handler->display->display_options['filters']['tid']['expose']['identifier'] = 'tid';
+  $handler->display->display_options['filters']['tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    9 => 0,
+    12 => 0,
+    10 => 0,
+    11 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+  );
+  $handler->display->display_options['filters']['tid']['vocabulary'] = 'room_location';
 
   /* Display: Catering vandaag (page) */
   $handler = $view->new_display('page', 'Catering vandaag (page)', 'page');
@@ -518,6 +550,15 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     'approved' => 'approved',
     'cancelled' => 'cancelled',
   );
+  /* Filter criterion: Content: Has taxonomy term */
+  $handler->display->display_options['filters']['tid']['id'] = 'tid';
+  $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['filters']['tid']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid']['relationship'] = 'field_event_room_nid';
+  $handler->display->display_options['filters']['tid']['value'] = array(
+    0 => '52',
+  );
+  $handler->display->display_options['filters']['tid']['vocabulary'] = 'room_location';
 
   /* Display: Catering vandaag block */
   $handler = $view->new_display('block', 'Catering vandaag block', 'block_2');
@@ -590,7 +631,8 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     t('Aflopend'),
     t('<h2>Catering vandaag</h2>'),
     t('<h2>Catering Binnenkort</h2>'),
-    t('Er zijn geen vandaag geen <b>goedgekeurde</b> reserveringen die catering en/of faciliteiten nodig hebben'),
+    t('Er zijn vandaag geen <b>goedgekeurde</b> reserveringen die catering en/of faciliteiten nodig hebben'),
+    t('field_event_room'),
     t('<div class="messagepop pop">
   <form method="post" id="new_message" action="/messages">
     <p><label for="email">Your email or name</label><input type="text" size="30" name="email" id="email" /></p>
@@ -608,6 +650,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
 '),
     t('Zaal'),
     t('Aantal personen'),
+    t('Has taxonomy term'),
     t('Catering vandaag (page)'),
     t('more'),
     t('Catering binnenkort block'),
@@ -731,6 +774,11 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Geen (goedgekeurde) evenementen gevonden.';
   $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
+  /* Relationship: Content: Zaal (field_event_room) */
+  $handler->display->display_options['relationships']['field_event_room_nid']['id'] = 'field_event_room_nid';
+  $handler->display->display_options['relationships']['field_event_room_nid']['table'] = 'field_data_field_event_room';
+  $handler->display->display_options['relationships']['field_event_room_nid']['field'] = 'field_event_room_nid';
+  $handler->display->display_options['relationships']['field_event_room_nid']['delta'] = '-1';
   /* Field: Content: Status */
   $handler->display->display_options['fields']['field_event_status']['id'] = 'field_event_status';
   $handler->display->display_options['fields']['field_event_status']['table'] = 'field_data_field_event_status';
@@ -915,6 +963,15 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     8 => 0,
   );
   $handler->display->display_options['filters']['field_event_date_value_1']['default_date'] = 'now + 30 day';
+  /* Filter criterion: Content: Has taxonomy term */
+  $handler->display->display_options['filters']['tid']['id'] = 'tid';
+  $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['filters']['tid']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid']['relationship'] = 'field_event_room_nid';
+  $handler->display->display_options['filters']['tid']['value'] = array(
+    0 => '52',
+  );
+  $handler->display->display_options['filters']['tid']['vocabulary'] = 'room_location';
 
   /* Display: Catering archive (page) */
   $handler = $view->new_display('page', 'Catering archive (page)', 'page');
@@ -937,6 +994,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     t('Aflopend'),
     t('<h2>Catering Binnenkort</h2>'),
     t('Geen (goedgekeurde) evenementen gevonden.'),
+    t('field_event_room'),
     t('<div class="messagepop pop">
   <form method="post" id="new_message" action="/messages">
     <p><label for="email">Your email or name</label><input type="text" size="30" name="email" id="email" /></p>

@@ -204,7 +204,6 @@ function iishagenda_calendar_views_default_views() {
   $handler->display->display_options['fields']['field_event_room']['table'] = 'field_data_field_event_room';
   $handler->display->display_options['fields']['field_event_room']['field'] = 'field_event_room';
   $handler->display->display_options['fields']['field_event_room']['label'] = '';
-  $handler->display->display_options['fields']['field_event_room']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_event_room']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_event_room']['type'] = 'node_reference_plain';
   $handler->display->display_options['fields']['field_event_room']['settings'] = array(
