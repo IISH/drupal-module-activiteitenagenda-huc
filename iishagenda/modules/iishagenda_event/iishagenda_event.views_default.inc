@@ -136,23 +136,6 @@ function iishagenda_event_views_default_views() {
   $handler->display->display_options['fields']['field_event_status']['label'] = '';
   $handler->display->display_options['fields']['field_event_status']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_event_status']['element_label_colon'] = FALSE;
-  /* Field: Field: Opmerking */
-  $handler->display->display_options['fields']['field_note']['id'] = 'field_note';
-  $handler->display->display_options['fields']['field_note']['table'] = 'field_data_field_note';
-  $handler->display->display_options['fields']['field_note']['field'] = 'field_note';
-  $handler->display->display_options['fields']['field_note']['label'] = '';
-  $handler->display->display_options['fields']['field_note']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_note']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_note']['alter']['text'] = '<div class="messagepop pop">
-  <form method="post" id="new_message" action="/messages">
-    <p><label for="email">Your email or name</label><input type="text" size="30" name="email" id="email" /></p>
-    <p><label for="body">Message</label><textarea rows="6" name="body" id="body" cols="35"></textarea></p>
-    <p><input type="submit" value="Send Message" name="commit" id="message_submit"/> or <a class="close" href="/">Cancel</a></p>
-  </form>
-</div>
-
-<a href="/contact" id="contact">Contact Us</a>';
-  $handler->display->display_options['fields']['field_note']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -201,21 +184,30 @@ function iishagenda_event_views_default_views() {
   $handler->display->display_options['fields']['field_event_room']['field'] = 'field_event_room';
   $handler->display->display_options['fields']['field_event_room']['type'] = 'node_reference_plain';
   $handler->display->display_options['fields']['field_event_room']['delta_offset'] = '0';
+  /* Field: Field: Opmerking */
+  $handler->display->display_options['fields']['field_note']['id'] = 'field_note';
+  $handler->display->display_options['fields']['field_note']['table'] = 'field_data_field_note';
+  $handler->display->display_options['fields']['field_note']['field'] = 'field_note';
+  $handler->display->display_options['fields']['field_note']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_note']['element_label_colon'] = FALSE;
   /* Field: Content: Aantal personen */
   $handler->display->display_options['fields']['field_people']['id'] = 'field_people';
   $handler->display->display_options['fields']['field_people']['table'] = 'field_data_field_people';
   $handler->display->display_options['fields']['field_people']['field'] = 'field_people';
+  $handler->display->display_options['fields']['field_people']['label'] = '# Pers.';
   /* Field: Content: Catering */
   $handler->display->display_options['fields']['field_catering']['id'] = 'field_catering';
   $handler->display->display_options['fields']['field_catering']['table'] = 'field_data_field_catering';
   $handler->display->display_options['fields']['field_catering']['field'] = 'field_catering';
   $handler->display->display_options['fields']['field_catering']['type'] = 'field_collection_table_view';
   $handler->display->display_options['fields']['field_catering']['settings'] = array(
-    'edit' => '',
-    'delete' => '',
     'add' => '',
+    'edit' => '',
+    'translate' => '',
+    'delete' => '',
     'description' => 0,
     'view_mode' => 'full',
+    'hide_empty' => 1,
     'empty' => 1,
   );
   $handler->display->display_options['fields']['field_catering']['delta_offset'] = '0';
@@ -412,13 +404,6 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['fields']['field_event_status']['label'] = '';
   $handler->display->display_options['fields']['field_event_status']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_event_status']['element_label_colon'] = FALSE;
-  /* Field: Field: Opmerking */
-  $handler->display->display_options['fields']['field_note']['id'] = 'field_note';
-  $handler->display->display_options['fields']['field_note']['table'] = 'field_data_field_note';
-  $handler->display->display_options['fields']['field_note']['field'] = 'field_note';
-  $handler->display->display_options['fields']['field_note']['label'] = '';
-  $handler->display->display_options['fields']['field_note']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_note']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -466,21 +451,32 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['fields']['field_event_room']['field'] = 'field_event_room';
   $handler->display->display_options['fields']['field_event_room']['type'] = 'node_reference_plain';
   $handler->display->display_options['fields']['field_event_room']['delta_offset'] = '0';
+  /* Field: Field: Opmerking */
+  $handler->display->display_options['fields']['field_note']['id'] = 'field_note';
+  $handler->display->display_options['fields']['field_note']['table'] = 'field_data_field_note';
+  $handler->display->display_options['fields']['field_note']['field'] = 'field_note';
+  $handler->display->display_options['fields']['field_note']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_note']['alter']['text'] = '[field_event_room]<br>
+<span class=\'field-note\'>[field_note]</span>';
+  $handler->display->display_options['fields']['field_note']['element_label_colon'] = FALSE;
   /* Field: Content: Aantal personen */
   $handler->display->display_options['fields']['field_people']['id'] = 'field_people';
   $handler->display->display_options['fields']['field_people']['table'] = 'field_data_field_people';
   $handler->display->display_options['fields']['field_people']['field'] = 'field_people';
+  $handler->display->display_options['fields']['field_people']['label'] = '# Pers.';
   /* Field: Content: Catering */
   $handler->display->display_options['fields']['field_catering']['id'] = 'field_catering';
   $handler->display->display_options['fields']['field_catering']['table'] = 'field_data_field_catering';
   $handler->display->display_options['fields']['field_catering']['field'] = 'field_catering';
   $handler->display->display_options['fields']['field_catering']['type'] = 'field_collection_table_view';
   $handler->display->display_options['fields']['field_catering']['settings'] = array(
-    'edit' => '',
-    'delete' => '',
     'add' => '',
+    'edit' => '',
+    'translate' => '',
+    'delete' => '',
     'description' => 0,
     'view_mode' => 'full',
+    'hide_empty' => 1,
     'empty' => 1,
   );
   $handler->display->display_options['fields']['field_catering']['delta_offset'] = '0';
@@ -633,15 +629,6 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     t('<h2>Catering Binnenkort</h2>'),
     t('Er zijn vandaag geen <b>goedgekeurde</b> reserveringen die catering en/of faciliteiten nodig hebben'),
     t('field_event_room'),
-    t('<div class="messagepop pop">
-  <form method="post" id="new_message" action="/messages">
-    <p><label for="email">Your email or name</label><input type="text" size="30" name="email" id="email" /></p>
-    <p><label for="body">Message</label><textarea rows="6" name="body" id="body" cols="35"></textarea></p>
-    <p><input type="submit" value="Send Message" name="commit" id="message_submit"/> or <a class="close" href="/">Cancel</a></p>
-  </form>
-</div>
-
-<a href="/contact" id="contact">Contact Us</a>'),
     t('Evenement'),
     t('[title]<br>
 [field_event_date]<br>
@@ -649,7 +636,8 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
 [field_event_status]
 '),
     t('Zaal'),
-    t('Aantal personen'),
+    t('Opmerking'),
+    t('# Pers.'),
     t('Has taxonomy term'),
     t('Catering vandaag (page)'),
     t('more'),
@@ -661,6 +649,8 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
 [field_event_date]<br>
 [field_event_date_1]<br>
 [field_event_status]'),
+    t('[field_event_room]<br>
+<span class=\'field-note\'>[field_note]</span>'),
     t('Week'),
     t('Event-date -  start date (field_event_date)'),
     t('Catering vandaag block'),
@@ -679,7 +669,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Catering';
+  $handler->display->display_options['title'] = 'Catering archief';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'meer';
   $handler->display->display_options['access']['type'] = 'role';
@@ -786,23 +776,6 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['fields']['field_event_status']['label'] = '';
   $handler->display->display_options['fields']['field_event_status']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_event_status']['element_label_colon'] = FALSE;
-  /* Field: Field: Opmerking */
-  $handler->display->display_options['fields']['field_note']['id'] = 'field_note';
-  $handler->display->display_options['fields']['field_note']['table'] = 'field_data_field_note';
-  $handler->display->display_options['fields']['field_note']['field'] = 'field_note';
-  $handler->display->display_options['fields']['field_note']['label'] = '';
-  $handler->display->display_options['fields']['field_note']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_note']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_note']['alter']['text'] = '<div class="messagepop pop">
-  <form method="post" id="new_message" action="/messages">
-    <p><label for="email">Your email or name</label><input type="text" size="30" name="email" id="email" /></p>
-    <p><label for="body">Message</label><textarea rows="6" name="body" id="body" cols="35"></textarea></p>
-    <p><input type="submit" value="Send Message" name="commit" id="message_submit"/> or <a class="close" href="/">Cancel</a></p>
-  </form>
-</div>
-
-<a href="/contact" id="contact">Contact Us</a>';
-  $handler->display->display_options['fields']['field_note']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -851,6 +824,15 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['fields']['field_event_room']['field'] = 'field_event_room';
   $handler->display->display_options['fields']['field_event_room']['type'] = 'node_reference_plain';
   $handler->display->display_options['fields']['field_event_room']['delta_offset'] = '0';
+  /* Field: Field: Opmerking */
+  $handler->display->display_options['fields']['field_note']['id'] = 'field_note';
+  $handler->display->display_options['fields']['field_note']['table'] = 'field_data_field_note';
+  $handler->display->display_options['fields']['field_note']['field'] = 'field_note';
+  $handler->display->display_options['fields']['field_note']['label'] = '';
+  $handler->display->display_options['fields']['field_note']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_note']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_note']['alter']['text'] = '<span class=\'field-note\'>[field_note]</span>';
+  $handler->display->display_options['fields']['field_note']['element_label_colon'] = FALSE;
   /* Field: Content: Aantal personen */
   $handler->display->display_options['fields']['field_people']['id'] = 'field_people';
   $handler->display->display_options['fields']['field_people']['table'] = 'field_data_field_people';
@@ -861,11 +843,13 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['fields']['field_catering']['field'] = 'field_catering';
   $handler->display->display_options['fields']['field_catering']['type'] = 'field_collection_table_view';
   $handler->display->display_options['fields']['field_catering']['settings'] = array(
-    'edit' => '',
-    'delete' => '',
     'add' => '',
+    'edit' => '',
+    'translate' => '',
+    'delete' => '',
     'description' => 0,
     'view_mode' => 'full',
+    'hide_empty' => 1,
     'empty' => 1,
   );
   $handler->display->display_options['fields']['field_catering']['delta_offset'] = '0';
@@ -985,7 +969,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['catering_archive'] = array(
     t('Master'),
-    t('Catering'),
+    t('Catering archief'),
     t('meer'),
     t('Toepassen'),
     t('Opnieuw instellen'),
@@ -995,15 +979,6 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     t('<h2>Catering Binnenkort</h2>'),
     t('Geen (goedgekeurde) evenementen gevonden.'),
     t('field_event_room'),
-    t('<div class="messagepop pop">
-  <form method="post" id="new_message" action="/messages">
-    <p><label for="email">Your email or name</label><input type="text" size="30" name="email" id="email" /></p>
-    <p><label for="body">Message</label><textarea rows="6" name="body" id="body" cols="35"></textarea></p>
-    <p><input type="submit" value="Send Message" name="commit" id="message_submit"/> or <a class="close" href="/">Cancel</a></p>
-  </form>
-</div>
-
-<a href="/contact" id="contact">Contact Us</a>'),
     t('Evenement'),
     t('[title]<br>
 [field_event_date]<br>
@@ -1011,7 +986,9 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
 [field_event_status]
 '),
     t('Zaal'),
+    t('<span class=\'field-note\'>[field_note]</span>'),
     t('Aantal personen'),
+    t('Catering'),
     t('Vanaf'),
     t('Tot'),
     t('Catering archive (page)'),

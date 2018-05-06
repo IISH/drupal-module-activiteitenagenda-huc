@@ -44,6 +44,19 @@ function iishagenda_init()
 
 
 /**
+ * Implements hook_views_api().
+ *
+ * Enabling using templates inside module
+ */
+function iishagenda_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'iishagenda'),
+    'template path' => drupal_get_path('module', 'iishagenda'),
+  );
+}
+
+/**
  * Implements hook_block_info().
  */
 function iishagenda_block_info()
@@ -110,7 +123,7 @@ function _iishagenda_build_location_menu()
   if (is_array($terms)) {
     foreach ($terms as $term) {
       if ($term->tid == $_SESSION['location_id']) {
-        $items[] = t('&rarr; :location_name', array(':location_name' => $term->name));
+        $items[] = '<span class="active-location">'.t(':location_name', array(':location_name' => $term->name)).'</span>';
       } else {
         $items[] = l($term->name, $path, array('query' => array('location_id' => $term->tid)));
       }
@@ -494,7 +507,7 @@ function iishagenda_preprocess_node(&$variables, $hook)
 {
   if ($variables["type"] == "event") {
     $variables["reservation_number"] = t("Reserveringsnummer: ") . "#" . $variables["nid"];
-    if ($variables['field_event_status'][0]['value'] == 'cancelled') {
+    if (!empty($variables['field_event_status'][0]['value']) && $variables['field_event_status'][0]['value'] == 'cancelled') {
       $variables["cancelled"] = t("Geannuleerd");
     }
 

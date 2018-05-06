@@ -1,0 +1,172 @@
+@import 'variables';
+
+.view-id-upcoming_events caption {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 8px 0px;
+}
+
+
+/* ROOMS */
+.page-rooms {
+  .views-label {
+    float: left;
+    margin-right: 10px;
+    width: 100px;
+    font-style: italic;
+  }
+  .views-field {
+    clear: both;
+    height: 15px;
+  }
+  .views-field-body {
+    margin-top: 30px;
+    height: auto !important;
+    /* igor, fix for overlapping room info */
+  }
+}
+
+.views-field-field-setup .field-content {
+  margin-left: 110px;
+}
+
+
+
+.view-catering,
+.view-catering-archive{
+
+  td{
+    font-size: 11px;
+  }
+
+  th{
+    font-style: italic;
+    font-weight: bold;
+  }
+  th.field_catering_time {
+    width: 30px;
+  }
+
+  caption{
+    margin-top: 30px;
+    font-size:16px;
+  }
+
+  h2{
+    margin: 40px 0 20px 0;
+  }
+
+
+  td.views-field-field-catering{
+    tr{
+      border:none;
+    }
+  }
+
+  .views-field-field-catering{
+
+    max-width: 450px;
+     table{
+      // width: 450px;
+       min-width: 450px;
+
+       td{
+         vertical-align: top;
+       }
+     }
+  }
+
+
+  .views-field-field-event-date a{
+    font-weight: bold;
+  }
+  tr.views-field-field-note{
+    border: none;
+    color: $color-red;
+    font-weight: bold;
+    border-bottom:1px solid $color-red;
+    td{
+      border: none;
+      border-bottom:1px solid $color-red;
+    }
+  }
+}
+
+
+
+
+body.agenda .content .view-catering table.field-collection-view-final {
+  thead tr, td {
+    border-color: #CCC;
+  }
+}
+
+.view-catering .views-field-field-event-date, .view-catering-archive .views-field-field-event-date, .view-catering .views-field-field-event-date, .view-catering-archive .views-field-field-event-date {
+  min-width: 200px;
+  max-width: 250px;
+}
+
+.view-catering .views-field-field-people, .view-catering-archive .views-field-field-people {
+  width: 70px;
+  text-align: center;
+}
+
+
+
+
+.view-catering th.field_catering_time, .view-catering-archive th.field_catering_time {
+  width: 45px;
+}
+
+.view-catering th.field_location, .view-catering-archive th.field_location {
+  width: 55px;
+}
+
+.views-field-field-catering{
+
+  table{
+    margin-bottom: 0;
+  }
+  th {
+    color: #AAA;
+  }
+}
+
+.field-name-field-drinks .field-item {
+  margin-right: 10px;
+}
+
+.views-field-field-catering .container-inline-date .form-item select {
+  color: #000;
+}
+
+.view-filters {
+  select, label {
+    color: #000;
+  }
+}
+
+.views-exposed-form .views-exposed-widget .form-submit {
+  color: #000;
+}
+
+
+
+/* color of search buttons and fields in my events */
+
+#edit-field-type-activity-tid, #edit-field-room-location-tid, #edit-field-event-date-value-value-month, #edit-field-event-date-value-value-year, #edit-field-event-status-value {
+  color: black !important;
+  option {
+    color: black !important;
+  }
+}
+
+#edit-submit-upcoming-events, #edit-submit-rooms, #edit-reset {
+  color: black !important;
+}
+
+label {
+  &[for=edit-field-type-activity-tid], &[for=edit-field-room-location-tid], &[for=edit-field-event-status-value], &[for=edit-field-event-date-value] {
+    color: black !important;
+  }
+}

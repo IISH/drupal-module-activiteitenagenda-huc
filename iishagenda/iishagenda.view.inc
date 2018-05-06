@@ -26,7 +26,6 @@ function iishagenda_views_pre_render(&$view) {
         if ($view->current_display !== "page_1") _cancelcheck($result); // My events display should show any status
         $result->field_field_event_date[0]['rendered']["#markup"] = "<a class='ics-link' href='" . $base_url . "/ics/".$result->nid."' title='Download .ics'><img src='".$ics_icon."' alt='ics'></a>".$result->field_field_event_date[0]['rendered']["#markup"];
       }
-
       break;
     case 'calendar':
     case 'calendar_flex':
@@ -37,34 +36,19 @@ function iishagenda_views_pre_render(&$view) {
           $result->node_title = "- nog niet bevestigd -";
         }
       }
-
       break;
     case 'catering':
       foreach ($view->result as $r => &$result) {
         _cancelcheck($result);
-        if (isset($result->field_field_note[0]) && isset($result->field_field_event_room[0])) {
-          _iishagenda_show_note($result);
-        }
       }
       break;
 
     case 'catering_archive':
       foreach ($view->result as $r => &$result) {
         _cancelcheck($result);
-        if (isset($result->field_field_note[0]) && isset($result->field_field_event_room[0])) {
-          _iishagenda_show_note($result);
-        }
       }
       break;
   }
-}
-
-function _iishagenda_show_note(&$result){
-  $bg_image = "/" . drupal_get_path('module', 'iishagenda') . "/images/note_bg.png";
-  $note = '<div class="messagepop pop" style="background-image: url(' . $bg_image . ');">' . nl2br($result->field_field_note[0]["rendered"]["#markup"]) . '</div>';
-  $index = count($result->field_field_event_room) - 1;
-  $markup = $result->field_field_event_room[$index]["rendered"]["#markup"] . '<br><a href="#" class="messagepop-link">opmerking!</a>' . $note;
-  $result->field_field_event_room[$index]["rendered"] = array('#markup' => $markup, '#access' => TRUE);
 }
 
 /**

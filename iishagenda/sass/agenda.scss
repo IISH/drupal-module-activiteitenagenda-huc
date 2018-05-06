@@ -1,3 +1,6 @@
+@import 'variables';
+@import 'views';
+
 body.agenda {
   #region-sidebar-second {
     display: none;
@@ -265,6 +268,8 @@ form .field-name-field-note {
   clear: both;
 }
 
+
+
 .start-date-wrapper.container-inline-date.date-no-float, .end-date-wrapper.container-inline-date.date-no-float {
   clear: none;
   float: left;
@@ -303,7 +308,7 @@ html.js input.form-autocomplete.input-disabled {
 
 
 /* ROOMS LIST */
-
+views-field views-field-field-event-room
 .view-rooms {
   .views-field-field-image img {
     float: right;
@@ -406,107 +411,6 @@ body {
   }
 }
 
-.view-catering td, .view-catering-archive td {
-  font-size: 11px;
-}
-
-th.field_catering_time {
-  width: 30px;
-}
-
-.view-catering caption, .view-catering-archive caption {
-  margin-top: 30px;
-}
-
-.view-catering th, .view-catering-archive th {
-  font-style: italic;
-}
-
-.view-catering h2, .view-catering-archive h2 {
-  margin: 40px 0 20px 0;
-}
-
-body.agenda .content .view-catering table.field-collection-view-final {
-  thead tr, td {
-    border-color: #CCC;
-  }
-}
-
-.view-catering .views-field-field-event-date, .view-catering-archive .views-field-field-event-date, .view-catering .views-field-field-event-date, .view-catering-archive .views-field-field-event-date {
-  width: 200px;
-}
-
-.view-catering .views-field-field-people, .view-catering-archive .views-field-field-people {
-  width: 80px;
-  text-align: center;
-}
-
-.view-catering .views-field-field-catering, .view-catering-archive .views-field-field-catering {
-  width: 400px;
-}
-
-.view-catering th.field_catering_time, .view-catering-archive th.field_catering_time {
-  width: 45px;
-}
-
-.view-catering th.field_location, .view-catering-archive th.field_location {
-  width: 55px;
-}
-
-.views-field-field-catering th {
-  color: #AAA;
-}
-
-.field-name-field-drinks .field-item {
-  margin-right: 10px;
-}
-
-.views-field-field-catering .container-inline-date .form-item select {
-  color: #000;
-}
-
-.view-filters {
-  select, label {
-    color: #000;
-  }
-}
-
-.views-exposed-form .views-exposed-widget .form-submit {
-  color: #000;
-}
-
-/* Catering page popup styles */
-
-a.selected {
-  z-index: 100;
-}
-
-.messagepop {
-  color: #FFFFFF;
-  font-size: 13px;
-  cursor: default;
-  display: none;
-  position: absolute;
-  text-align: left;
-  width: 350px;
-  z-index: 50;
-  padding: 20px 10px;
-  padding-top: 20px;
-  p, &.div {
-    border-bottom: 1px solid #EFEFEF;
-    margin: 8px 0;
-    padding-bottom: 8px;
-  }
-}
-
-a.messagepop-link {
-  &:link, &:visited {
-    color: red;
-  }
-  &:hover, &:active {
-    color: #75a1c7;
-  }
-}
 
 ul.tabs {
   a.active {
@@ -520,7 +424,6 @@ ul.tabs {
 }
 
 /* views table */
-
 body.agenda {
   .content {
     thead tr {
@@ -538,12 +441,14 @@ body.agenda {
     tr {
       border-left: none;
       border-right: none;
+      border-bottom:none;
     }
     td {
       border-left: none;
       border-right: none;
-      padding: 6px 2px;
-      vertical-align: middle;
+      border-bottom:none;
+      padding: 6px 4px;
+
     }
   }
   .view-id-upcoming_events span.date-display-single {
@@ -552,10 +457,10 @@ body.agenda {
   }
   .view th {
     &.views-field-field-event-room {
-      width: 110px;
+     // width: 110px;
     }
     &.views-field-field-internal-external {
-      width: 70px;
+     // width: 70px;
     }
   }
   .form-item-field-type-activity-tid .description {
@@ -563,35 +468,6 @@ body.agenda {
   }
 }
 
-/* ROOMS */
-
-.page-rooms {
-  .views-label {
-    float: left;
-    margin-right: 10px;
-    width: 100px;
-    font-style: italic;
-  }
-  .views-field {
-    clear: both;
-    height: 15px;
-  }
-  .views-field-body {
-    margin-top: 30px;
-    height: auto !important;
-    /* igor, fix for overlapping room info */
-  }
-}
-
-.views-field-field-setup .field-content {
-  margin-left: 110px;
-}
-
-.views-field-field-capacity, .views-field-field-capacity-note, .views-field-body, .views-field-field-room-phone, .views-field-field-room-type, .views-field-field-facilities {
-  /* padding-bottom:15px;*/
-}
-
-/* changes for seven theme */
 /* node form */
 
 body.agenda fieldset .fieldset-legend {
@@ -624,21 +500,28 @@ body.agenda fieldset .fieldset-legend {
   font-weight: 600;
 }
 
-/* color of search buttons and fields in my events */
+.block-location-menu{
+  li a{
+    background: $color-white;
+    padding: 4px 6px;
+    border-radius: 4px;
+    color:$color-dark-grey;
+    margin:2px 0;
+    display: inline-block;
+    opacity: 1;
+    text-decoration: none;
 
-#edit-field-type-activity-tid, #edit-field-room-location-tid, #edit-field-event-date-value-value-month, #edit-field-event-date-value-value-year, #edit-field-event-status-value {
-  color: black !important;
-  option {
-    color: black !important;
+    &:hover{
+      opacity: 1;
+    }
   }
 }
 
-#edit-submit-upcoming-events, #edit-submit-rooms, #edit-reset {
-  color: black !important;
-}
-
-label {
-  &[for=edit-field-type-activity-tid], &[for=edit-field-room-location-tid], &[for=edit-field-event-status-value], &[for=edit-field-event-date-value] {
-    color: black !important;
-  }
+.active-location{
+  background: $color-black;
+  padding: 4px 6px;
+  border-radius: 4px;
+  color:$color-white;
+  margin:2px 0;
+  display: inline-block;
 }
