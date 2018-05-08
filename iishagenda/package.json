@@ -1,12 +1,9 @@
 {
   "devDependencies": {
     "gulp": "latest",
-    "gulp-coffee": "latest",
-    "gulp-concat": "latest",
-    "gulp-connect": "latest",
-    "gulp-sass": "latest",
-    "gulp-uglify": "latest",
-    "gulp-util": "latest"
+    "gulp-sass": "latest"
   },
-  "dependencies": {}
+  "dependencies": {
+    "hawk": "^7.0.7"
+  }
 }
