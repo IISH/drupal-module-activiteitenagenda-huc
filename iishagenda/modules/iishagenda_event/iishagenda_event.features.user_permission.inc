@@ -48,6 +48,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -58,6 +59,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -68,6 +70,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -78,6 +81,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -88,6 +92,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -98,6 +103,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -140,6 +146,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -150,6 +157,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -160,6 +168,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -170,6 +179,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -180,6 +190,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -190,6 +201,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -232,6 +244,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -242,6 +255,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -252,6 +266,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -262,6 +277,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -272,6 +288,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -282,6 +299,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -320,6 +338,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -330,6 +349,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -340,6 +360,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -359,6 +380,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -369,6 +391,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -407,6 +430,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -417,6 +441,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -427,6 +452,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -446,6 +472,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -456,6 +483,7 @@ function iishagenda_event_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
