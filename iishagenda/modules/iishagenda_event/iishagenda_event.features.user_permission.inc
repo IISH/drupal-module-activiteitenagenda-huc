@@ -108,6 +108,15 @@ function iishagenda_event_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'create field_status_changed_by'.
+  $permissions['create field_status_changed_by'] = array(
+    'name' => 'create field_status_changed_by',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'edit field_approved'.
   $permissions['edit field_approved'] = array(
     'name' => 'edit field_approved',
@@ -202,6 +211,15 @@ function iishagenda_event_user_default_permissions() {
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
       'event administrator all rooms' => 'event administrator all rooms',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'edit field_status_changed_by'.
+  $permissions['edit field_status_changed_by'] = array(
+    'name' => 'edit field_status_changed_by',
+    'roles' => array(
+      'administrator' => 'administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -304,6 +322,15 @@ function iishagenda_event_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'edit own field_status_changed_by'.
+  $permissions['edit own field_status_changed_by'] = array(
+    'name' => 'edit own field_status_changed_by',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'view field_approved'.
   $permissions['view field_approved'] = array(
     'name' => 'view field_approved',
@@ -396,6 +423,15 @@ function iishagenda_event_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
+  // Exported permission: 'view field_status_changed_by'.
+  $permissions['view field_status_changed_by'] = array(
+    'name' => 'view field_status_changed_by',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'field_permissions',
+  );
+
   // Exported permission: 'view own field_approved'.
   $permissions['view own field_approved'] = array(
     'name' => 'view own field_approved',
@@ -484,6 +520,15 @@ function iishagenda_event_user_default_permissions() {
       'administrator' => 'administrator',
       'event administrator' => 'event administrator',
       'event administrator all rooms' => 'event administrator all rooms',
+    ),
+    'module' => 'field_permissions',
+  );
+
+  // Exported permission: 'view own field_status_changed_by'.
+  $permissions['view own field_status_changed_by'] = array(
+    'name' => 'view own field_status_changed_by',
+    'roles' => array(
+      'administrator' => 'administrator',
     ),
     'module' => 'field_permissions',
   );

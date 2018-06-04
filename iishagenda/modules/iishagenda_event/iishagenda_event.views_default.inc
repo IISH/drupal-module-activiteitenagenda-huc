@@ -211,6 +211,7 @@ function iishagenda_event_views_default_views() {
     'hide_empty' => 1,
     'empty' => 1,
   );
+  $handler->display->display_options['fields']['field_catering']['delta_limit'] = '5';
   $handler->display->display_options['fields']['field_catering']['delta_offset'] = '0';
   /* Sort criterion: Content: Datum -  start date (field_event_date) */
   $handler->display->display_options['sorts']['field_event_date_value']['id'] = 'field_event_date_value';
@@ -480,6 +481,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     'hide_empty' => 1,
     'empty' => 1,
   );
+  $handler->display->display_options['fields']['field_catering']['delta_limit'] = '5';
   $handler->display->display_options['fields']['field_catering']['delta_offset'] = '0';
   /* Field: Content: Datum */
   $handler->display->display_options['fields']['field_event_date_2']['id'] = 'field_event_date_2';
@@ -854,6 +856,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     'hide_empty' => 1,
     'empty' => 1,
   );
+  $handler->display->display_options['fields']['field_catering']['delta_limit'] = '5';
   $handler->display->display_options['fields']['field_catering']['delta_offset'] = '0';
   /* Sort criterion: Content: Datum -  start date (field_event_date) */
   $handler->display->display_options['sorts']['field_event_date_value']['id'] = 'field_event_date_value';

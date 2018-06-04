@@ -4,10 +4,12 @@
     var duration = determineDuration();
     var showed_changedate_msg = false;
     var current_rooms = new Array();
+    var current_status = null;
 
     Drupal.behaviors.iishagenda = {
         attach : function(context, settings) {
 
+            setCateringTimePicker();
             var first = context[0];
 
             if(first && context[0].id.substring(0,4) =="edit"){
@@ -32,15 +34,21 @@
         $("#edit-field-clone-of-und-0-target-id").prop('disabled', true);
         $("#edit-field-clone-of-und-0-target-id").addClass("input-disabled");
 
-//        $(".currentrooms").css("display","none");
-
         // clear rooms when none is checked (mainly for new events)
         if($('.field-name-field-event-room .form-checkbox:checked').length == 0){
             clear_rooms();
         }
 
-		//
 	    determineCatering();
+
+        // Status
+        current_status = $('#edit-field-event-status input[checked=checked]').attr('value');
+
+        $('#edit-field-event-status input').change(function(){
+            $('#edit-field-status-changed-by-und').val();
+        });
+
+        $('#edit-field-status-changed-by-und').attr('disabled','disabled');
     }
 
 
@@ -115,7 +123,6 @@
 	        disableEnableRoomCheckboxes();
         });
 
-
         $('#edit-check').mousedown(function(){
             $('#edit-check').css("border","0px");
 
@@ -127,10 +134,6 @@
             }
         });
 
-
-        /**
-         *
-         */
         if($('#node-event-form').length > 0 ){
             determineCatering();
             $('input#edit-field-people-und-0-value').change(function(e){
@@ -173,13 +176,11 @@
 		    }
 	    });
 
-	    //if($isIisg || $people > 50){
 	    if($isIisg || $isIisg2){
             showCatering();
         } else {
             hideCatering();
         }
-
     }
 
     function showCatering(){
@@ -250,14 +251,11 @@
     }
 
     function clear_rooms(){
-      // console.log("clear rooms");
         $( ".field-name-field-event-room input:checked" ).each(function( index ) {
             current_rooms.push($( this ).attr('id'));
         });
         $('.field-name-field-event-room .form-checkboxes').html("klik op 'Controleer beschikbaarheid' voor beschikbare zalen.");
     }
-
-
 
     /**
      *   Adds zero to number below 10
@@ -269,7 +267,6 @@
             return value;
         }
     }
-
 
     /**
      *   Calculates duration in seconds between start and endtime

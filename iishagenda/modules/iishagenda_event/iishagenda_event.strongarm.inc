@@ -188,14 +188,33 @@ function iishagenda_event_strongarm() {
       'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
+      'print' => array(
+        'custom_settings' => FALSE,
+      ),
+      'subscriptions' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
         'title' => array(
           'weight' => '-5',
         ),
+        'path' => array(
+          'weight' => '7',
+        ),
       ),
-      'display' => array(),
+      'display' => array(
+        'subscriptions_ui' => array(
+          'default' => array(
+            'weight' => '100',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__event'] = $strongarm;

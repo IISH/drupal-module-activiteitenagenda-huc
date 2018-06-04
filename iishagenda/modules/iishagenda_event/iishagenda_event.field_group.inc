@@ -55,8 +55,8 @@ function iishagenda_event_field_group_info() {
       0 => 'field_event_room',
       1 => 'field_note',
       2 => 'field_people',
-      3 => 'field_needed_facilities',
-      4 => 'field_locations',
+      3 => 'field_locations',
+      4 => 'field_needed_facilities',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -111,7 +111,8 @@ function iishagenda_event_field_group_info() {
     'children' => array(
       0 => 'field_clone_of',
       1 => 'field_event_status',
-      2 => 'group_organiser',
+      2 => 'field_status_changed_by',
+      3 => 'group_organiser',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -164,7 +165,7 @@ function iishagenda_event_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Catering',
-    'weight' => '5',
+    'weight' => '6',
     'children' => array(
       0 => 'field_catering',
     ),
@@ -192,7 +193,7 @@ function iishagenda_event_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Extra',
-    'weight' => '4',
+    'weight' => '5',
     'children' => array(
       0 => 'field_attachment',
       1 => 'field_expense',
@@ -258,14 +259,15 @@ function iishagenda_event_field_group_info() {
     'children' => array(
       0 => 'body',
       1 => 'field_attachment',
-      2 => 'field_clone_of',
-      3 => 'field_event_date',
-      4 => 'field_event_option',
-      5 => 'field_event_status',
-      6 => 'field_expense',
-      7 => 'field_internal_external',
-      8 => 'field_reference_number',
-      9 => 'field_type_activity',
+      2 => 'field_event_date',
+      3 => 'field_expense',
+      4 => 'field_internal_external',
+      5 => 'field_reference_number',
+      6 => 'field_type_activity',
+      7 => 'field_clone_of',
+      8 => 'field_event_option',
+      9 => 'field_event_status',
+      10 => 'field_status_changed_by',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -293,8 +295,8 @@ function iishagenda_event_field_group_info() {
     'weight' => '1',
     'children' => array(
       0 => 'body',
-      1 => 'field_event_option',
-      2 => 'field_type_activity',
+      1 => 'field_type_activity',
+      2 => 'field_event_option',
       3 => 'field_private',
       4 => 'title',
     ),
@@ -352,7 +354,7 @@ function iishagenda_event_field_group_info() {
   $field_group->parent_name = 'group_admin';
   $field_group->data = array(
     'label' => 'Organisator',
-    'weight' => '33',
+    'weight' => '34',
     'children' => array(
       0 => 'field_contact_person',
       1 => 'field_email',

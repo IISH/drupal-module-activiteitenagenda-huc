@@ -183,7 +183,7 @@ function iishagenda_event_field_default_field_bases() {
   // Exported field_base: 'field_catering'.
   $field_bases['field_catering'] = array(
     'active' => 1,
-    'cardinality' => 5,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_catering',
@@ -202,7 +202,7 @@ function iishagenda_event_field_default_field_bases() {
     'module' => 'field_collection',
     'settings' => array(
       'hide_blank_items' => 1,
-      'hide_initial_item' => FALSE,
+      'hide_initial_item' => 0,
       'path' => '',
     ),
     'translatable' => 0,
@@ -966,6 +966,51 @@ function iishagenda_event_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'list_boolean',
+  );
+
+  // Exported field_base: 'field_status_changed_by'.
+  $field_bases['field_status_changed_by'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_status_changed_by',
+    'field_permissions' => array(
+      'type' => 2,
+    ),
+    'indexes' => array(
+      'uid' => array(
+        0 => 'uid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'user_reference',
+    'settings' => array(
+      'referenceable_roles' => array(
+        2 => 0,
+        3 => 3,
+        4 => 0,
+        5 => 0,
+        6 => 0,
+        7 => 0,
+        8 => 0,
+        9 => 9,
+        10 => 0,
+        11 => 0,
+        12 => 12,
+      ),
+      'referenceable_status' => array(
+        0 => 0,
+        1 => 0,
+      ),
+      'view' => array(
+        'args' => array(),
+        'display_name' => '',
+        'view_name' => '',
+      ),
+    ),
+    'translatable' => 0,
+    'type' => 'user_reference',
   );
 
   // Exported field_base: 'field_type_activity'.

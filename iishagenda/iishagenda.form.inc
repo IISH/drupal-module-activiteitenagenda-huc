@@ -124,7 +124,6 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
       )
     );
 
-
     $form['field_note']['#weight'] = 49;
     $form['#group_children']['check'] = 'group_accomodation';
     $form['#group_children']['facilities'] = 'group_accomodation';

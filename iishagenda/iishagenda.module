@@ -387,10 +387,19 @@ function _iishagenda_sort_catering_items($items)
   // only order when a form is submitted
   if (isset($first['field_catering_time'])) {
     $timeIndexItems = array();
+    $i=0;
     foreach ($items as $item) {
       $time = $item['field_catering_time'][LANGUAGE_NONE][0]['value'];
       $time = str_replace(":", "", $time);
-      $timeIndexItems[$time] = $item;
+
+      // check if timeslot is empty use it, else extend key to prevent overwriting
+      if(!isset($timeIndexItems[$time])){
+        $timeIndexItems[$time] = $item;
+      }else{
+        $index = $time.'_'.$i;
+        $timeIndexItems[$index] = $item;
+      }
+      $i++;
     }
     ksort($timeIndexItems);
     $ordered_items = array_values($timeIndexItems);
