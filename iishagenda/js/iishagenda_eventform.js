@@ -21,9 +21,6 @@
     };
 
 
-    jQuery(document).ready(function($) {
-        init();
-    });
 
     function init(){
         setEventTimePicker();
@@ -75,8 +72,7 @@
 
     function addListeners(){
 
-        $('#edit-field-event-date-u' +
-            'nd-0-value-timeEntry-popup-1').change(function(){
+        $('#edit-field-event-date-und-0-value-timeEntry-popup-1').change(function(){
             var endtimefield = $('#edit-field-event-date-und-0-value2-timeEntry-popup-1');
 
             if(endtimefield.val() == "" || duration==0){
@@ -300,6 +296,9 @@
         }
     }
 
+    jQuery(document).ready(function($) {
+        init();
+    });
 
 
 })(jQuery, Drupal, this, this.document);

@@ -22,13 +22,28 @@ function _custom_validation($form, &$form_state) {
   if ($form['#form_id'] == 'event_node_form' ) {
     $form_errors = form_get_errors();
     $drupal_errors = drupal_get_messages('error');
-    if(count($form_errors)>0){
 
-      foreach($drupal_errors['error'] as $key => $error) {
-        if (in_array($error, $form_errors)) {
-          unset($drupal_errors['error'][$key]);
+    if($form_errors == null){
+      $form_errors = array();
+    }
+
+
+    if($form_state['submitted'] && empty($form_state['values']['field_event_room'][LANGUAGE_NONE][0]['nid'])){
+      $form_errors['field_event_room[und][0][value'] = t('Kies een zaal.');
+    }
+
+    $catering_errors = _validate_catering_items($form_state);
+    $form_errors = array_merge($form_errors,$catering_errors);
+
+    if(count($form_errors)>0){
+      if(isset($drupal_errors['error'])){
+        foreach($drupal_errors['error'] as $key => $error) {
+          if (in_array($error, $form_errors)) {
+            unset($drupal_errors['error'][$key]);
+          }
         }
       }
+
       form_clear_error();
       foreach($form_errors as $key => $message) {
         switch($key){
@@ -44,16 +59,46 @@ function _custom_validation($form, &$form_state) {
           case 'field_people][und][0][value':
             $m = t('Geef het aantal personen op aub.');
             break;
+          default:
+            $m = t($message);
+            break;
         }
-        if(isset($m)){
-          form_set_error($key,$m);
-        }
-      //  drupal_set_message($m, 'error');
+
+        form_set_error($key,$m);
       }
     }
   }
 }
 
+
+/**
+ * Validates time on catering items when there is more than one item
+ */
+function _validate_catering_items($form_state)
+{
+  $catering_items = $form_state['values']['field_catering']['und'];
+  $errors = array();
+  if(!empty($catering_items)){
+
+    // -1 to exclude 'add more' item in array
+    $catering_item_total = count($catering_items)-1;
+    if($catering_item_total == 1){
+      return array();
+    }
+
+    for($i=0; $i<$catering_item_total;$i++){
+      $item = $catering_items[$i];
+
+      // expect length of 5 XX:XX
+      if(empty($item['field_catering_time'][LANGUAGE_NONE][0]['value']) ||
+        strlen($item['field_catering_time'][LANGUAGE_NONE][0]['value']) !== 5){
+        $errors['field_catering]['.LANGUAGE_NONE.']['.$i.'][field_catering_time']  = t('Ongeldig tijdstip catering item');
+      }
+    }
+  }
+
+  return $errors;
+}
 
 
 /**
@@ -61,8 +106,7 @@ function _custom_validation($form, &$form_state) {
  */
 function iishagenda_form_alter(&$form, $form_state, $form_id)
 {
-
-  $debug = false;
+  $debug = variable_get('iishagenda_debug', false);
 
   if($form_id == "taxonomy_form_term" && $form["#vocabulary"]->machine_name == "room_location"){
     $form['#validate'][] = '_iishagenda_check_admincontrol';
@@ -109,7 +153,6 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
       $form['field_locations'][LANGUAGE_NONE]['#default_value'] = $default;
     }
 
-
     // Add check button
     $form['check'] = array(
       '#type' => 'button',
@@ -129,9 +172,8 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
     $form['#group_children']['facilities'] = 'group_accomodation';
 
 
-	//
     $options = _iishagenda_get_available_rooms($form, $form_state);
-	$msg = '';
+	  $msg = '';
     if (!array_key_exists('values', $form_state)) {
 //	    $msg = t('');
     } else if (count($options) == 0) {
@@ -178,12 +220,11 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
         '#submit' => array('_iishagenda_option_confirm','node_form_submit'),
         '#weight'=>50
       );
-   }
+    }
 
     return $form;
   }
 }
-
 
 /**
  *  set status to cancel and save

@@ -9,6 +9,7 @@ module_load_include('inc', 'iishagenda', 'iishagenda.view');
  */
 function iishagenda_init()
 {
+
   switch (arg(0)) {
     case "catering":
       drupal_add_js(drupal_get_path('module', 'iishagenda') . '/js/iishagenda.js');
