@@ -27,6 +27,13 @@ function _custom_validation($form, &$form_state) {
       $form_errors = array();
     }
 
+    // remove 'An illegal choice has been detected error
+    if(isset($form_errors['field_event_room][und'])){
+      if (($key = array_search($form_errors['field_event_room][und'], $drupal_errors['error'])) !== false) {
+        unset($drupal_errors['error'][$key]);
+      }
+      unset($form_errors['field_event_room][und']);
+    }
 
     if($form_state['submitted'] && empty($form_state['values']['field_event_room'][LANGUAGE_NONE][0]['nid'])){
       $form_errors['field_event_room[und][0][value'] = t('Kies een zaal.');
