@@ -46,8 +46,50 @@
         });
 
         $('#edit-field-status-changed-by-und').attr('disabled','disabled');
+
+        $("#edit-submit").click(function(e){
+            e.preventDefault();
+            var validCatering = checkCatering();
+
+            if(!validCatering){
+                if (confirm("Een aantal catering items hebben geen tijd, wil je voor deze items het aanvangs tijdstip van de reservering gebruiken?")) {
+                    setCatering();
+                    $("#event-node-form").submit();
+                } else {
+                    alert('Vul een tijd in voor de catering.');
+                }
+            }else{
+                $(".node-event-form").submit();
+            }
+
+        });
     }
 
+    function checkCatering(){
+        var isValid = true;
+        var $cateringItems = $('.field-name-field-catering-time input');
+        if($cateringItems.length >1){
+            $.each($cateringItems,function(i,input){
+                var cat_time = $(input).val();
+                if(cat_time.length !== 5){
+                    isValid = false;
+                }
+            });
+        }
+
+        return isValid;
+    }
+
+    function setCatering(){
+        var $cateringItems = $('.field-name-field-catering-time input');
+        $.each($cateringItems,function(i,input){
+            var cat_time = $(input).val();
+            var event_time = $("input[name='field_event_date[und][0][value][time]']").val();
+            if(cat_time.length !== 5){
+                $(input).val(event_time);
+            }
+        });
+    }
 
     /**
      * Set Event time pickers

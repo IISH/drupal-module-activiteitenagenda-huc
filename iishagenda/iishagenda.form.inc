@@ -81,7 +81,7 @@ function _custom_validation($form, &$form_state) {
 /**
  * Validates time on catering items when there is more than one item
  */
-function _validate_catering_items($form_state)
+function _validate_catering_items(&$form_state)
 {
   $catering_items = $form_state['values']['field_catering']['und'];
   $errors = array();
@@ -124,6 +124,8 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
     $form['#validate'][] = '_custom_validation';
 
     unset($form['actions']['preview']);
+
+
 
     // Auto check all locations if form is new
     $node = $form_state['node'];
