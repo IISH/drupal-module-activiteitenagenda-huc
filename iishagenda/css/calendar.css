@@ -125,3 +125,10 @@ body.page-calendar-week .calendar-agenda-items.single-day:nth-child(-n+15), body
 
 .calendar-calendar .week-view #header-container td.margin-right {
   width: 15px; }
+
+.holiday {
+  background-color: #ef7000;
+  color: #FFFFFF;
+  border-radius: 2px;
+  padding: 1px 5px;
+  letter-spacing: .5px; }

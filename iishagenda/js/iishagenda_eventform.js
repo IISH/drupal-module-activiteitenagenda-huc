@@ -261,7 +261,7 @@
         var $checkboxes = $('.form-item-field-event-room-und input[type="checkbox"]');
 
         // if user is editing or a room is already set
-        if($("body").hasClass('page-node-edit') || $checkboxes.filter(':checked').length > 0){
+        if($("body").hasClass('page-node-edit') || $checkboxes.length > 0){
             show_alert();
             $(".ui-timepicker-wrapper").css("display","none");
             $('#edit-check').css("border","2px solid orange");
@@ -339,7 +339,7 @@
     }
 
     jQuery(document).ready(function($) {
-        init();
+        if($('.node-event-form').length > 0) init();
     });
 
 

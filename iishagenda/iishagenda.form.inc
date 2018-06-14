@@ -404,17 +404,29 @@ function _iishagenda_get_available_rooms($form, $form_state) {
     }
   }
 
+  // check if location has holiday on given date.
+  $closed_locations = iishagenda_get_closed_locations($startdate,$enddate,$location_ids);
+  if (count($closed_locations) > 0) {
+    foreach ($closed_locations as $location) {
+      $msg = t('Locatie :location is gesloten op de gekozen datum vanwege :holiday  :period.',array(':location'=>$location['name'],':holiday'=>$location['holiday'],':period'=>$location['period']));
+      drupal_set_message($msg,'warning');
+    }
+    $closed_location_ids = array_keys($closed_locations);
+    $query->fieldCondition('field_room_location', 'tid', $closed_location_ids, 'NOT IN');
+  }
+
   // Add location condition
   if (count($location_ids) > 0) {
     $query->fieldCondition('field_room_location', 'tid', $location_ids);
   }
+
 
   // TODOGCU
   // Add people condition
   // if not admin then check room capacity (if admin don't check room capacity)
 //	if ( !is_user_admin() ) {
   if ( !is_user_event_administrator_all_rooms() ) {
-	$query->fieldCondition('field_capacity', 'value', $people, '>=');
+	  $query->fieldCondition('field_capacity', 'value', $people, '>=');
   }
   $results = $query->execute();
 
@@ -449,7 +461,7 @@ function _iishagenda_get_available_rooms($form, $form_state) {
   }
 
   if(count($options) == 0 && $form_state['rebuild'] && $form_state['triggering_element']['#name'] !== "field_attachment_und_0_upload_button" ){
-    drupal_set_message('Er zijn helaas geen beschikbare zalen gevonden. Kies aub een andere dag / tijd of locatie.');
+    drupal_set_message('Er zijn helaas geen beschikbare zalen gevonden. Kies aub een andere dag / tijd of locatie.','warning');
   }
 
   return $options;
