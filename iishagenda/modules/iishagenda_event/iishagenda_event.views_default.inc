@@ -2763,6 +2763,15 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['filters']['field_event_status_value']['value'] = array(
     'new' => 'new',
   );
+  /* Filter criterion: Content: Has taxonomy term */
+  $handler->display->display_options['filters']['tid']['id'] = 'tid';
+  $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['filters']['tid']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid']['relationship'] = 'field_event_room_nid';
+  $handler->display->display_options['filters']['tid']['value'] = array(
+    0 => '52',
+  );
+  $handler->display->display_options['filters']['tid']['vocabulary'] = 'room_location';
   $handler->display->display_options['path'] = 'approval-list';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Wachtlijst';
