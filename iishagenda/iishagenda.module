@@ -367,6 +367,17 @@ function iishagenda_node_presave($node)
 
   if ($node->type == 'event') {
 
+    $current_node = node_load($node->nid);
+    $current_node_w = entity_metadata_wrapper('node',$current_node);
+    $new_node_w = entity_metadata_wrapper('node',$node);
+
+    $old_status = $current_node_w->field_event_status->value();
+    $new_status = $new_node_w->field_event_status->value();
+
+    if($old_status !== $new_status){
+      $node->field_status_changed_by[LANGUAGE_NONE][0]['uid'] = $user->uid;
+    }
+
     // if no control, status is approved
     if ($node->is_new && !_iishagenda_is_event_controlled($node)) {
       $node->field_event_status[LANGUAGE_NONE][0]['value'] = 'approved';
@@ -380,11 +391,8 @@ function iishagenda_node_presave($node)
 
     // only mail owner if current user is not the owner, and it is not a clone
     if ($user->uid !== $node->uid && $clone == 0) {
-      $old_node = node_load($node->vid);
-      $current_status = issetor($old_node->field_event_status[LANGUAGE_NONE][0]['value'], false);
-      $new_status = issetor($node->field_event_status[LANGUAGE_NONE][0]['value'], false);
 
-      if ($current_status !== $new_status && $new_status == 'approved') {
+      if ($old_status !== $new_status && $new_status == 'approved') {
         _notify_event_owner($node);
       }
     }
