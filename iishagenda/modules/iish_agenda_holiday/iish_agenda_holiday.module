@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the IISH Agenda Holiday feature.
+ */
+
+include_once 'iish_agenda_holiday.features.inc';

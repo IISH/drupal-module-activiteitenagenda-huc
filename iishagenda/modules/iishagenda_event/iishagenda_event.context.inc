@@ -23,6 +23,7 @@ function iishagenda_event_context_default_contexts() {
         'approval-list' => 'approval-list',
         'calendar' => 'calendar',
         'catering' => 'catering',
+        'catering-archive' => 'catering-archive',
         'locations' => 'locations',
         'my-events' => 'my-events',
         'node/add/event' => 'node/add/event',
@@ -33,6 +34,7 @@ function iishagenda_event_context_default_contexts() {
     'node' => array(
       'values' => array(
         'event' => 'event',
+        'holiday' => 'holiday',
         'room' => 'room',
       ),
       'options' => array(
@@ -48,6 +50,7 @@ function iishagenda_event_context_default_contexts() {
         'catering' => 'catering',
         'catering-archive' => 'catering-archive',
         'clone/*' => 'clone/*',
+        'holidays' => 'holidays',
       ),
     ),
     'taxonomy_term' => array(
