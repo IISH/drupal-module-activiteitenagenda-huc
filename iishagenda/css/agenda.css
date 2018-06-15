@@ -120,6 +120,14 @@ body.agenda .content .view-catering table.field-collection-view-final thead tr, 
 label[for=edit-field-type-activity-tid], label[for=edit-field-room-location-tid], label[for=edit-field-event-status-value], label[for=edit-field-event-date-value] {
   color: black !important; }
 
+@media print {
+  .agenda #section-header,
+  .agenda .region-sidebar-first {
+    display: none; }
+  .agenda .calendar-calendar .week-view #single-day-container, .calendar-calendar .day-view #single-day-container {
+    border-top: 1px solid #CCCCCC;
+    height: auto; } }
+
 body.agenda #region-sidebar-second {
   display: none; }
 
