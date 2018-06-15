@@ -378,6 +378,25 @@ function iishagenda_node_presave($node)
       $node->field_status_changed_by[LANGUAGE_NONE][0]['uid'] = $user->uid;
     }
 
+    // term id 53 Oost Indisch huis
+    // term id 54 Spinhuis
+    $room = $new_node_w->field_event_room->value();
+    $room_w = entity_metadata_wrapper('node',$room[0]);
+    $location = $room_w->field_room_location->value();
+    if($location->tid == '53' || $location->tid == '53'){
+      $date = $new_node_w->field_event_date->value();
+      $startdate = strtotime($date['value']);
+      $enddate = strtotime($date['value2']);
+      $starthour = (int) date('H', $startdate);
+      $endhour = (int) date('H', $enddate);
+      $dayofweek = (int) date('N', $startdate);
+      $note = $new_node_w->field_note->value();
+
+      if($starthour < 9 || $endhour > 17 || $dayofweek > 5 || !empty($note)){
+        iishagenda_notify_location_admin($node);
+      }
+    }
+
     // if no control, status is approved
     if ($node->is_new && !_iishagenda_is_event_controlled($node)) {
       $node->field_event_status[LANGUAGE_NONE][0]['value'] = 'approved';
@@ -618,6 +637,38 @@ function _isshagenda_compose_send_mail($to, $subject, $body, $successMessage = f
 
 
 /**
+ * Notify location admin
+ */
+function iishagenda_notify_location_admin($event)
+{
+  global $base_url;
+  global $user;
+
+  $to = _iishagenda_get_location_admin_email_by_event($event);
+
+  $module = 'iishagenda';
+  $from = variable_get('site_mail', '');
+  $language = user_preferred_language($user);
+
+  $subject = "Reservering buiten kantoortijden " . $event->title;
+  $body = array();
+  $body[] = "De reservering '" . $event->title . "' aangemaakt of gewijzigd en is buiten kantoortijd of heeft een opmerking.";
+  $body[] = "Zie: " . $base_url . "/node/". $event->nid;
+
+  $params = array(
+    'subject' => $subject,
+    'body' => $body,
+  );
+
+  $result = drupal_mail($module, 'notice', $to, $language, $params, $from);
+
+  if (!$result["result"]){
+    watchdog(WATCHDOG_ERROR, 'Locatiebeheer kon niet op de hoogte worden gesteld. (iishagenda_notify_location_admin, node: '.$event->nid.')');
+   }
+}
+
+
+/**
  * Sendsadmin notification mail
  * (deprecated)
  */
@@ -780,6 +831,19 @@ function _iishagenda_get_location_admin_by_event($event)
     return l($email, 'mailto:' . $email, array('absolute' => TRUE));
   }
   return '';
+}
+
+function _iishagenda_get_location_admin_email_by_event($event)
+{
+  $event = entity_metadata_wrapper('node', $event);
+  $rooms = $event->field_event_room->value();
+  if (isset($rooms[0])) {
+    $room_wrapper = entity_metadata_wrapper('node', $rooms[0]);
+    $location = $room_wrapper->field_room_location->value();
+    $location_wrapper = entity_metadata_wrapper('taxonomy_term', $location);
+    return  $location_wrapper->field_admin_email->value();
+  }
+  return null;
 }
 
 /**
@@ -953,7 +1017,7 @@ function iishagenda_views_pre_view(&$view)
 
   if (in_array($view->name,$views) ||
     ($view->name === 'upcoming_events' && in_array($view->current_display,$upcoming_displays))) {
-    
+
     $view_filters = $view->display_handler->get_option('filters');
     $location_id = _iishagenda_determine_location();
     $view_filters['tid']['value'][0] = $location_id;
