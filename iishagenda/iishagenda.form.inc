@@ -432,10 +432,24 @@ function _iishagenda_get_available_rooms($form, $form_state) {
 
   $options = array();
 
-  // remove booked rooms form all rooms
+  // remove booked rooms from all rooms
   foreach ($booked_rooms as $booked_room) {
     unset($results['node'][$booked_room]);
   }
+
+  //  Exclude some rooms if user is not an (event) admin
+  // @TODO: make this dynamically
+  global $user;
+  $admin_roles = array(3,9,12,11); // admin, event admin, event admin all rooms, room admin
+  $user_roles = array_keys($user->roles);
+  $admin_only_rooms = array(4185,4187); // Spinhuis kantine, Spinhuis S01
+
+  if(count(array_intersect($admin_roles,$user_roles)) == 0){
+    foreach ($admin_only_rooms as $admin_only_room) {
+     if(isset($results['node'][$admin_only_room])) unset($results['node'][$admin_only_room]);
+    }
+  }
+
 
   if (isset($results['node'])) {
     $nodes = node_load_multiple(array_keys($results['node']));
