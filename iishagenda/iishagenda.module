@@ -367,16 +367,20 @@ function iishagenda_node_presave($node)
 
   if ($node->type == 'event') {
 
-    $current_node = node_load($node->nid);
-    $current_node_w = entity_metadata_wrapper('node',$current_node);
-    $new_node_w = entity_metadata_wrapper('node',$node);
 
-    $old_status = $current_node_w->field_event_status->value();
+    $new_node_w = entity_metadata_wrapper('node',$node);
     $new_status = $new_node_w->field_event_status->value();
 
-    if($old_status !== $new_status){
-      $node->field_status_changed_by[LANGUAGE_NONE][0]['uid'] = $user->uid;
+    if(!empty($node->nid)){
+      $current_node = node_load($node->nid);
+      $current_node_w = entity_metadata_wrapper('node',$current_node);
+      $old_status = $current_node_w->field_event_status->value();
+
+      if($old_status !== $new_status){
+        $node->field_status_changed_by[LANGUAGE_NONE][0]['uid'] = $user->uid;
+      }
     }
+
 
     // term id 53 Oost Indisch huis
     // term id 54 Spinhuis
@@ -626,13 +630,12 @@ function _isshagenda_compose_send_mail($to, $subject, $body, $successMessage = f
       drupal_set_message('ERROR: E-mail (' . addslashes($subject) . ') NIET verstuurd naar: ' . $to . ' (Code: 745128)', 'error');
     }
   }
-//  else{
+
   if ($result["result"]) {
     return true;
   } else {
     return false;
   }
-//  }
 }
 
 
@@ -843,7 +846,7 @@ function _iishagenda_get_location_admin_email_by_event($event)
     $location_wrapper = entity_metadata_wrapper('taxonomy_term', $location);
     return  $location_wrapper->field_admin_email->value();
   }
-  return null;
+  return false;
 }
 
 /**
@@ -918,9 +921,9 @@ function iishagenda_cron()
 
   // send mail only on workdays
   if (date('N') >= 6 || variable_get('huc_agenda_reservering_optie_mail') == date('Y-m-d')) {
-    watchdog('iish_agenda', 'HuC Agenda optie SKIPPED ' . date('Y-m-d H:i'), WATCHDOG_NOTICE);
+    watchdog('iish_agenda', 'HuC Agenda optie SKIPPED :date', array(':date'=>date('Y-m-d H:i')) , WATCHDOG_NOTICE);
   } else {
-    watchdog('iish_agenda', 'HuC Agenda optie RUN ' . date('Y-m-d H:i'), WATCHDOG_NOTICE);
+    watchdog('iish_agenda', 'HuC Agenda optie RUN :date ' ,array(':date'=>date('Y-m-d H:i')), WATCHDOG_NOTICE);
 
     variable_set('huc_agenda_reservering_optie_mail', date('Y-m-d'));
 
@@ -928,7 +931,7 @@ function iishagenda_cron()
     $time_to_event = 60 * 60 * 24 * 10;
     $datelimit = date('Y-m-dTH:i:s', time() + $time_to_event);
 
-    // start with the base table
+    // Query optional events 10 days prior to event
     $query = db_select('node', 'n');
     $query->join('users', 'u', 'n.uid = u.uid');
     $query->join('field_data_field_event_option', 'o', 'o.entity_id = n.nid');
@@ -943,11 +946,13 @@ function iishagenda_cron()
       ->condition('d.field_event_date_value', $datelimit, "<=")
       ->condition('d.field_event_date_value', date('Y-m-dTH:i:s'), ">")
       ->condition('n.status', 1)
-      ->execute();
+      ->execute()->fetchAll();
 
     $nids_ok = array();
     $nids_error = array();
     foreach ($result as $node) {
+
+      // Notify event owner
       $subject = "Je reservering is een optie, bevestig of annuleer svp. / Your reservation is an option, please accept or cancel: " . $node->title;
       $body = array();
       $body[] = "Je reservering '" . $node->title . "' is als optie aangemaakt.";
@@ -958,15 +963,25 @@ function iishagenda_cron()
       $body[] = "To modify/accept/cancel your registration please contact facilities.";
       $body[] = "See: " . $base_url . "/node/" . $node->nid . "/";
 
-      if (!_isshagenda_compose_send_mail($node->mail, $subject, $body, false)) {
+      if (!_isshagenda_compose_send_mail($node->mail, $subject, $body, 'Versturen optie notificaties gelukt.')) {
         $nids_error[] = $node->nid;
       } else {
         $nids_ok[] = $node->nid;
       }
+
+      // Notify admin
+      $subject = "Evenement " . $node->title. " is een optie.";
+      $body = array();
+      $body[] = "De reservering '" . $node->title . "' is als optie aangemaakt en begint binnenkort.";
+      $body[] = "De eigenaar is op de hoogte gesteld.";
+      $body[] = "Zie: " . $base_url . "/node/" . $node->nid . "/";
+
+      $event = node_load($node->nid);
+      $admin_email = _iishagenda_get_location_admin_email_by_event($event);
+      _isshagenda_compose_send_mail($admin_email, $subject, $body, false);
     }
 
     watchdog('iish_agenda', ':scount reserveringsoptie(s), :scount herinnering(en) verstuurd. ( nodes :nids )', array(':scount' => count($nids_ok), ':nids' => implode(",", $nids_ok)), WATCHDOG_NOTICE);
-
     if (count($nids_error) > 0) {
       watchdog('iish_agenda', ':fcount herinnering(en) kon(den) niet wordem verstuurd. ( nodes :nids )', array(':fcount' => count($nids_error), ':nids' => implode(",", $nids_error)), WATCHDOG_ERROR);
     }
