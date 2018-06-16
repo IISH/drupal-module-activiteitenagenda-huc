@@ -1,7 +1,6 @@
 @media print {
   .agenda #section-header,
   .agenda .region-sidebar-first {
-    display: none; }
+    display: none  !important; }
   .agenda .calendar-calendar .week-view #single-day-container, .calendar-calendar .day-view #single-day-container {
-    border-top: 1px solid #CCCCCC;
-    height: auto; } }
+    height: auto  !important; } }
