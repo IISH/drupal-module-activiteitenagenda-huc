@@ -102,6 +102,30 @@ function iishagenda_calendar_views_default_views() {
   $handler->display->display_options['fields']['field_event_status']['field'] = 'field_event_status';
   $handler->display->display_options['fields']['field_event_status']['label'] = '';
   $handler->display->display_options['fields']['field_event_status']['element_label_colon'] = FALSE;
+  /* Field: Content: Catering */
+  $handler->display->display_options['fields']['field_catering']['id'] = 'field_catering';
+  $handler->display->display_options['fields']['field_catering']['table'] = 'field_data_field_catering';
+  $handler->display->display_options['fields']['field_catering']['field'] = 'field_catering';
+  $handler->display->display_options['fields']['field_catering']['label'] = '';
+  $handler->display->display_options['fields']['field_catering']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_catering']['alter']['text'] = 'Catering';
+  $handler->display->display_options['fields']['field_catering']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_catering']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_catering']['type'] = 'field_collection_fields';
+  $handler->display->display_options['fields']['field_catering']['settings'] = array(
+    'view_mode' => 'token',
+  );
+  $handler->display->display_options['fields']['field_catering']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_catering']['delta_offset'] = '0';
+  /* Field: Field: Opmerking */
+  $handler->display->display_options['fields']['field_note']['id'] = 'field_note';
+  $handler->display->display_options['fields']['field_note']['table'] = 'field_data_field_note';
+  $handler->display->display_options['fields']['field_note']['field'] = 'field_note';
+  $handler->display->display_options['fields']['field_note']['label'] = '';
+  $handler->display->display_options['fields']['field_note']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_note']['alter']['text'] = 'Opmerking';
+  $handler->display->display_options['fields']['field_note']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_note']['hide_empty'] = TRUE;
   /* Sort criterion: Content: Datum -  start date (field_event_date) */
   $handler->display->display_options['sorts']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['sorts']['field_event_date_value']['table'] = 'field_data_field_event_date';
@@ -128,7 +152,7 @@ function iishagenda_calendar_views_default_views() {
   $handler->display->display_options['filters']['tid']['field'] = 'tid';
   $handler->display->display_options['filters']['tid']['relationship'] = 'field_event_room_nid';
   $handler->display->display_options['filters']['tid']['value'] = array(
-    0 => '6',
+    0 => '52',
   );
   $handler->display->display_options['filters']['tid']['expose']['operator_id'] = 'tid_op';
   $handler->display->display_options['filters']['tid']['expose']['label'] = 'Has taxonomy term';
@@ -167,6 +191,29 @@ function iishagenda_calendar_views_default_views() {
   $handler->display->display_options['row_options']['colors']['legend'] = 'type';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Catering */
+  $handler->display->display_options['fields']['field_catering']['id'] = 'field_catering';
+  $handler->display->display_options['fields']['field_catering']['table'] = 'field_data_field_catering';
+  $handler->display->display_options['fields']['field_catering']['field'] = 'field_catering';
+  $handler->display->display_options['fields']['field_catering']['label'] = '';
+  $handler->display->display_options['fields']['field_catering']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_catering']['alter']['text'] = 'Catering';
+  $handler->display->display_options['fields']['field_catering']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_catering']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_catering']['type'] = 'field_collection_fields';
+  $handler->display->display_options['fields']['field_catering']['settings'] = array(
+    'view_mode' => 'full',
+  );
+  $handler->display->display_options['fields']['field_catering']['delta_offset'] = '0';
+  /* Field: Field: Opmerking */
+  $handler->display->display_options['fields']['field_note']['id'] = 'field_note';
+  $handler->display->display_options['fields']['field_note']['table'] = 'field_data_field_note';
+  $handler->display->display_options['fields']['field_note']['field'] = 'field_note';
+  $handler->display->display_options['fields']['field_note']['label'] = '';
+  $handler->display->display_options['fields']['field_note']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_note']['alter']['text'] = 'Opmerking';
+  $handler->display->display_options['fields']['field_note']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_note']['hide_empty'] = TRUE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -306,6 +353,30 @@ function iishagenda_calendar_views_default_views() {
   $handler->display->display_options['fields']['field_event_status']['field'] = 'field_event_status';
   $handler->display->display_options['fields']['field_event_status']['label'] = '';
   $handler->display->display_options['fields']['field_event_status']['element_label_colon'] = FALSE;
+  /* Field: Content: Catering */
+  $handler->display->display_options['fields']['field_catering']['id'] = 'field_catering';
+  $handler->display->display_options['fields']['field_catering']['table'] = 'field_data_field_catering';
+  $handler->display->display_options['fields']['field_catering']['field'] = 'field_catering';
+  $handler->display->display_options['fields']['field_catering']['label'] = '';
+  $handler->display->display_options['fields']['field_catering']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_catering']['alter']['text'] = 'Catering';
+  $handler->display->display_options['fields']['field_catering']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_catering']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_catering']['type'] = 'field_collection_fields';
+  $handler->display->display_options['fields']['field_catering']['settings'] = array(
+    'view_mode' => 'full',
+  );
+  $handler->display->display_options['fields']['field_catering']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_catering']['delta_offset'] = '0';
+  /* Field: Field: Opmerking */
+  $handler->display->display_options['fields']['field_note']['id'] = 'field_note';
+  $handler->display->display_options['fields']['field_note']['table'] = 'field_data_field_note';
+  $handler->display->display_options['fields']['field_note']['field'] = 'field_note';
+  $handler->display->display_options['fields']['field_note']['label'] = '';
+  $handler->display->display_options['fields']['field_note']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_note']['alter']['text'] = 'Opmerking';
+  $handler->display->display_options['fields']['field_note']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_note']['hide_empty'] = TRUE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Date: Date (node) */
   $handler->display->display_options['arguments']['date_argument']['id'] = 'date_argument';
@@ -518,6 +589,8 @@ function iishagenda_calendar_views_default_views() {
     t('Aflopend'),
     t('term'),
     t('field_event_room'),
+    t('Catering'),
+    t('Opmerking'),
     t('Has taxonomy term'),
     t('Month'),
     t('more'),

@@ -185,3 +185,49 @@ body {
   padding: 1px 5px;
   letter-spacing: .5px;
 }
+
+
+.calendar-calendar .day-view .full td .inner div.dayview{
+  padding: 5px 3px;
+}
+
+
+
+.calendar-calendar .day-view .full td .inner div.calendar div,
+.calendar-calendar .week-view .full td .inner div.calendar.weekview div,
+.calendar-calendar .month-view .full td .inner div.calendar div{
+
+  &.views-field-field-catering,
+  &.views-field-field-note{
+    font-weight: 600;
+    padding: 3px;
+    padding-left: 17px;
+    display:block;
+    font-size: 11px;
+    float: left;
+    clear: left;
+    background-image: url(../images/alert.png);
+    background-repeat: no-repeat;
+    background-position: 0px 4px;
+    background-size: 15px auto;
+    color: #DD0000;
+  }
+
+  &.views-field-field-note{
+    float: left;
+    clear: none;
+  }
+}
+.calendar-calendar .month-view .full td .inner div.calendar div{
+  &.views-field-field-catering,
+  &.views-field-field-note{
+    float: right;
+    clear: left;
+    overflow: hidden;
+    width:15px;
+    height:15px;
+    padding:0;
+    color: transparent;
+  }
+
+}

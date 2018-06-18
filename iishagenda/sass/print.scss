@@ -10,6 +10,10 @@
   .agenda .calendar-calendar .week-view #single-day-container, .calendar-calendar .day-view #single-day-container {
     height: auto  !important;
   }
+
+  body.agenda .container-12 .grid-6.region-content{
+    width:100% !important;
+  }
 }
 
 
