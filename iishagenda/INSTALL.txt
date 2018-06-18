@@ -92,5 +92,6 @@ New changes for version 1.2
 - apply patch to fix calendar month pager: https://www.drupal.org/files/issues/calendar_pager_broken-2375235-35.patch
 */
 
-
 Make sure the IISH theme have the same configuration as the theme installed at intranet.iisg.nl (Toggle styles tab particularly)
+
+Enable holiday feature.

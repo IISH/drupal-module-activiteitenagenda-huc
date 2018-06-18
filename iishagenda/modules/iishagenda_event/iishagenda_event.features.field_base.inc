@@ -466,6 +466,7 @@ function iishagenda_event_field_default_field_bases() {
         'filedepot_folder' => 0,
         'forum' => 0,
         'gallery' => 0,
+        'holiday' => 0,
         'maintenance_failures' => 0,
         'memory_page' => 0,
         'minutes_page' => 0,

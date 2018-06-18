@@ -548,7 +548,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Geef de naam op van de externe contactpersoon.',
+    'description' => 'Degene die op de dag zelf  aanwezig is en gebeld kan worden.',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -580,9 +580,16 @@ in de kantine, <b>na afloop terug brengen</b>.',
     ),
     'entity_type' => 'node',
     'field_name' => 'field_contact_person',
-    'label' => 'Contactpersoon (extern)',
+    'label' => 'Begeleider',
     'required' => 0,
     'settings' => array(
+      'mediafront' => array(
+        'custom' => '',
+        'field_type' => 0,
+        'media_type' => 'media',
+        'preview' => 0,
+        'thumbnail' => 0,
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -818,7 +825,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Bekijk <a href=\'[site:url]/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen',
+    'description' => 'Bekijk <a href=\'[site:url]/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen. (opent nieuw venster)',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -1909,7 +1916,8 @@ in de kantine, <b>na afloop terug brengen</b>.',
   t('Aantal personen');
   t('Administrator');
   t('Adres');
-  t('Bekijk <a href=\'[site:url]/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen');
+  t('Begeleider');
+  t('Bekijk <a href=\'[site:url]/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen. (opent nieuw venster)');
   t('Beschrijving');
   t('Bestellingen tot 15 personen kunnen afgehaald worden<br>
 in de kantine, <b>na afloop terug brengen</b>.');
@@ -1920,8 +1928,8 @@ in de kantine, <b>na afloop terug brengen</b>.');
   t('Catering info');
   t('Check this if you want control over reservations; when checked reservations can\'t be made directly, they have to be approved by the admin. And when turned off, users can change their reservations.');
   t('Color');
-  t('Contactpersoon (extern)');
   t('Datum');
+  t('Degene die op de dag zelf  aanwezig is en gebeld kan worden.');
   t('Deze instelling is alleen voor beheerders.');
   t('Dit veld wordt automatisch gevuld als het een evenement een kloon is van een ander evenement.');
   t('Drinken');
@@ -1934,7 +1942,6 @@ in de kantine, <b>na afloop terug brengen</b>.');
   t('Gebruik dit veld om namens een collega/bestaande organisator een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam');
   t('Geef aan van welke locaties je de beschikbare ruimtes wilt zien.');
   t('Geef aan welke faciliteiten je nodig hebt.');
-  t('Geef de naam op van de externe contactpersoon.');
   t('Geef het maximaal aantal personen op ');
   t('Geef hier aan of een andere opstelling mogelijk is en hoeveel plaatsen daarbij horen. Bijv: Theateropstelling: 80 plaatsen');
   t('Geef hier aanvullende informatie / wensen met betrekking tot de zaal (bijv extra stoelen) en zaalcombinaties');
