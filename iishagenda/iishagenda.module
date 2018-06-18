@@ -394,8 +394,9 @@ function iishagenda_node_presave($node)
       $endhour = (int) date('H', $enddate);
       $dayofweek = (int) date('N', $startdate);
       $note = $new_node_w->field_note->value();
+      $catering = $new_node_w->field_catering->value();
 
-      if($starthour < 9 || $endhour > 17 || $dayofweek > 5 || !empty($note)){
+      if($starthour < 9 || $endhour > 17 || $dayofweek > 5 || !empty($note) || count($catering) > 0){
         iishagenda_notify_location_admin($node);
       }
     }
@@ -672,7 +673,7 @@ function iishagenda_notify_location_admin($event)
 
   $subject = "Reservering buiten kantoortijden " . $event->title;
   $body = array();
-  $body[] = "De reservering '" . $event->title . "' aangemaakt of gewijzigd en is buiten kantoortijd of heeft een opmerking.";
+  $body[] = "De reservering '" . $event->title . "' aangemaakt of gewijzigd en is buiten kantoortijd of heeft een opmerking of catering.";
   $body[] = "Zie: " . $base_url . "/node/". $event->nid;
 
   $params = array(
