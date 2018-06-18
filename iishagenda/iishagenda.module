@@ -367,7 +367,6 @@ function iishagenda_node_presave($node)
 
   if ($node->type == 'event') {
 
-
     $new_node_w = entity_metadata_wrapper('node',$node);
     $new_status = $new_node_w->field_event_status->value();
 
@@ -381,7 +380,7 @@ function iishagenda_node_presave($node)
       }
     }
 
-
+    // Notify admin when event is outsideoffice hours or has a note or catering
     // term id 53 Oost Indisch huis
     // term id 54 Spinhuis
     $room = $new_node_w->field_event_room->value();
@@ -543,6 +542,24 @@ function _iishagenda_on_insert_event($node)
 
 
 /**
+ *
+ * Implements hook_preprocess_html()
+ */
+function iishagenda_preprocess_html(&$variables, $hook){
+
+  global $user;
+
+  if ($user) {
+    $roles = array();
+    foreach($user->roles as $user_role){
+      $roles[] = str_replace(' ','-',$user_role);
+    }
+    $variables['classes_array'] = array_merge($variables['classes_array'], $roles);
+  }
+}
+
+
+  /**
  * @param $variables
  *
  * Implements hook_preprocess_page

@@ -141,6 +141,37 @@ body.page-calendar-week .calendar-agenda-items.single-day:nth-child(-n+15), body
 .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-note,
 .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
 .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note {
+  display: none; }
+
+body.administrator .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-catering, body.administrator .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-note,
+body.administrator .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-catering,
+body.administrator .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-note,
+body.administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note,
+body.event-administrator .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-administrator .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-note,
+body.event-administrator .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-catering,
+body.event-administrator .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-note,
+body.event-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note,
+body.event-caterer .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-caterer .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-note,
+body.event-caterer .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-catering,
+body.event-caterer .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-note,
+body.event-caterer .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-caterer .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note,
+body.room-administrator .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-catering,
+body.room-administrator .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-note,
+body.room-administrator .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-catering,
+body.room-administrator .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-note,
+body.room-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.room-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note,
+body.event-administrator-all-rooms .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-administrator-all-rooms .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-note,
+body.event-administrator-all-rooms .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-catering,
+body.event-administrator-all-rooms .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-note,
+body.event-administrator-all-rooms .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-administrator-all-rooms .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note {
   font-weight: 600;
   padding: 3px;
   padding-left: 17px;
@@ -154,13 +185,52 @@ body.page-calendar-week .calendar-agenda-items.single-day:nth-child(-n+15), body
   background-size: 15px auto;
   color: #DD0000; }
 
-.calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-note,
-.calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-note,
-.calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note {
+body.administrator .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-catering,
+body.administrator .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-catering,
+body.administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-administrator .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-administrator .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-catering,
+body.event-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-caterer .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-caterer .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-catering,
+body.event-caterer .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.room-administrator .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-catering,
+body.room-administrator .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-catering,
+body.room-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-administrator-all-rooms .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-administrator-all-rooms .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-catering,
+body.event-administrator-all-rooms .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering {
+  background-image: url(../images/catering.png);
+  background-position: 0px 3px;
+  background-size: 14px auto; }
+
+body.administrator .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-note,
+body.administrator .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-note,
+body.administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note,
+body.event-administrator .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-note,
+body.event-administrator .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-note,
+body.event-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note,
+body.event-caterer .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-note,
+body.event-caterer .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-note,
+body.event-caterer .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note,
+body.room-administrator .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-note,
+body.room-administrator .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-note,
+body.room-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note,
+body.event-administrator-all-rooms .calendar-calendar .day-view .full td .inner div.calendar div.views-field-field-note,
+body.event-administrator-all-rooms .calendar-calendar .week-view .full td .inner div.calendar.weekview div.views-field-field-note,
+body.event-administrator-all-rooms .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note {
   float: left;
   clear: none; }
 
-.calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering, .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note {
+body.administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering, body.administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note,
+body.event-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note,
+body.event-caterer .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-caterer .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note,
+body.room-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.room-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note,
+body.event-administrator-all-rooms .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-administrator-all-rooms .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-note {
   float: right;
   clear: left;
   overflow: hidden;
@@ -168,3 +238,10 @@ body.page-calendar-week .calendar-agenda-items.single-day:nth-child(-n+15), body
   height: 15px;
   padding: 0;
   color: transparent; }
+
+body.administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-caterer .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.room-administrator .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering,
+body.event-administrator-all-rooms .calendar-calendar .month-view .full td .inner div.calendar div.views-field-field-catering {
+  margin-leftt: 4px; }
