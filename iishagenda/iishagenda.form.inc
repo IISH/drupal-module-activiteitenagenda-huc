@@ -462,6 +462,7 @@ function _iishagenda_get_available_rooms($form, $form_state) {
       // capacity
       $capacity = field_get_items('node', $node, 'field_capacity');
       $capacity_num = $capacity[0]['value'];
+
       $capacity_note = field_get_items('node', $node, 'field_capacity_note');
       $capacity_note = $capacity_note[0]['value'];
       if ($capacity_note) {
@@ -470,7 +471,13 @@ function _iishagenda_get_available_rooms($form, $form_state) {
         $capacity_note = "";
       }
 
-      $options[$node->nid] = '<b>'.$location_term->name . "</b> &#10142; <b>" . $node->title . "</b> - Max. " . $capacity_num . " personen" . $capacity_note;
+      if ( $capacity_num > 2 ) {
+        $capacity_num = ' - Max. ' . $capacity_num . " personen";
+      } else {
+	      $capacity_num = '';
+      }
+
+      $options[$node->nid] = '<b>'.$location_term->name . "</b> &#10142; <b>" . $node->title . "</b>" . $capacity_num . $capacity_note;
     }
   }
 
