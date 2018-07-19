@@ -241,6 +241,9 @@ body.event-administrator-all-rooms{
       clear: none;
     }
   }
+
+  .calendar-calendar .day-view .full td .inner div.calendar div,
+  .calendar-calendar .week-view .full td .inner div.calendar.weekview div,
   .calendar-calendar .month-view .full td .inner div.calendar div{
     &.views-field-field-catering,
     &.views-field-field-note{
