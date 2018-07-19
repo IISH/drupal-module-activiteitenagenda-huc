@@ -38,7 +38,7 @@ function iish_agenda_holiday_views_default_views() {
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['content'] = '<br>
 <br>
-<a href=\'/node/add/holiday\'>Vakantie- / feestdag toevoegen</a><br>
+<a href=\'../node/add/holiday\'>Vakantie- / feestdag toevoegen</a><br>
 <br>';
   $handler->display->display_options['header']['area']['format'] = 'filtered_html';
   /* Field: Content: Title */
@@ -116,7 +116,7 @@ function iish_agenda_holiday_views_default_views() {
     t('last »'),
     t('<br>
 <br>
-<a href=\'/node/add/holiday\'>Vakantie- / feestdag toevoegen</a><br>
+<a href=\'../node/add/holiday\'>Vakantie- / feestdag toevoegen</a><br>
 <br>'),
     t('Title'),
     t('Date'),

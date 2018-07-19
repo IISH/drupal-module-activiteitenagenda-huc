@@ -91,6 +91,9 @@ function iishagenda_event_user_default_permissions() {
     'name' => 'create field_status_changed_by',
     'roles' => array(
       'administrator' => 'administrator',
+      'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
+      'room administrator' => 'room administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -176,6 +179,9 @@ function iishagenda_event_user_default_permissions() {
     'name' => 'edit field_status_changed_by',
     'roles' => array(
       'administrator' => 'administrator',
+      'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
+      'room administrator' => 'room administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -261,6 +267,9 @@ function iishagenda_event_user_default_permissions() {
     'name' => 'edit own field_status_changed_by',
     'roles' => array(
       'administrator' => 'administrator',
+      'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
+      'room administrator' => 'room administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -344,6 +353,9 @@ function iishagenda_event_user_default_permissions() {
     'name' => 'view field_status_changed_by',
     'roles' => array(
       'administrator' => 'administrator',
+      'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
+      'room administrator' => 'room administrator',
     ),
     'module' => 'field_permissions',
   );
@@ -427,6 +439,16 @@ function iishagenda_event_user_default_permissions() {
     'name' => 'view own field_status_changed_by',
     'roles' => array(
       'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
+      'chief editor' => 'chief editor',
+      'editor' => 'editor',
+      'event administrator' => 'event administrator',
+      'event administrator all rooms' => 'event administrator all rooms',
+      'event caterer' => 'event caterer',
+      'maintenance editor' => 'maintenance editor',
+      'memory editor' => 'memory editor',
+      'news editor' => 'news editor',
+      'room administrator' => 'room administrator',
     ),
     'module' => 'field_permissions',
   );

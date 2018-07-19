@@ -602,6 +602,12 @@ function iishagenda_preprocess_node(&$variables, $hook)
       $variables["clone"] = false;
     }
 
+    $user = user_load($variables["uid"]);
+    $user_w = entity_metadata_wrapper('user',$user);
+    $name = $user_w->field_full_name->value();
+    if(!empty($name)){
+      $variables["name"] = $name;
+    }
     $variables["create_date"] = format_date($variables["created"], 'event_date');
   }
 }

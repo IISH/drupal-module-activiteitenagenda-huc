@@ -966,7 +966,7 @@ function iishagenda_event_field_default_field_bases() {
         8 => 0,
         9 => 9,
         10 => 0,
-        11 => 0,
+        11 => 11,
         12 => 12,
       ),
       'referenceable_status' => array(

@@ -1384,7 +1384,7 @@ Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
     ),
     'entity_type' => 'node',
     'field_name' => 'field_status_changed_by',
-    'label' => 'Status changed by',
+    'label' => 'Status gewijzigd door',
     'required' => 0,
     'settings' => array(
       'mediafront' => array(
@@ -1915,7 +1915,7 @@ Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam');
   t('Rules');
   t('Soort activiteit');
   t('Status');
-  t('Status changed by');
+  t('Status gewijzigd door');
   t('Telefoon');
   t('Telefoon (extern)');
   t('Tijd');

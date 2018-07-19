@@ -99,3 +99,4 @@ NEW in version 2
 
 - Enable holiday feature.
 - set permissions for holiday node type (all types of admins can do all)
+- set permissions for status changed by field, everybody can view, admins can edit. /admin/structure/types/manage/event/fields/field_status_changed_by
