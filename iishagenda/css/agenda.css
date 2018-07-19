@@ -22,52 +22,64 @@
 .views-field-field-setup .field-content {
   margin-left: 110px; }
 
+.view-accomodations td,
 .view-catering td,
 .view-catering-archive td {
   font-size: 11px; }
 
+.view-accomodations th,
 .view-catering th,
 .view-catering-archive th {
   font-style: italic;
   font-weight: bold; }
 
+.view-accomodations th.field_catering_time,
 .view-catering th.field_catering_time,
 .view-catering-archive th.field_catering_time {
   width: 30px; }
 
+.view-accomodations caption,
 .view-catering caption,
 .view-catering-archive caption {
   margin-top: 30px;
   font-size: 16px; }
 
+.view-accomodations h2,
 .view-catering h2,
 .view-catering-archive h2 {
   margin: 40px 0 20px 0; }
 
+.view-accomodations td.views-field-field-catering tr,
 .view-catering td.views-field-field-catering tr,
 .view-catering-archive td.views-field-field-catering tr {
   border: none; }
 
+.view-accomodations .views-field-field-catering,
 .view-catering .views-field-field-catering,
 .view-catering-archive .views-field-field-catering {
   max-width: 450px; }
+  .view-accomodations .views-field-field-catering table,
   .view-catering .views-field-field-catering table,
   .view-catering-archive .views-field-field-catering table {
     min-width: 450px; }
+    .view-accomodations .views-field-field-catering table td,
     .view-catering .views-field-field-catering table td,
     .view-catering-archive .views-field-field-catering table td {
       vertical-align: top; }
 
+.view-accomodations .views-field-field-event-date a,
 .view-catering .views-field-field-event-date a,
 .view-catering-archive .views-field-field-event-date a {
   font-weight: bold; }
 
+.view-accomodations tr.views-field-field-note,
 .view-catering tr.views-field-field-note,
 .view-catering-archive tr.views-field-field-note {
   border: none;
   color: #DD0000;
   font-weight: bold;
   border-bottom: 1px solid #DD0000; }
+  .view-accomodations tr.views-field-field-note td,
   .view-catering tr.views-field-field-note td,
   .view-catering-archive tr.views-field-field-note td {
     border: none;

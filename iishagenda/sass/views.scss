@@ -30,7 +30,7 @@
 }
 
 
-
+.view-accomodations,
 .view-catering,
 .view-catering-archive{
 
@@ -63,12 +63,9 @@
   }
 
   .views-field-field-catering{
-
     max-width: 450px;
      table{
-      // width: 450px;
        min-width: 450px;
-
        td{
          vertical-align: top;
        }

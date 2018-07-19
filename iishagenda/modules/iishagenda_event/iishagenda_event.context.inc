@@ -48,6 +48,7 @@ function iishagenda_event_context_default_contexts() {
         'upcoming-events' => 'upcoming-events',
         'upcoming-flex' => 'upcoming-flex',
         'catering' => 'catering',
+        'accommodations' => 'accommodations',
         'catering-archive' => 'catering-archive',
         'clone/*' => 'clone/*',
         'holidays' => 'holidays',
