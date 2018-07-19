@@ -2,17 +2,41 @@
 // Print only styles
 @media print {
 
-  .agenda #section-header,
-  .agenda .region-sidebar-first{
-    display: none  !important;
+  html body.admin-menu {
+    margin-top: 0 !important;
   }
 
-  .agenda .calendar-calendar .week-view #single-day-container, .calendar-calendar .day-view #single-day-container {
-    height: auto  !important;
-  }
+  body.agenda{
+    padding-top: 0  !important;;
 
-  body.agenda .container-12 .grid-6.region-content{
-    width:100% !important;
+    // hide
+    .region-sidebar-first,
+    .region-page-top,
+    .section-header,
+    .zone-preface-wrapper,
+    h1.title,
+    .tabs,
+    ul.pager{
+      display: none !important;
+    }
+
+    // change sizing and spacing
+    .region-content,
+    .container-12{
+      width:100% !important;
+      margin:0;
+    }
+
+    #page{
+      margin-top:0;
+    }
+    .date-nav{
+      padding:0;
+    }
+    .calendar-calendar .week-view #single-day-container, .calendar-calendar .day-view #single-day-container {
+      height: auto  !important;
+    }
+
   }
 }
 

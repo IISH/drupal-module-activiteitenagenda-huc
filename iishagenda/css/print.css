@@ -1,8 +1,23 @@
 @media print {
-  .agenda #section-header,
-  .agenda .region-sidebar-first {
-    display: none  !important; }
-  .agenda .calendar-calendar .week-view #single-day-container, .calendar-calendar .day-view #single-day-container {
-    height: auto  !important; }
-  body.agenda .container-12 .grid-6.region-content {
-    width: 100% !important; } }
+  html body.admin-menu {
+    margin-top: 0 !important; }
+  body.agenda {
+    padding-top: 0  !important; }
+    body.agenda .region-sidebar-first,
+    body.agenda .region-page-top,
+    body.agenda .section-header,
+    body.agenda .zone-preface-wrapper,
+    body.agenda h1.title,
+    body.agenda .tabs,
+    body.agenda ul.pager {
+      display: none !important; }
+    body.agenda .region-content,
+    body.agenda .container-12 {
+      width: 100% !important;
+      margin: 0; }
+    body.agenda #page {
+      margin-top: 0; }
+    body.agenda .date-nav {
+      padding: 0; }
+    body.agenda .calendar-calendar .week-view #single-day-container, body.agenda .calendar-calendar .day-view #single-day-container {
+      height: auto  !important; } }
