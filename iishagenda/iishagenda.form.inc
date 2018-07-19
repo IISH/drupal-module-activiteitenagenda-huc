@@ -58,7 +58,7 @@ function _custom_validation($form, &$form_state) {
             $m = t('Geef een titel op aub.');
             break;
           case 'field_event_date][und][0][value':
-            $m = t('Geef een startdatum en -tijd op aub.');
+            $m = t('Geef een datum en tijd op aub.');
             break;
           case 'field_event_date][und][0][value2':
             $m = t('Geef een eindtijd op aub.');
@@ -125,8 +125,6 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
 
     unset($form['actions']['preview']);
 
-
-
     // Auto check all locations if form is new
     $node = $form_state['node'];
 
@@ -180,8 +178,17 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
     $form['#group_children']['check'] = 'group_accomodation';
     $form['#group_children']['facilities'] = 'group_accomodation';
 
+    $options_data = _iishagenda_get_available_rooms($form, $form_state);
 
-    $options = _iishagenda_get_available_rooms($form, $form_state);
+    if(isset( $options_data['options'])){
+      $options = $options_data['options'];
+      $options_attributes = $options_data['options_attributes'];
+    }else{
+      $options = array();
+      $options_attributes = array();
+    }
+
+
 	  $msg = '';
     if (!array_key_exists('values', $form_state)) {
 //	    $msg = t('');
@@ -206,6 +213,7 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
     $form['field_event_room'][LANGUAGE_NONE]['#prefix'] = '<div id="rooms-replace">';
     $form['field_event_room'][LANGUAGE_NONE]['#suffix'] = $msg . '</div>';
     $form['field_event_room'][LANGUAGE_NONE]['#options'] = $options;
+    $form['field_event_room'][LANGUAGE_NONE]['#options_attributes'] = $options_attributes;
     $form['field_event_room'][LANGUAGE_NONE]['#description'] = $currentrooms . $form['field_event_room'][LANGUAGE_NONE]['#description'];
 
     if($form['field_event_option'][LANGUAGE_NONE]['#default_value'] == '1' && $form['field_event_status'][LANGUAGE_NONE]['#default_value'] !== 'cancelled'){
@@ -230,6 +238,21 @@ function iishagenda_form_alter(&$form, $form_state, $form_id)
         '#weight'=>50
       );
     }
+
+
+    // file id 2805, spinhuis en oih regels
+   // $rules_spinhuis_oih = file_load(2805);
+   // $file_url = file_create_url($rules_spinhuis_oih->uri);
+    // create placeholder
+    $link = l( 'regels', '#', array('attributes'=>array('target'=>'_blank')));
+    $form['condition_agree'] = array(
+      '#type' => 'checkbox',
+      '#name' => 'condition_agree',
+      '#title' => t('Ik ga akkoord met de !file. ',
+        array('!file'=>$link)
+      ),
+      '#weight' => 49,
+    );
 
     return $form;
   }
@@ -431,6 +454,7 @@ function _iishagenda_get_available_rooms($form, $form_state) {
   $results = $query->execute();
 
   $options = array();
+  $options_attributes = array();
 
   // remove booked rooms from all rooms
   foreach ($booked_rooms as $booked_room) {
@@ -458,12 +482,14 @@ function _iishagenda_get_available_rooms($form, $form_state) {
 
       $location = field_get_items('node', $node, 'field_room_location');
       $location_term = taxonomy_term_load($location[0]['tid']);
-
+      $location_w = entity_metadata_wrapper('taxonomy_term',$location_term);
       // capacity
       $capacity = field_get_items('node', $node, 'field_capacity');
       $capacity_num = $capacity[0]['value'];
       $capacity_note = field_get_items('node', $node, 'field_capacity_note');
       $capacity_note = $capacity_note[0]['value'];
+      $rules = $location_w->field_rules->value();
+
       if ($capacity_note) {
         $capacity_note = " - " . $capacity_note;
       } else {
@@ -471,6 +497,12 @@ function _iishagenda_get_available_rooms($form, $form_state) {
       }
 
       $options[$node->nid] = '<b>'.$location_term->name . "</b> &#10142; <b>" . $node->title . "</b> - Max. " . $capacity_num . " personen" . $capacity_note;
+      $options_attributes[$node->nid] = array('data-location-tid'=>$location[0]['tid']);
+
+      if(isset($rules['fid'])){
+        $url = file_create_url($rules['uri']);
+        $options_attributes[$node->nid]['data-rules-file-url'] = $url;
+      }
     }
   }
 
@@ -478,7 +510,7 @@ function _iishagenda_get_available_rooms($form, $form_state) {
     drupal_set_message('Er zijn helaas geen beschikbare zalen gevonden. Kies aub een andere dag / tijd of locatie.','warning');
   }
 
-  return $options;
+  return array('options'=>$options,'options_attributes'=>$options_attributes);
 }
 
 /**

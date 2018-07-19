@@ -26,3 +26,5 @@ dependencies[] = strongarm
 
 dependencies[] = i18n
 dependencies[] = i18n_taxonomy
+dependencies[] = form_options_attributes
+

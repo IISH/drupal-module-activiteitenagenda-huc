@@ -10,6 +10,7 @@
         attach : function(context, settings) {
 
             setCateringTimePicker();
+            setAgreement();
             var first = context[0];
 
             if(first && context[0].id.substring(0,4) =="edit"){
@@ -61,8 +62,53 @@
             }else{
                 $(".node-event-form").submit();
             }
-
         });
+
+
+    }
+
+    function setAgreement(){
+        // hide agree bij default
+        $(".form-item-condition-agree").hide();
+
+        if($('body').hasClass('show-rules')){
+            $("#rooms-replace input").change(function(){
+                checkAgreement();
+            });
+        }
+    }
+
+    function checkAgreement(){
+        var $checkboxes = $('.form-item-field-event-room-und input[type="checkbox"]');
+        var urls = [];
+
+        $.each($checkboxes.filter(':checked'),function(i,v){
+            var url = $(this).attr('data-rules-file-url');
+            var alreadyIn = urls.indexOf(url) ;
+            if (typeof url !== typeof undefined && url !== false && alreadyIn === -1) {
+                urls.push(url);
+            }
+        });
+
+
+        if(urls.length == 0){
+            $("#edit-submit").removeAttr('disabled');
+            $(".form-item-condition-agree").hide();
+
+        }else{
+            $("#edit-submit").attr('disabled','disabled');
+            $(".form-item-condition-agree").show();
+
+            $("label[for=edit-condition-agree").find('a').attr('href',urls[0]);
+
+            $('#edit-condition-agree').change(function(){
+                if($(this).is(':checked')){
+                    $("#edit-submit").removeAttr('disabled');
+                }else{
+                    $("#edit-submit").attr('disabled','disabled');
+                }
+            });
+        }
     }
 
     function checkCatering(){
@@ -191,6 +237,9 @@
 	    });
     }
 
+    /**
+     * @TODO: instead of string comparison use new location id attributes in option
+     */
     function determineCatering(){
 	    var $isIisg = false;
 	    var $isIisg2 = false;

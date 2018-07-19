@@ -555,6 +555,12 @@ function iishagenda_preprocess_html(&$variables, $hook){
     foreach($user->roles as $user_role){
       $roles[] = str_replace(' ','-',$user_role);
     }
+
+    //if user has no extra roles, let hem agree to location rules (if set)
+    if(count($user->roles)== 1){
+      $variables['classes_array'][] = 'show-rules';
+    }
+
     $variables['classes_array'] = array_merge($variables['classes_array'], $roles);
   }
 }
