@@ -241,55 +241,6 @@ in de kantine, <b>na afloop terug brengen</b>.',
     ),
   );
 
-  // Exported field_instance: 'node-event-field_approved'.
-  $field_instances['node-event-field_approved'] = array(
-    'bundle' => 'event',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Deze instelling is alleen voor beheerders.',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 7,
-      ),
-      'ical' => array(
-        'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 7,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_approved',
-    'label' => 'Goedgekeurd',
-    'required' => 0,
-    'settings' => array(
-      'mediafront' => array(
-        'custom' => '',
-        'field_type' => 0,
-        'media_type' => 'media',
-        'preview' => 0,
-        'thumbnail' => 0,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 9,
-    ),
-  );
-
   // Exported field_instance: 'node-event-field_attachment'.
   $field_instances['node-event-field_attachment'] = array(
     'bundle' => 'event',
@@ -349,59 +300,6 @@ in de kantine, <b>na afloop terug brengen</b>.',
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 8,
-    ),
-  );
-
-  // Exported field_instance: 'node-event-field_canceled'.
-  $field_instances['node-event-field_canceled'] = array(
-    'bundle' => 'event',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => 'Markeer dit veld om het evenement te annuleren.',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 6,
-      ),
-      'ical' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 6,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_canceled',
-    'label' => 'Geannuleerd',
-    'required' => 0,
-    'settings' => array(
-      'mediafront' => array(
-        'custom' => '',
-        'field_type' => 0,
-        'media_type' => 'media',
-        'preview' => 0,
-        'thumbnail' => 0,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
       'weight' => 8,
     ),
   );
@@ -1989,7 +1887,6 @@ in de kantine, <b>na afloop terug brengen</b>.');
   t('Color');
   t('Datum');
   t('Degene die op de dag zelf  aanwezig is en gebeld kan worden.');
-  t('Deze instelling is alleen voor beheerders.');
   t('Dit veld wordt automatisch gevuld als het een evenement een kloon is van een ander evenement.');
   t('Drinken');
   t('Email (extern)');
@@ -1997,7 +1894,6 @@ in de kantine, <b>na afloop terug brengen</b>.');
   t('Eten');
   t('Faciliteiten');
   t('Facilities');
-  t('Geannuleerd');
   t('Gebruik dit veld om namens iemand anders een evenement aan te maken. De organisator is degene die het evenement organiseert. Als de organisator het evenement niet persoonlijk begeleidt op de dag zelf, vermeld hieronder dan ook de begeleider.<br>
 Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam');
   t('Geef aan van welke locaties je de beschikbare ruimtes wilt zien.');
@@ -2005,14 +1901,12 @@ Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam');
   t('Geef het maximaal aantal personen op ');
   t('Geef hier aan of een andere opstelling mogelijk is en hoeveel plaatsen daarbij horen. Bijv: Theateropstelling: 80 plaatsen');
   t('Geef hier aanvullende informatie / wensen met betrekking tot de zaal (bijv extra stoelen) en zaalcombinaties');
-  t('Goedgekeurd');
   t('Intern / Extern');
   t('Kloon van');
   t('Kostenpost');
   t('Locatie');
   t('Locatiefilter');
   t('Location');
-  t('Markeer dit veld om het evenement te annuleren.');
   t('Opmerking');
   t('Optie');
   t('Organisator');

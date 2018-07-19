@@ -126,6 +126,14 @@ function iishagenda_calendar_views_default_views() {
   $handler->display->display_options['fields']['field_event_status']['field'] = 'field_event_status';
   $handler->display->display_options['fields']['field_event_status']['label'] = '';
   $handler->display->display_options['fields']['field_event_status']['element_label_colon'] = FALSE;
+  /* Field: Content: Optie */
+  $handler->display->display_options['fields']['field_event_option']['id'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['table'] = 'field_data_field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['field'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['label'] = '';
+  $handler->display->display_options['fields']['field_event_option']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_event_option']['alter']['text'] = '<div class=\'event-option-[field_event_option-value]\'>optie</div>';
+  $handler->display->display_options['fields']['field_event_option']['element_label_colon'] = FALSE;
   /* Sort criterion: Content: Datum -  start date (field_event_date) */
   $handler->display->display_options['sorts']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['sorts']['field_event_date_value']['table'] = 'field_data_field_event_date';
@@ -264,6 +272,16 @@ function iishagenda_calendar_views_default_views() {
   $handler->display->display_options['fields']['field_event_status']['field'] = 'field_event_status';
   $handler->display->display_options['fields']['field_event_status']['label'] = '';
   $handler->display->display_options['fields']['field_event_status']['element_label_colon'] = FALSE;
+  /* Field: Content: Optie */
+  $handler->display->display_options['fields']['field_event_option']['id'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['table'] = 'field_data_field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['field'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['label'] = '';
+  $handler->display->display_options['fields']['field_event_option']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_event_option']['alter']['text'] = '<div class=\'event-option-[field_event_option-value]\'>optie</div>';
+  $handler->display->display_options['fields']['field_event_option']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_event_option']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_event_option']['empty_zero'] = TRUE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Date: Date (node) */
   $handler->display->display_options['arguments']['date_argument']['id'] = 'date_argument';
@@ -377,6 +395,14 @@ function iishagenda_calendar_views_default_views() {
   $handler->display->display_options['fields']['field_event_status']['field'] = 'field_event_status';
   $handler->display->display_options['fields']['field_event_status']['label'] = '';
   $handler->display->display_options['fields']['field_event_status']['element_label_colon'] = FALSE;
+  /* Field: Content: Optie */
+  $handler->display->display_options['fields']['field_event_option']['id'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['table'] = 'field_data_field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['field'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['label'] = '';
+  $handler->display->display_options['fields']['field_event_option']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_event_option']['alter']['text'] = '<div class=\'event-option-[field_event_option-value]\'>optie</div>';
+  $handler->display->display_options['fields']['field_event_option']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Date: Date (node) */
   $handler->display->display_options['arguments']['date_argument']['id'] = 'date_argument';
@@ -591,6 +617,7 @@ function iishagenda_calendar_views_default_views() {
     t('field_event_room'),
     t('Catering'),
     t('Opmerking'),
+    t('<div class=\'event-option-[field_event_option-value]\'>optie</div>'),
     t('Has taxonomy term'),
     t('Month'),
     t('more'),

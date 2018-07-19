@@ -10,34 +10,12 @@
 function iishagenda_event_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: 'create field_approved'.
-  $permissions['create field_approved'] = array(
-    'name' => 'create field_approved',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'event administrator' => 'event administrator',
-      'event administrator all rooms' => 'event administrator all rooms',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: 'create field_attachment'.
   $permissions['create field_attachment'] = array(
     'name' => 'create field_attachment',
     'roles' => array(
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: 'create field_canceled'.
-  $permissions['create field_canceled'] = array(
-    'name' => 'create field_canceled',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'event administrator' => 'event administrator',
-      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -117,34 +95,12 @@ function iishagenda_event_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: 'edit field_approved'.
-  $permissions['edit field_approved'] = array(
-    'name' => 'edit field_approved',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'event administrator' => 'event administrator',
-      'event administrator all rooms' => 'event administrator all rooms',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: 'edit field_attachment'.
   $permissions['edit field_attachment'] = array(
     'name' => 'edit field_attachment',
     'roles' => array(
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: 'edit field_canceled'.
-  $permissions['edit field_canceled'] = array(
-    'name' => 'edit field_canceled',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'event administrator' => 'event administrator',
-      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -224,34 +180,12 @@ function iishagenda_event_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: 'edit own field_approved'.
-  $permissions['edit own field_approved'] = array(
-    'name' => 'edit own field_approved',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'event administrator' => 'event administrator',
-      'event administrator all rooms' => 'event administrator all rooms',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: 'edit own field_attachment'.
   $permissions['edit own field_attachment'] = array(
     'name' => 'edit own field_attachment',
     'roles' => array(
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: 'edit own field_canceled'.
-  $permissions['edit own field_canceled'] = array(
-    'name' => 'edit own field_canceled',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'event administrator' => 'event administrator',
-      'event administrator all rooms' => 'event administrator all rooms',
     ),
     'module' => 'field_permissions',
   );
@@ -331,29 +265,11 @@ function iishagenda_event_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: 'view field_approved'.
-  $permissions['view field_approved'] = array(
-    'name' => 'view field_approved',
-    'roles' => array(
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: 'view field_attachment'.
   $permissions['view field_attachment'] = array(
     'name' => 'view field_attachment',
     'roles' => array(
       'administrator' => 'administrator',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: 'view field_canceled'.
-  $permissions['view field_canceled'] = array(
-    'name' => 'view field_canceled',
-    'roles' => array(
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',
@@ -432,29 +348,11 @@ function iishagenda_event_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: 'view own field_approved'.
-  $permissions['view own field_approved'] = array(
-    'name' => 'view own field_approved',
-    'roles' => array(
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
   // Exported permission: 'view own field_attachment'.
   $permissions['view own field_attachment'] = array(
     'name' => 'view own field_attachment',
     'roles' => array(
       'administrator' => 'administrator',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'field_permissions',
-  );
-
-  // Exported permission: 'view own field_canceled'.
-  $permissions['view own field_canceled'] = array(
-    'name' => 'view own field_canceled',
-    'roles' => array(
       'authenticated user' => 'authenticated user',
     ),
     'module' => 'field_permissions',

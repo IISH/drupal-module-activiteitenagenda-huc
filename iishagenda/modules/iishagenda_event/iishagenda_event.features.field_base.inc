@@ -46,34 +46,6 @@ function iishagenda_event_field_default_field_bases() {
     'type' => 'email',
   );
 
-  // Exported field_base: 'field_approved'.
-  $field_bases['field_approved'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_approved',
-    'field_permissions' => array(
-      'type' => 2,
-    ),
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        0 => 'Nee',
-        1 => 'Ja',
-      ),
-      'allowed_values_function' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_boolean',
-  );
-
   // Exported field_base: 'field_attachment'.
   $field_bases['field_attachment'] = array(
     'active' => 1,
@@ -121,34 +93,6 @@ function iishagenda_event_field_default_field_bases() {
       'allowed_values' => array(
         0 => 'No',
         1 => 'Yes',
-      ),
-      'allowed_values_function' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_boolean',
-  );
-
-  // Exported field_base: 'field_canceled'.
-  $field_bases['field_canceled'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_canceled',
-    'field_permissions' => array(
-      'type' => 2,
-    ),
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        0 => 'Niet geannuleerd',
-        1 => 'Geannuleerd',
       ),
       'allowed_values_function' => '',
     ),

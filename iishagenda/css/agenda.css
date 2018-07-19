@@ -132,6 +132,18 @@ body.agenda .content .view-catering table.field-collection-view-final thead tr, 
 label[for=edit-field-type-activity-tid], label[for=edit-field-room-location-tid], label[for=edit-field-event-status-value], label[for=edit-field-event-date-value] {
   color: black !important; }
 
+.event-option-0 {
+  display: none; }
+
+.event-option-1 {
+  display: inline-block;
+  color: #a8288e;
+  border: 1px dotted #a8288e !important;
+  border-radius: 8px;
+  padding: 0px 5px !important;
+  margin-bottom: 3px !important;
+  font-size: 11px; }
+
 @media print {
   html body.admin-menu {
     margin-top: 0 !important; }

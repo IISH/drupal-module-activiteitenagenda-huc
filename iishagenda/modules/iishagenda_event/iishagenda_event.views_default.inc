@@ -194,6 +194,11 @@ function iishagenda_event_views_default_views() {
   $handler->display->display_options['fields']['field_note']['id'] = 'field_note';
   $handler->display->display_options['fields']['field_note']['table'] = 'field_data_field_note';
   $handler->display->display_options['fields']['field_note']['field'] = 'field_note';
+  /* Field: Content: Optie */
+  $handler->display->display_options['fields']['field_event_option']['id'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['table'] = 'field_data_field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['field'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['exclude'] = TRUE;
   /* Sort criterion: Content: Datum -  start date (field_event_date) */
   $handler->display->display_options['sorts']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['sorts']['field_event_date_value']['table'] = 'field_data_field_event_date';
@@ -366,7 +371,7 @@ function iishagenda_event_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['content'] = '<h2>Accomodaties per week</h2>
-Dit zijn de komende evenementen (na vandaag) die met bijzonderheden.';
+Dit zijn de komende evenementen (na vandaag) met bijzonderheden.';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
   $handler->display->display_options['defaults']['footer'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
@@ -448,6 +453,11 @@ Dit zijn de komende evenementen (na vandaag) die met bijzonderheden.';
   $handler->display->display_options['fields']['field_note']['id'] = 'field_note';
   $handler->display->display_options['fields']['field_note']['table'] = 'field_data_field_note';
   $handler->display->display_options['fields']['field_note']['field'] = 'field_note';
+  /* Field: Content: Optie */
+  $handler->display->display_options['fields']['field_event_option']['id'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['table'] = 'field_data_field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['field'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['exclude'] = TRUE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -584,13 +594,14 @@ Dit zijn de komende evenementen (na vandaag) die met bijzonderheden.';
     t('Zaal'),
     t('# Pers.'),
     t('Opmerking'),
+    t('Optie'),
     t('Has taxonomy term'),
     t('Accommodaties vandaag (page)'),
     t('more'),
     t('Accommodaties binnenkort block'),
     t('Accomodaties per week'),
     t('<h2>Accomodaties per week</h2>
-Dit zijn de komende evenementen (na vandaag) die met bijzonderheden.'),
+Dit zijn de komende evenementen (na vandaag) met bijzonderheden.'),
     t('[title]<br>
 [field_event_date]<br>
 [field_event_date_1]<br>
@@ -798,6 +809,11 @@ Dit zijn de komende evenementen (na vandaag) die met bijzonderheden.'),
   );
   $handler->display->display_options['fields']['field_catering']['delta_limit'] = '5';
   $handler->display->display_options['fields']['field_catering']['delta_offset'] = '0';
+  /* Field: Content: Optie */
+  $handler->display->display_options['fields']['field_event_option']['id'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['table'] = 'field_data_field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['field'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['exclude'] = TRUE;
   /* Sort criterion: Content: Datum -  start date (field_event_date) */
   $handler->display->display_options['sorts']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['sorts']['field_event_date_value']['table'] = 'field_data_field_event_date';
@@ -1065,6 +1081,13 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     'multiple_from' => '',
     'multiple_to' => '',
   );
+  /* Field: Content: Optie */
+  $handler->display->display_options['fields']['field_event_option']['id'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['table'] = 'field_data_field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['field'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['label'] = '';
+  $handler->display->display_options['fields']['field_event_option']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_event_option']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -1200,6 +1223,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
 '),
     t('Zaal'),
     t('# Pers.'),
+    t('Optie'),
     t('Has taxonomy term'),
     t('Catering vandaag (page)'),
     t('more'),
@@ -2297,7 +2321,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     1 => 0,
     3 => 0,
   );
-  /* Filter criterion: Content: Goedgekeurd (field_approved) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_approved_value']['id'] = 'field_approved_value';
   $handler->display->display_options['filters']['field_approved_value']['table'] = 'field_data_field_approved';
   $handler->display->display_options['filters']['field_approved_value']['field'] = 'field_approved_value';
@@ -2356,6 +2380,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['fields']['field_event_option']['table'] = 'field_data_field_event_option';
   $handler->display->display_options['fields']['field_event_option']['field'] = 'field_event_option';
   $handler->display->display_options['fields']['field_event_option']['label'] = '';
+  $handler->display->display_options['fields']['field_event_option']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_event_option']['element_label_colon'] = FALSE;
   /* Field: Content: Intern / Extern */
   $handler->display->display_options['fields']['field_internal_external_1']['id'] = 'field_internal_external_1';
@@ -2572,6 +2597,15 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['format'] = 'filtered_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Optie */
+  $handler->display->display_options['fields']['field_event_option']['id'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['table'] = 'field_data_field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['field'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['label'] = '';
+  $handler->display->display_options['fields']['field_event_option']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_event_option']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_event_option']['hide_alter_empty'] = FALSE;
+  $handler->display->display_options['fields']['field_event_option']['type'] = 'list_key';
   /* Field: Taxonomy term: Color */
   $handler->display->display_options['fields']['field_color']['id'] = 'field_color';
   $handler->display->display_options['fields']['field_color']['table'] = 'field_data_field_color';
@@ -2596,20 +2630,12 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['alter']['text'] = '[title] [field_canceled]';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Content: Status */
   $handler->display->display_options['fields']['field_event_status']['id'] = 'field_event_status';
   $handler->display->display_options['fields']['field_event_status']['table'] = 'field_data_field_event_status';
   $handler->display->display_options['fields']['field_event_status']['field'] = 'field_event_status';
-  /* Field: Content: Optie */
-  $handler->display->display_options['fields']['field_event_option']['id'] = 'field_event_option';
-  $handler->display->display_options['fields']['field_event_option']['table'] = 'field_data_field_event_option';
-  $handler->display->display_options['fields']['field_event_option']['field'] = 'field_event_option';
-  $handler->display->display_options['fields']['field_event_option']['label'] = '';
-  $handler->display->display_options['fields']['field_event_option']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_event_option']['hide_alter_empty'] = FALSE;
   /* Field: Content: Intern / Extern */
   $handler->display->display_options['fields']['field_internal_external']['id'] = 'field_internal_external';
   $handler->display->display_options['fields']['field_internal_external']['table'] = 'field_data_field_internal_external';
@@ -2900,6 +2926,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['fields']['field_event_option']['table'] = 'field_data_field_event_option';
   $handler->display->display_options['fields']['field_event_option']['field'] = 'field_event_option';
   $handler->display->display_options['fields']['field_event_option']['label'] = '';
+  $handler->display->display_options['fields']['field_event_option']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_event_option']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_event_option']['hide_alter_empty'] = FALSE;
   /* Field: Content: Intern / Extern */
@@ -3219,6 +3246,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['fields']['field_event_option']['id'] = 'field_event_option';
   $handler->display->display_options['fields']['field_event_option']['table'] = 'field_data_field_event_option';
   $handler->display->display_options['fields']['field_event_option']['field'] = 'field_event_option';
+  $handler->display->display_options['fields']['field_event_option']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_event_option']['empty'] = '-';
   $handler->display->display_options['fields']['field_event_option']['hide_alter_empty'] = FALSE;
   /* Field: Content: Intern / Extern */
@@ -3509,6 +3537,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['fields']['field_event_option']['table'] = 'field_data_field_event_option';
   $handler->display->display_options['fields']['field_event_option']['field'] = 'field_event_option';
   $handler->display->display_options['fields']['field_event_option']['label'] = '';
+  $handler->display->display_options['fields']['field_event_option']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_event_option']['element_label_colon'] = FALSE;
   /* Field: Content: Intern / Extern */
   $handler->display->display_options['fields']['field_internal_external']['id'] = 'field_internal_external';
@@ -3900,7 +3929,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Content: Goedgekeurd */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_approved']['id'] = 'field_approved';
   $handler->display->display_options['fields']['field_approved']['table'] = 'field_data_field_approved';
   $handler->display->display_options['fields']['field_approved']['field'] = 'field_approved';
@@ -3914,7 +3943,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['sorts']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['sorts']['field_event_date_value']['table'] = 'field_data_field_event_date';
   $handler->display->display_options['sorts']['field_event_date_value']['field'] = 'field_event_date_value';
-  /* Sort criterion: Content: Goedgekeurd (field_approved) */
+  /* Sort criterion: Broken/missing handler */
   $handler->display->display_options['sorts']['field_approved_value']['id'] = 'field_approved_value';
   $handler->display->display_options['sorts']['field_approved_value']['table'] = 'field_data_field_approved';
   $handler->display->display_options['sorts']['field_approved_value']['field'] = 'field_approved_value';
@@ -3981,7 +4010,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     7 => 0,
     8 => 0,
   );
-  /* Filter criterion: Content: Goedgekeurd (field_approved) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_approved_value']['id'] = 'field_approved_value';
   $handler->display->display_options['filters']['field_approved_value']['table'] = 'field_data_field_approved';
   $handler->display->display_options['filters']['field_approved_value']['field'] = 'field_approved_value';
@@ -4002,7 +4031,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     7 => 0,
     8 => 0,
   );
-  /* Filter criterion: Content: Geannuleerd (field_canceled) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_canceled_value']['id'] = 'field_canceled_value';
   $handler->display->display_options['filters']['field_canceled_value']['table'] = 'field_data_field_canceled';
   $handler->display->display_options['filters']['field_canceled_value']['field'] = 'field_canceled_value';
@@ -4573,7 +4602,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['sorts']['field_event_date_value']['table'] = 'field_data_field_event_date';
   $handler->display->display_options['sorts']['field_event_date_value']['field'] = 'field_event_date_value';
   $handler->display->display_options['sorts']['field_event_date_value']['order'] = 'DESC';
-  /* Sort criterion: Content: Goedgekeurd (field_approved) */
+  /* Sort criterion: Broken/missing handler */
   $handler->display->display_options['sorts']['field_approved_value']['id'] = 'field_approved_value';
   $handler->display->display_options['sorts']['field_approved_value']['table'] = 'field_data_field_approved';
   $handler->display->display_options['sorts']['field_approved_value']['field'] = 'field_approved_value';
@@ -4704,7 +4733,6 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     t('Filter op soort'),
     t('My events'),
     t('Mijn evenementen'),
-    t('[title] [field_canceled]'),
     t('[field_event_room]'),
     t('Vanaf (datum)'),
     t('Administer events (future)'),
@@ -4725,8 +4753,9 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     t('ADMIN EVENTS TEMP'),
     t('Content'),
     t('- Choose an operation -'),
-    t('Goedgekeurd'),
+    t('Broken handler field_data_field_approved.field_approved'),
     t('Name'),
+    t('Goedgekeurd'),
     t('Geannuleerd'),
     t('Administer flexwork (future)'),
     t('Beheer flexwerken'),
@@ -5163,7 +5192,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     1 => 0,
     3 => 0,
   );
-  /* Filter criterion: Content: Goedgekeurd (field_approved) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_approved_value']['id'] = 'field_approved_value';
   $handler->display->display_options['filters']['field_approved_value']['table'] = 'field_data_field_approved';
   $handler->display->display_options['filters']['field_approved_value']['field'] = 'field_approved_value';
