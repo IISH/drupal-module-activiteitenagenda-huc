@@ -94,4 +94,8 @@ New changes for version 1.2
 
 Make sure the IISH theme have the same configuration as the theme installed at intranet.iisg.nl (Toggle styles tab particularly)
 
-Enable holiday feature.
+
+NEW in version 2
+
+- Enable holiday feature.
+- set permissions for holiday node type (all types of admins can do all)
