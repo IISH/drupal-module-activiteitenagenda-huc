@@ -931,7 +931,8 @@ in de kantine, <b>na afloop terug brengen</b>.',
     'bundle' => 'event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Gebruik dit veld om namens een collega/bestaande organisator een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
+    'description' => 'Gebruik dit veld om namens iemand anders een evenement aan te maken. De organisator is degene die het evenement organiseert. Als de organisator het evenement niet persoonlijk begeleidt op de dag zelf, vermeld hieronder dan ook de begeleider.<br>
+Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -1997,7 +1998,8 @@ in de kantine, <b>na afloop terug brengen</b>.');
   t('Faciliteiten');
   t('Facilities');
   t('Geannuleerd');
-  t('Gebruik dit veld om namens een collega/bestaande organisator een evenement aan te maken. <br>Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam');
+  t('Gebruik dit veld om namens iemand anders een evenement aan te maken. De organisator is degene die het evenement organiseert. Als de organisator het evenement niet persoonlijk begeleidt op de dag zelf, vermeld hieronder dan ook de begeleider.<br>
+Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam');
   t('Geef aan van welke locaties je de beschikbare ruimtes wilt zien.');
   t('Geef aan welke faciliteiten je nodig hebt.');
   t('Geef het maximaal aantal personen op ');
