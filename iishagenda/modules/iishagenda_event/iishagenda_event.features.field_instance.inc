@@ -1910,6 +1910,64 @@ in de kantine, <b>na afloop terug brengen</b>.',
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-room_location-field_rules'.
+  $field_instances['taxonomy_term-room_location-field_rules'] = array(
+    'bundle' => 'room_location',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_rules',
+    'label' => 'Rules',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'file_directory' => '',
+      'file_extensions' => 'txt pdf doc docx',
+      'max_filesize' => '',
+      'mediafront' => array(
+        'custom' => '',
+        'field_type' => 0,
+        'media_type' => 'media',
+        'preview' => 0,
+        'thumbnail' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'private' => 0,
+          'public' => 'public',
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 'document',
+          'image' => 0,
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
+          'upload' => 'upload',
+        ),
+      ),
+      'type' => 'media_generic',
+      'weight' => 6,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('(uu:mm)  ');
@@ -1958,6 +2016,7 @@ in de kantine, <b>na afloop terug brengen</b>.');
   t('Organisator');
   t('Prive');
   t('Referentienummer');
+  t('Rules');
   t('Soort activiteit');
   t('Status');
   t('Status changed by');
