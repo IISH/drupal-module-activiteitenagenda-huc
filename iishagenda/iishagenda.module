@@ -105,7 +105,7 @@ function iishagenda_block_view($delta)
 
   if ($delta == 'location_menu') {
 
-    $allowed_views = array('calendar', 'catering', 'catering_archive','upcoming_events');
+    $allowed_views = array('calendar', 'catering', 'catering_archive','upcoming_events', 'accomodations');
     $view = views_get_page_view();
 
     if (isset($view) &&
@@ -1057,7 +1057,7 @@ function _iishagenda_change_node_title_if_private($nid, $title)
  */
 function iishagenda_views_pre_view(&$view)
 {
-  $views = array('catering','catering_archive','calendar');
+  $views = array('catering','catering_archive','calendar','accomodations');
   $upcoming_displays = array('page','page_3');
 
   if (in_array($view->name,$views) ||
@@ -1080,7 +1080,7 @@ function iishagenda_views_pre_view(&$view)
  */
 function _iishagenda_determine_location()
 {
-  // TODO: save and load preference to user profile.
+  // @TODO: save and load preference to user profile.
   global $user;
   $user = user_load($user->uid);
 
