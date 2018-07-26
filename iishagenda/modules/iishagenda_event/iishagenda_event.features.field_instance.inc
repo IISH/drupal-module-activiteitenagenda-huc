@@ -1813,7 +1813,7 @@ Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
   $field_instances['taxonomy_term-room_location-field_rules'] = array(
     'bundle' => 'room_location',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Add a file with rules to agree with when creating a reservation.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1843,26 +1843,32 @@ Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'media',
+      'module' => 'file',
       'settings' => array(
-        'allowed_schemes' => array(
-          'private' => 0,
-          'public' => 'public',
+        'filefield_sources' => array(
+          'filefield_sources' => array(
+            'attach' => 0,
+            'clipboard' => 0,
+            'reference' => 0,
+            'remote' => 0,
+            'upload' => 'upload',
+          ),
+          'source_attach' => array(
+            'absolute' => 0,
+            'attach_mode' => 'move',
+            'path' => 'file_attach',
+          ),
+          'source_imce' => array(
+            'imce_mode' => 0,
+          ),
+          'source_reference' => array(
+            'autocomplete' => 0,
+            'search_all_fields' => 0,
+          ),
         ),
-        'allowed_types' => array(
-          'audio' => 0,
-          'document' => 'document',
-          'image' => 0,
-          'video' => 0,
-        ),
-        'browser_plugins' => array(
-          'media_default--media_browser_1' => 'media_default--media_browser_1',
-          'media_default--media_browser_my_files' => 0,
-          'media_internet' => 0,
-          'upload' => 'upload',
-        ),
+        'progress_indicator' => 'throbber',
       ),
-      'type' => 'media_generic',
+      'type' => 'file_generic',
       'weight' => 6,
     ),
   );
@@ -1871,6 +1877,7 @@ Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
   // Included for use with string extractors like potx.
   t('(uu:mm)  ');
   t('Aantal personen');
+  t('Add a file with rules to agree with when creating a reservation.');
   t('Administrator');
   t('Adres');
   t('Begeleider');
