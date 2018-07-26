@@ -2757,7 +2757,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   /* Display: Administer events (future) */
   $handler = $view->new_display('page', 'Administer events (future)', 'page_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Beheer aankomende evenementen';
+  $handler->display->display_options['title'] = 'Beheer evenementen';
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
@@ -3062,6 +3062,15 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['filters']['field_room_type_value']['value'] = array(
     1 => '1',
   );
+  /* Filter criterion: Content: Has taxonomy term */
+  $handler->display->display_options['filters']['tid']['id'] = 'tid';
+  $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['filters']['tid']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid']['relationship'] = 'field_event_room_nid';
+  $handler->display->display_options['filters']['tid']['value'] = array(
+    0 => '52',
+  );
+  $handler->display->display_options['filters']['tid']['vocabulary'] = 'room_location';
   $handler->display->display_options['path'] = 'administer-events/future';
   $handler->display->display_options['menu']['type'] = 'default tab';
   $handler->display->display_options['menu']['title'] = 'Aankomende evenementen';
@@ -3368,7 +3377,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   /* Display: Administer events (past) */
   $handler = $view->new_display('page', 'Administer events (past)', 'page_4');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Beheer afgelopen evenementen';
+  $handler->display->display_options['title'] = 'Beheer evenementen';
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
@@ -3667,6 +3676,15 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['filters']['field_room_type_value']['value'] = array(
     1 => '1',
   );
+  /* Filter criterion: Content: Has taxonomy term */
+  $handler->display->display_options['filters']['tid']['id'] = 'tid';
+  $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['filters']['tid']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid']['relationship'] = 'field_event_room_nid';
+  $handler->display->display_options['filters']['tid']['value'] = array(
+    0 => '52',
+  );
+  $handler->display->display_options['filters']['tid']['vocabulary'] = 'room_location';
   $handler->display->display_options['path'] = 'administer-events/past';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Afgelopen evenementen';
@@ -4736,7 +4754,7 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     t('[field_event_room]'),
     t('Vanaf (datum)'),
     t('Administer events (future)'),
-    t('Beheer aankomende evenementen'),
+    t('Beheer evenementen'),
     t('Title link'),
     t('[title_1] [field_event_status]'),
     t('soort'),
@@ -4748,7 +4766,6 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
     t('Optie'),
     t('-'),
     t('Administer events (past)'),
-    t('Beheer afgelopen evenementen'),
     t('Title (link)'),
     t('ADMIN EVENTS TEMP'),
     t('Content'),

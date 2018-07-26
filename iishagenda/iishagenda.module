@@ -1058,7 +1058,7 @@ function _iishagenda_change_node_title_if_private($nid, $title)
 function iishagenda_views_pre_view(&$view)
 {
   $views = array('catering','catering_archive','calendar','accomodations');
-  $upcoming_displays = array('page','page_3');
+  $upcoming_displays = array('page','page_2','page_3','page_4');
 
   if (in_array($view->name,$views) ||
     ($view->name === 'upcoming_events' && in_array($view->current_display,$upcoming_displays))) {
