@@ -714,7 +714,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 0,
+      'weight' => -1,
     ),
   );
 
@@ -1203,6 +1203,13 @@ Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
     'label' => 'Telefoon (extern)',
     'required' => 0,
     'settings' => array(
+      'mediafront' => array(
+        'custom' => '',
+        'field_type' => 0,
+        'media_type' => 'media',
+        'preview' => 0,
+        'thumbnail' => 0,
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1255,7 +1262,7 @@ Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => -1,
+      'weight' => -2,
     ),
   );
 
@@ -1453,7 +1460,7 @@ Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => -2,
+      'weight' => -3,
     ),
   );
 

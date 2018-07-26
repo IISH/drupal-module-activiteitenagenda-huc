@@ -112,7 +112,6 @@ function iishagenda_event_field_group_info() {
       0 => 'field_clone_of',
       1 => 'field_event_status',
       2 => 'field_status_changed_by',
-      3 => 'group_organiser',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -299,6 +298,7 @@ function iishagenda_event_field_group_info() {
       2 => 'field_event_option',
       3 => 'field_private',
       4 => 'title',
+      5 => 'group_organiser',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -351,10 +351,10 @@ function iishagenda_event_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'event';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_admin';
+  $field_group->parent_name = 'group_general';
   $field_group->data = array(
     'label' => 'Organisator',
-    'weight' => '34',
+    'weight' => '0',
     'children' => array(
       0 => 'field_contact_person',
       1 => 'field_email',
