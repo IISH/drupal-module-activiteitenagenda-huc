@@ -830,7 +830,7 @@ in de kantine, <b>na afloop terug brengen</b>.',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => 'Gebruik dit veld om namens iemand anders een evenement aan te maken. De organisator is degene die het evenement organiseert. Als de organisator het evenement niet persoonlijk begeleidt op de dag zelf, vermeld hieronder dan ook de begeleider.<br>
-Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
+Typ de voornaam van de gebruiker letter voor letter en wacht tot suggesties verschijnen in de keuze lijst.',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -1820,7 +1820,7 @@ Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
   $field_instances['taxonomy_term-room_location-field_rules'] = array(
     'bundle' => 'room_location',
     'deleted' => 0,
-    'description' => 'Add a file with rules to agree with when creating a reservation.',
+    'description' => 'Add a file with rules to agree with when creating a reservation. Only normal users with no special roles have to agree.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1884,7 +1884,7 @@ Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam',
   // Included for use with string extractors like potx.
   t('(uu:mm)  ');
   t('Aantal personen');
-  t('Add a file with rules to agree with when creating a reservation.');
+  t('Add a file with rules to agree with when creating a reservation. Only normal users with no special roles have to agree.');
   t('Administrator');
   t('Adres');
   t('Begeleider');
@@ -1909,7 +1909,7 @@ in de kantine, <b>na afloop terug brengen</b>.');
   t('Faciliteiten');
   t('Facilities');
   t('Gebruik dit veld om namens iemand anders een evenement aan te maken. De organisator is degene die het evenement organiseert. Als de organisator het evenement niet persoonlijk begeleidt op de dag zelf, vermeld hieronder dan ook de begeleider.<br>
-Typ de gebruikersnaam van de gebruiker, formaat: voornaam.achternaam');
+Typ de voornaam van de gebruiker letter voor letter en wacht tot suggesties verschijnen in de keuze lijst.');
   t('Geef aan van welke locaties je de beschikbare ruimtes wilt zien.');
   t('Geef aan welke faciliteiten je nodig hebt.');
   t('Geef het maximaal aantal personen op ');
