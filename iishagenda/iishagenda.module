@@ -602,16 +602,38 @@ function iishagenda_preprocess_node(&$variables, $hook)
       $variables["clone"] = false;
     }
 
-    $user = user_load($variables["uid"]);
-    $user_w = entity_metadata_wrapper('user',$user);
-    $name = $user_w->field_full_name->value();
-    if(!empty($name)){
-      $variables["name"] = $name;
-    }
+    $variables["name"] = _iishagenda_get_fullname($variables["uid"]);
     $variables["create_date"] = format_date($variables["created"], 'event_date');
+
+    $node_w = entity_metadata_wrapper('node',$variables["node"]);
+    
+    $organiser = $node_w->field_existing_user->value();
+    if(!empty($organiser)){
+      $username = _iishagenda_get_fullname($organiser->uid);
+      $variables['content']['field_existing_user'][0]['#title'] = $username;
+    }
+
+    $status_changed_by = $node_w->field_status_changed_by->value();
+    if(!empty($status_changed_by)){
+      $username = _iishagenda_get_fullname($status_changed_by->uid);
+      $variables['content']['field_status_changed_by'][0]['#title'] = $username;
+    }
+
   }
 }
 
+/**
+ * Returns users' full name by user id, fallback to username
+ */
+function _iishagenda_get_fullname($uid){
+  $user = user_load($uid);
+  $user_w = entity_metadata_wrapper('user',$user);
+  $name = $user_w->field_full_name->value();
+  if(empty($name)){
+    $name = $user->name;
+  }
+  return $name;
+}
 
 /**
  * Check if the event is in a room that is on a controlled location (field_booking_control)
