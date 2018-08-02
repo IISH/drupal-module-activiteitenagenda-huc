@@ -381,12 +381,12 @@ function iishagenda_node_presave($node)
     }
 
     // Notify admin when event is outsideoffice hours or has a note or catering
-    // term id 53 Oost Indisch huis
-    // term id 54 Spinhuis
+    // term id 54 = Huc binnenstad
+    // @TODO: make this dynamic
     $room = $new_node_w->field_event_room->value();
     $room_w = entity_metadata_wrapper('node',$room[0]);
     $location = $room_w->field_room_location->value();
-    if($location->tid == '53' || $location->tid == '53'){
+    if($location->tid == '54'){
       $date = $new_node_w->field_event_date->value();
       $startdate = strtotime($date['value']);
       $enddate = strtotime($date['value2']);
