@@ -7603,30 +7603,12 @@ Dit zijn de komende evenementen (na vandaag) die catering en/of faciliteiten nod
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'user';
-  /* Field: User: First name */
-  $handler->display->display_options['fields']['field_first_name']['id'] = 'field_first_name';
-  $handler->display->display_options['fields']['field_first_name']['table'] = 'field_data_field_first_name';
-  $handler->display->display_options['fields']['field_first_name']['field'] = 'field_first_name';
-  $handler->display->display_options['fields']['field_first_name']['label'] = '';
-  $handler->display->display_options['fields']['field_first_name']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_first_name']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_first_name']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_first_name']['type'] = 'text_plain';
-  /* Field: User: Tussenvoegsel */
-  $handler->display->display_options['fields']['field_tussenvoegsel']['id'] = 'field_tussenvoegsel';
-  $handler->display->display_options['fields']['field_tussenvoegsel']['table'] = 'field_data_field_tussenvoegsel';
-  $handler->display->display_options['fields']['field_tussenvoegsel']['field'] = 'field_tussenvoegsel';
-  $handler->display->display_options['fields']['field_tussenvoegsel']['label'] = '';
-  $handler->display->display_options['fields']['field_tussenvoegsel']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_tussenvoegsel']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_tussenvoegsel']['hide_empty'] = TRUE;
-  /* Field: User: Last name */
-  $handler->display->display_options['fields']['field_last_name']['id'] = 'field_last_name';
-  $handler->display->display_options['fields']['field_last_name']['table'] = 'field_data_field_last_name';
-  $handler->display->display_options['fields']['field_last_name']['field'] = 'field_last_name';
-  $handler->display->display_options['fields']['field_last_name']['label'] = '';
-  $handler->display->display_options['fields']['field_last_name']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_last_name']['hide_empty'] = TRUE;
+  /* Field: User: Full name */
+  $handler->display->display_options['fields']['field_full_name']['id'] = 'field_full_name';
+  $handler->display->display_options['fields']['field_full_name']['table'] = 'field_data_field_full_name';
+  $handler->display->display_options['fields']['field_full_name']['field'] = 'field_full_name';
+  $handler->display->display_options['fields']['field_full_name']['label'] = '';
+  $handler->display->display_options['fields']['field_full_name']['element_label_colon'] = FALSE;
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
