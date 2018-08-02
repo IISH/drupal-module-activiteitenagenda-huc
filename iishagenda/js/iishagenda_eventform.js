@@ -1,6 +1,5 @@
 (function ($, Drupal, window, document, undefined) {
 
-
     var duration = determineDuration();
     var showed_changedate_msg = false;
     var current_rooms = new Array();
@@ -20,8 +19,6 @@
             }
         }
     };
-
-
 
     function init(){
         setEventTimePicker();
@@ -53,18 +50,15 @@
             var validCatering = checkCatering();
 
             if(!validCatering){
-                if (confirm("Een aantal catering items hebben geen tijd, wil je voor deze items het aanvangs tijdstip van de reservering gebruiken?")) {
+                if (confirm("Een aantal catering items hebben geen (geldige) tijd, wil je voor deze items het aanvangs tijdstip van de reservering gebruiken?")) {
                     setCatering();
-                    $("#event-node-form").submit();
                 } else {
-                    alert('Vul een tijd in voor de catering.');
+                    alert('Vul een tijd in voor de ingevulde catering item(s).');
                 }
             }else{
                 $(".node-event-form").submit();
             }
         });
-
-
     }
 
     function setAgreement(){
@@ -72,6 +66,8 @@
         $(".form-item-condition-agree").hide();
 
         if($('body').hasClass('show-rules')){
+            checkAgreement();
+            $("#rooms-replace input").unbind();
             $("#rooms-replace input").change(function(){
                 checkAgreement();
             });
@@ -82,6 +78,7 @@
         var $checkboxes = $('.form-item-field-event-room-und input[type="checkbox"]');
         var urls = [];
 
+        // Gather file url's of rules in checked checkboxes
         $.each($checkboxes.filter(':checked'),function(i,v){
             var url = $(this).attr('data-rules-file-url');
             var alreadyIn = urls.indexOf(url) ;
@@ -90,13 +87,16 @@
             }
         });
 
-
         if(urls.length == 0){
             $("#edit-submit").removeAttr('disabled');
             $(".form-item-condition-agree").hide();
 
         }else{
-            $("#edit-submit").attr('disabled','disabled');
+
+            if(!$('#edit-condition-agree').is(':checked')){
+                $("#edit-submit").attr('disabled','disabled');
+            }
+
             $(".form-item-condition-agree").show();
 
             $("label[for=edit-condition-agree").find('a').attr('href',urls[0]);
@@ -111,28 +111,60 @@
         }
     }
 
+    /**
+     *  Checks if catering items have valid time
+     */
     function checkCatering(){
         var isValid = true;
-        var $cateringItems = $('.field-name-field-catering-time input');
-        if($cateringItems.length >1){
-            $.each($cateringItems,function(i,input){
-                var cat_time = $(input).val();
-                if(cat_time.length !== 5){
-                    isValid = false;
-                }
-            });
+        var isValidItem;
+        var $cateringItems = $('#field-catering-values tbody tr');
+
+        $.each($cateringItems,function(i,item){
+
+            isValidItem  = checkCateringItem(item);
+            if(!isValidItem){
+                isValid = false;
+            }
+        });
+
+        return isValid;
+    }
+
+    /**
+     * Checks if catering items has valid time
+     */
+    function checkCateringItem(item){
+        var isValid = true;
+
+        var cat_time = $(item).find('.field-name-field-catering-time input').val();
+        var checkedboxcount = $(item).find('input:checkbox:checked').length;
+        var description = $(item).find('textarea').val();
+        var location = $(item).find('.field-name-field-location select').val();
+        var food = $(item).find('.field-name-field-food select').val();
+
+        // if some fields are set, check for valid time
+        if(checkedboxcount > 0 || description.trim() !== '' || location !== '_none' || food !== '_none'){
+            if(cat_time.length !== 5){
+                isValid = false;
+            }
         }
 
         return isValid;
     }
 
+
+    /**
+     * Set filled in catering items with time of event when time is missing or invalid
+     */
     function setCatering(){
-        var $cateringItems = $('.field-name-field-catering-time input');
-        $.each($cateringItems,function(i,input){
-            var cat_time = $(input).val();
-            var event_time = $("input[name='field_event_date[und][0][value][time]']").val();
-            if(cat_time.length !== 5){
-                $(input).val(event_time);
+
+        var event_time = $("input[name='field_event_date[und][0][value][time]']").val();
+        var $cateringItems = $('#field-catering-values tbody tr');
+
+        $.each($cateringItems,function(i,item){
+            isValidItem  = checkCateringItem(item);
+            if(!isValidItem){
+                $(item).find('.field-name-field-catering-time input').val(event_time);
             }
         });
     }

@@ -39,8 +39,8 @@ function _custom_validation($form, &$form_state) {
       $form_errors['field_event_room[und][0][value'] = t('Kies een zaal.');
     }
 
-    $catering_errors = _validate_catering_items($form_state);
-    $form_errors = array_merge($form_errors,$catering_errors);
+   // $catering_errors = _validate_catering_items($form_state);
+   // $form_errors = array_merge($form_errors,$catering_errors);
 
     if(count($form_errors)>0){
       if(isset($drupal_errors['error'])){

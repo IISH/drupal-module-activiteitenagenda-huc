@@ -606,7 +606,7 @@ function iishagenda_preprocess_node(&$variables, $hook)
     $variables["create_date"] = format_date($variables["created"], 'event_date');
 
     $node_w = entity_metadata_wrapper('node',$variables["node"]);
-    
+
     $organiser = $node_w->field_existing_user->value();
     if(!empty($organiser)){
       $username = _iishagenda_get_fullname($organiser->uid);
