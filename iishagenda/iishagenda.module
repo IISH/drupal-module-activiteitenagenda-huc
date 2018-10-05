@@ -988,6 +988,7 @@ function iishagenda_cron()
     $query->join('users', 'u', 'n.uid = u.uid');
     $query->join('field_data_field_event_option', 'o', 'o.entity_id = n.nid');
     $query->join('field_data_field_event_date', 'd', 'd.entity_id = n.nid');
+    $query->join('field_data_field_event_status', 's', 's.entity_id = n.nid');
     $result = $query
       ->fields('n', array('nid', 'title'))
       ->fields('u', array('uid', 'name', 'mail'))
@@ -998,6 +999,7 @@ function iishagenda_cron()
       ->condition('d.field_event_date_value', $datelimit, "<=")
       ->condition('d.field_event_date_value', date('Y-m-dTH:i:s'), ">")
       ->condition('n.status', 1)
+	  ->condition('s.field_event_status_value', 'new')
       ->execute()->fetchAll();
 
     $nids_ok = array();
