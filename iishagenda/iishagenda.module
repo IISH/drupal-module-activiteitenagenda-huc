@@ -999,7 +999,7 @@ function iishagenda_cron()
       ->condition('d.field_event_date_value', $datelimit, "<=")
       ->condition('d.field_event_date_value', date('Y-m-dTH:i:s'), ">")
       ->condition('n.status', 1)
-	  ->condition('s.field_event_status_value', 'new')
+	  ->condition('s.field_event_status_value', 'cancelled', '<>')
       ->execute()->fetchAll();
 
     $nids_ok = array();
