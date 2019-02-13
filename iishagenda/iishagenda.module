@@ -708,7 +708,19 @@ function iishagenda_notify_location_admin($event)
   $subject = "Reservering buiten kantoortijden " . $event->title;
   $body = array();
   $body[] = "De reservering '" . $event->title . "' aangemaakt of gewijzigd en is buiten kantoortijd of heeft een opmerking of catering.";
-  $body[] = "Zie: " . $base_url . "/node/". $event->nid;
+
+
+	// dirty trick
+	// problem is that the document is mailed before it it saved, but if it is a new document then there is no nid value
+	if(empty($event->nid)){
+		$lastNodeId = db_query('SELECT MAX(nid) FROM node')->fetchField();
+		$nId = $lastNodeId+1;
+	} else {
+		$nId = $event->nid;
+	}
+	//$body[] = "Zie: " . $base_url . "/node/". $event->nid;
+	$body[] = "Zie: " . $base_url . "/node/". $nId;
+
 
   $params = array(
     'subject' => $subject,
