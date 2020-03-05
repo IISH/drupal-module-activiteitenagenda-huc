@@ -300,7 +300,6 @@ function _iishagenda_rebuild_rooms($form, $form_state)
 /**
  * Returns available rooms based on date
  */
-// todogcux
 function _iishagenda_get_available_rooms($form, $form_state) {
   // TODO: if node is being edited, use values of the node instead of form state (because its empty when edit form loads initially)
   // defining variables
@@ -344,16 +343,10 @@ function _iishagenda_get_available_rooms($form, $form_state) {
 
   }
 
-	// todogcux
-//	error_log( 'STARTDATE: ' . $startdate );
 	$startdatePlus = date('Y-m-d\TH:i:s', strtotime('+1 second', strtotime($startdate)));
-//	error_log( 'STARTDATE222: ' . $startdatePlus );
 
-//	error_log( 'ENDDATE: ' . $enddate );
 	$enddateMinus = date('Y-m-d\TH:i:s', strtotime('-1 second', strtotime($enddate)));
-//	error_log( 'ENDDATE222: ' . $enddateMinus );
 
-	// todogcux
 	// return empty room array if reqyured fields are empty
 	// dit werkt/helpt niet !!!
 	if ( $location_ids == '' || $startdate == '' || $enddate == '' || $people == '' || $people == '0') {
@@ -411,7 +404,6 @@ function _iishagenda_get_available_rooms($form, $form_state) {
     }
   }
 
-  // todogcux
   // get all rooms (except unpublished)
   $query = new EntityFieldQuery;
   $query->entityCondition('entity_type', 'node')
@@ -443,8 +435,6 @@ function _iishagenda_get_available_rooms($form, $form_state) {
     $query->fieldCondition('field_room_location', 'tid', $location_ids);
   }
 
-
-  // TODOGCU
   // Add people condition
   // if not admin then check room capacity (if admin don't check room capacity)
 //	if ( !is_user_admin() ) {

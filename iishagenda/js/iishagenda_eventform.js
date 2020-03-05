@@ -227,7 +227,7 @@
         $('#edit-field-event-date-und-0-value-timeEntry-popup-1').change(function(e){
             onchange_date(this);
 
-	        // todogcux
+	        //
             if ($('#edit-field-event-date-und-0-value-timeEntry-popup-1').val() == '') {
 	            $('#edit-field-event-date-und-0-value2-timeEntry-popup-1').val('');
             }
@@ -351,7 +351,7 @@
         }
     }
 
-	// todogcu DIRTY
+	//
 	function disableEnableRoomCheckboxes() {
 		if ($('#edit-field-event-date-und-0-value-timeEntry-popup-1').val() == '' || $('#edit-field-event-date-und-0-value2-timeEntry-popup-1').val() == '' ) {
 			$('#edit-field-event-room-und--2').hide();
