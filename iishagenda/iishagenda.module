@@ -976,17 +976,13 @@ function iishagenda_cron() {
 			$body = array();
 			$body[] = "Je hebt een reservering '" . $node->title . "' als OPTIE aangemaakt.";
 			$body[] = "Zie: " . $base_url . "/node/" . $node->nid . "/";
-			$body[] = '';
 			$body[] = "Geef aub. door of deze reservatie doorgaat of niet.";
 			$body[] = "HuC IISG: secretar@iisg.nl";
 			$body[] = "NIAS: helpdesknias@nias.knaw.nl";
 			$body[] = "HuC City: facilitair@bb.huc.knaw.nl";
 			$body[] = '';
-			$body[] = '- - -';
-			$body[] = '';
 			$body[] = "You have a reservation '" . $node->title . "' as an OPTION.";
 			$body[] = "See: " . $base_url . "/node/" . $node->nid . "/";
-			$body[] = '';
 			$body[] = "Would you be so kind to tell us if this reservation will go on.";
 			$body[] = "HuC IISG: secretar@iisg.nl";
 			$body[] = "NIAS: helpdesknias@nias.knaw.nl";
