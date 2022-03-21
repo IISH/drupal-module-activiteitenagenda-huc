@@ -51,8 +51,7 @@ function iishagenda_event_field_default_field_instances() {
     'bundle' => 'field_catering',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Bestellingen tot 15 personen kunnen afgehaald worden<br>
-in de kantine, <b>na afloop terug brengen</b>.',
+    'description' => 'Koffie/thee/water kan alleen besteld worden voor gezelschappen groter dan 25 personen.<br>Bestellingen tot 15 personen kunnen afgehaald worden in de kantine, na afloop terug brengen.',
     'display' => array(
       'default' => array(
         'label' => 'inline',
