@@ -1889,8 +1889,7 @@ Typ de voornaam van de gebruiker letter voor letter en wacht tot suggesties vers
   t('Begeleider');
   t('Bekijk <a href=\'[site:url]/rooms\' target=\'_blank\'>Zaaloverzicht</a> voor een lijst met alle beschikbare zalen en eigenschappen. (opent nieuw venster)');
   t('Beschrijving');
-  t('Bestellingen tot 15 personen kunnen afgehaald worden<br>
-in de kantine, <b>na afloop terug brengen</b>.');
+  t('Koffie/thee/water kan alleen besteld worden voor gezelschappen groter dan 25 personen.<br>Bestellingen tot 15 personen kunnen afgehaald worden in de kantine, na afloop terug brengen.');
   t('Bijlage');
   t('Booking Control');
   t('Capaciteit toelichting');
